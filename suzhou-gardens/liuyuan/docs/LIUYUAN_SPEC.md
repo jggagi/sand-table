@@ -133,7 +133,7 @@ DOM 观景按钮可键盘访问、具有焦点样式和可理解名称，必要�
 建议结构（实现时创建，不代表现在已有）：
 
 ```text
-suzhou-gardens/
+suzhou-gardens/liuyuan/
   package.json
   package-lock.json
   index.html
@@ -152,10 +152,12 @@ suzhou-gardens/
     ui/
     styles/
   public/
-    assets/liuyuan/
+    assets/
   tests/
   docs/
 ```
+
+本园独立安装、构建和测试。上层 `suzhou-gardens/` 只保留系列索引与共同约束；不得把本园的 package.json、源代码、资产或测试放到上层，也不依赖兄弟园林目录。
 
 保持少量清晰模块，可按实际实现调整。`primitives/` 只抽取真实重复构件，不先建立泛化平台。
 

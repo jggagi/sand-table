@@ -4,9 +4,9 @@
 
 ## 可直接发给 Codex
 
-> 在本仓库 `suzhou-gardens/` 内实现《掌上留园》的 M1 可交互构图原型。
+> 在本仓库 `suzhou-gardens/liuyuan/` 内实现《掌上留园》的 M1 可交互构图原型。
 >
-> 先阅读 `AGENTS.md`、本文件、`docs/LIUYUAN_SPEC.md` 和 `docs/IMPLEMENTATION_PLAN.md`。首座已经确定为留园，方向是具有实体沙盘感的微缩景观，不做摄影测量或全园 1:1 重建。
+> 先阅读上层 `suzhou-gardens/AGENTS.md`，再阅读留园目录内的 `AGENTS.md`、本文件、`docs/LIUYUAN_SPEC.md` 和 `docs/IMPLEMENTATION_PLAN.md`。首座已经确定为留园，方向是具有实体沙盘感的微缩景观，不做摄影测量或全园 1:1 重建。
 >
 > 交付一个 React + TypeScript + Vite + React Three Fiber + Drei 的可运行单页应用。三维内容包含同一底座上的中部池景、简化廊院连接、东部冠云峰庭院，以程序化几何和统一基色完成构图。实现正交相机旋转缩放、四个观景点和一键复位，并能在桌面和手机布局中操作。
 >
@@ -18,7 +18,9 @@
 
 ### 1. 项目启动
 
-在本子目录建立应用，保留现有文档。提供并实际验证 `dev`、`build`、`preview`、`typecheck`、`test` 和 `test:e2e` npm scripts；`test` 不默认进入 watch 模式。提交锁文件，在 README 记录所需 Node/npm 版本、首次安装与后续 `npm ci` 的使用方式。
+在 `suzhou-gardens/liuyuan/` 建立应用，保留现有文档。所有应用代码、依赖、锁文件、构建配置、资产、测试和截图均放在留园目录内；不在上层初始化项目，不依赖或修改兄弟园林目录。
+
+提供并实际验证 `dev`、`build`、`preview`、`typecheck`、`test` 和 `test:e2e` npm scripts；`test` 不默认进入 watch 模式。提交锁文件，在 README 记录所需 Node/npm 版本、首次安装与后续 `npm ci` 的使用方式。以下相对路径均以留园目录为基准。
 
 应用不依赖外部模型、图片热链、远程字体或 API。基础页面与场景使用本地代码和资产即可启动。
 

@@ -18,7 +18,7 @@
 ### M1.1 安全初始化
 
 - [ ] 阅读当前文档，检查仓库后续是否出现新的上层约束或已有实现。
-- [ ] 保留文档，在 `suzhou-gardens/` 建立 Vite + React + TypeScript 项目。
+- [ ] 保留文档，在 `suzhou-gardens/liuyuan/` 建立 Vite + React + TypeScript 项目；代码、资产、依赖、锁文件与测试均限于留园目录，不在系列上层初始化应用。
 - [ ] 核对稳定依赖兼容性，记录 Node/npm 要求并提交锁文件。
 - [ ] 提供 dev/build/preview/typecheck/test/test:e2e scripts；普通 test 为非 watch。
 - [ ] 设置忽略规则：不提交 node_modules、dist、缓存、临时 trace/video、凭据和私有文件。
