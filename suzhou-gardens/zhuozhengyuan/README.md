@@ -1,9 +1,33 @@
-# 拙政园微缩景观
+# 掌上拙政园 · 疏朗水乡
 
-状态：**目录占位，未启动**。当前不包含可运行应用、模型或实施任务书。
+独立的艺术化三维微缩园林：大池、双岛、远堂与折桥关系清楚；亭景保留水面，望堂机位能看到完整堂屋，手机全景完整。 所有尺寸、位置和细节为构图压缩与程序化造型，非测绘复原。
 
-本园使用独立目录 `suzhou-gardens/zhuozhengyuan/`。未来的代码、依赖与锁文件、构建配置、资产、测试、截图和任务文档均放在此目录内。
+本园源码、依赖、任务书、资产、检查和截图全部位于本目录，独立安装与构建。请先阅读系列 [共同约束](../AGENTS.md)、[本园约束](AGENTS.md)、[任务书](CODEX_TASK.md)、[规格](docs/GARDEN_SPEC.md) 和 [参考核对状态](docs/REFERENCES.md)。
 
-本园启动前，须另行明确自己的空间主题、美术规格、参考资料与验收任务；不要复制留园场景后只改名称。现在不创建脚手架、不生成资产、不与留园建立运行时依赖。
+## 运行
 
-当前只实现留园，见 [系列索引](../README.md) 与 [共同约束](../AGENTS.md)。
+要求 Node.js **22.12+**、npm **10+**，浏览器支持 WebGL 2。依赖使用本园锁文件，没有外部模型、图片、字体或 API 请求。
+
+```bash
+cd suzhou-gardens/zhuozhengyuan
+npm ci
+npm run dev -- --port 5176 --strictPort
+```
+
+访问 `http://localhost:5176`。鼠标拖动旋转、滚轮缩放；手机单指旋转、双指缩放。四个观景按钮可用 Tab/Enter 操作，点击“回到全园”复位。手动操作中断转场，快速切换以最后一次请求为准；支持系统减少动态效果。
+
+```bash
+npm run typecheck
+npm test
+npm run build
+npm run preview -- --port 4173 --strictPort
+npm run test:e2e
+```
+
+没有 Chromium 时先运行 `npx playwright install chromium`，或设置 `PLAYWRIGHT_CHROMIUM_EXECUTABLE`。E2E 独占端口 5176，会写出四桌面与一手机真实截图。软件 GPU 环境应逐园运行浏览器检查。
+
+## 交付
+
+[ChatGPT Site · 掌上拙政园](https://zhuozhengyuan-miniature.jggagi.chatgpt.site) · [实际检查与五张截图](docs/reviews/m1/REPORT.md)。Sites 身份保存在 `.openai/hosting.json`，静态产物为本园 `dist/`；采用默认所有者私有访问，凭据和发布缓存不提交。
+
+本轮类型检查、生产构建、**8 项单元检查和 7 项完整浏览器验收**通过。软件 WebGL 与触摸模拟不代表 iOS/Android 真机性能。保留 Vite 大包提示；准确形制与史料尚待进一步核对。
