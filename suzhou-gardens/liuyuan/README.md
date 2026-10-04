@@ -33,7 +33,7 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-已有 `/usr/bin/chromium` 时直接使用；也可通过 `PLAYWRIGHT_CHROMIUM_EXECUTABLE=/绝对路径/chromium` 指定浏览器。测试自动启动端口 5173 的开发服务器，使用确定性的软件 WebGL 渲染；五张真实截图会写入 `docs/reviews/m2/`；M1 原截图保留在 `docs/reviews/m1/`。此环境的触摸模拟不代表真实手机 GPU 或手势体验。
+已有 `/usr/bin/chromium` 时直接使用；也可通过 `PLAYWRIGHT_CHROMIUM_EXECUTABLE=/绝对路径/chromium` 指定浏览器。测试自动启动端口 5173 的开发服务器，使用确定性的软件 WebGL 渲染；本轮真实截图会写入 `docs/reviews/polish-1/`；M1 原截图保留在 `docs/reviews/m1/`。此环境的触摸模拟不代表真实手机 GPU 或手势体验。
 
 ## 操作
 
@@ -54,3 +54,8 @@ npm run test:e2e
 ## ChatGPT Sites
 
 按后续请求使用 ChatGPT Sites 托管此静态应用，默认仅所有者可访问。站点身份及静态输出目录保存在 `.openai/hosting.json`；凭据不写入源码。站点地址为 [掌上留园](https://liuyuan-miniature-m1.jggagi.chatgpt.site)，M2 继续更新同一站点，保留原地址与私有访问范围。Sites 工作目录与发布缓存位于忽略的 `.sites-runtime/`，不会改变上层仓库或其他园林目录。
+
+
+## 后续画面与手机打磨
+
+本轮增强光色层次，改善手机近景构图、文字与触控尺寸，并降低粗指针设备的像素预算。真实截图、实际检查、运行说明与真机限制见 [打磨报告](docs/reviews/polish-1/REPORT.md)。历史 M1/M2 报告保留；新截图不覆盖旧版本。

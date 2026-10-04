@@ -31,3 +31,8 @@ npm run test:e2e
 [ChatGPT Site · 掌上沧浪亭](https://canglangting-miniature.jggagi.chatgpt.site) · [实际检查与五张截图](docs/reviews/m1/REPORT.md)。Sites 身份保存在 `.openai/hosting.json`，静态产物为本园 `dist/`；采用默认所有者私有访问，凭据和发布缓存不提交。
 
 本轮类型检查、生产构建、**11 项单元检查和 7 项完整浏览器验收**通过。软件 WebGL 与触摸模拟不代表 iOS/Android 真机性能。保留 Vite 大包提示；准确形制与史料尚待进一步核对。
+
+
+## 后续画面与手机打磨
+
+本轮增强光色层次，改善手机近景构图、文字与触控尺寸，并降低粗指针设备的像素预算。真实截图、实际检查、运行说明与真机限制见 [打磨报告](docs/reviews/polish-1/REPORT.md)。历史 M1/M2 报告保留；新截图不覆盖旧版本。

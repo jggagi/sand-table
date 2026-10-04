@@ -1,0 +1,104 @@
+{
+  "thumbnails": [
+    {
+      "garden": "liuyuan",
+      "thumbnail": "dist/assets/liuyuan.jpg",
+      "sha256": "eb43e7c1aa9464e0e779c66fec771c14aa57dd64cefdd4aaa808e7c511e13070",
+      "source": "Actual production canvas screenshot, desktop 1440×1000/DPR 1",
+      "build_outputs": [
+        {
+          "path": "dist/assets/index-CWwLmTdU.css",
+          "sha256": "1eeda90b3276b95c6cba2dbd2353d6dacf510db031257eff542d5f862646fbb8"
+        },
+        {
+          "path": "dist/assets/index-nWguGYs5.js",
+          "sha256": "5858503fa4f26a86e701bb2df53da3f6941f5f030c7927a7e3b85d507cb11247"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "7c2ed2c9699aa50d821b7d4786bc87e1d24586e3172690f9f0be6a4487446a06"
+        }
+      ]
+    },
+    {
+      "garden": "wangshiyuan",
+      "thumbnail": "dist/assets/wangshiyuan.jpg",
+      "sha256": "f8ebf6a515b0d0209660016be11f4a973f7a66c9cc6a222b397ddf2de576e4e7",
+      "source": "Actual production canvas screenshot, desktop 1440×1000/DPR 1",
+      "build_outputs": [
+        {
+          "path": "dist/assets/index-CWwLmTdU.css",
+          "sha256": "1eeda90b3276b95c6cba2dbd2353d6dacf510db031257eff542d5f862646fbb8"
+        },
+        {
+          "path": "dist/assets/index-K-vB474w.js",
+          "sha256": "5114a7246c2becdb11a5acc212250a95f61563ae9c3d865e94f3771971246f64"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "8a5f89e89a7c010ff6c90a6073dd382ec683cd36b51d1991de1f2116a555435b"
+        }
+      ]
+    },
+    {
+      "garden": "zhuozhengyuan",
+      "thumbnail": "dist/assets/zhuozhengyuan.jpg",
+      "sha256": "d5d39b75d71938943a0b24fd6ac14f3fd3cd76e82b3e26830825e5d935917207",
+      "source": "Actual production canvas screenshot, desktop 1440×1000/DPR 1",
+      "build_outputs": [
+        {
+          "path": "dist/assets/index-BTEn2G5u.js",
+          "sha256": "ea0a045ac43e9240076ce3634c6a753aa8f97fb762c3118a9a7fb67489650409"
+        },
+        {
+          "path": "dist/assets/index-CWwLmTdU.css",
+          "sha256": "1eeda90b3276b95c6cba2dbd2353d6dacf510db031257eff542d5f862646fbb8"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "644c0c06a1adeb8665d9ef25c83b5d339178f04a6ba3f50353ed2a05962012e4"
+        }
+      ]
+    },
+    {
+      "garden": "shizilin",
+      "thumbnail": "dist/assets/shizilin.jpg",
+      "sha256": "d80d958a415fbfc0e406447af8660c17ce3cc64e7db6d55596753984a1d85d09",
+      "source": "Actual production canvas screenshot, desktop 1440×1000/DPR 1",
+      "build_outputs": [
+        {
+          "path": "dist/assets/index-CWwLmTdU.css",
+          "sha256": "1eeda90b3276b95c6cba2dbd2353d6dacf510db031257eff542d5f862646fbb8"
+        },
+        {
+          "path": "dist/assets/index-Ut56Po7O.js",
+          "sha256": "b471761d2c104a1d62ba692f3ec905160e916e0df8949fd10a278677a126a238"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "ecbf8e42ed514900877a5abb71019d9597f3cb9177c6be58cc125f08cf1a6451"
+        }
+      ]
+    },
+    {
+      "garden": "canglangting",
+      "thumbnail": "dist/assets/canglangting.jpg",
+      "sha256": "082302e3dbda4a86af0aa179c5f758aa43e1f3ea7568f809d46cbf666b759e25",
+      "source": "Actual production canvas screenshot, desktop 1440×1000/DPR 1",
+      "build_outputs": [
+        {
+          "path": "dist/assets/index-3k8v3EKD.js",
+          "sha256": "8486ce0ebe37f140c4aef8b1c10fe205fe140f2f1a62ace9a8ae6eb1fdf8a15e"
+        },
+        {
+          "path": "dist/assets/index-CWwLmTdU.css",
+          "sha256": "1eeda90b3276b95c6cba2dbd2353d6dacf510db031257eff542d5f862646fbb8"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "7326825d1235b7d24926b10aea1263ad8991485e837a408ab10ed4e2e1b99ee6"
+        }
+      ]
+    }
+  ]
+}

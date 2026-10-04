@@ -6,7 +6,7 @@ type MaterialKey = 'base' | 'paving' | 'stone' | 'wall' | 'roof' | 'wood' | 'lea
 type Materials = Record<MaterialKey, THREE.MeshStandardMaterial>;
 const PALETTE: Record<MaterialKey, string> = {
   base: '#bbaf98', paving: '#ded4bf', stone: '#a8aa98', wall: '#f1eadc',
-  roof: '#53605c', wood: '#735c47', leaf: '#637a58', water: '#799c91',
+  roof: '#475753', wood: '#735c47', leaf: '#5d7452', water: '#6b958b',
 };
 interface Templates { box: THREE.BoxGeometry; cylinder: THREE.CylinderGeometry; foliage: THREE.BufferGeometry }
 

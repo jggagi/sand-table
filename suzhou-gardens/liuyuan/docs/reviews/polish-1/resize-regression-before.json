@@ -1,0 +1,11 @@
+{
+  "scope": "Liuyuan, real Chromium/SwiftShader scene with Playwright clock",
+  "command": "CI=1 npm run test:e2e -- --grep '预设转场中'",
+  "source_condition": "old newRequest-only resize branch",
+  "exit_code": 1,
+  "assertion": "afterResize.zoom equals getFittedZoom(canvas.width, canvas.height, destination)",
+  "view": "guanyun",
+  "expected_zoom": 39.443080357142854,
+  "actual_zoom": 25.638002232142856,
+  "note": "Actual camera-controls stop() snaps to its target; the reproduced defect is the use of an intermediate zoom ratio, not a frozen final position."
+}

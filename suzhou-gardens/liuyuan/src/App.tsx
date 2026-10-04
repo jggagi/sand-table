@@ -71,7 +71,6 @@ export default function App() {
 
       <section className="garden-stage" data-testid="garden-stage" aria-label={UI_CONTENT.stageLabel} aria-describedby="interaction-hint">
         <GardenCanvas key={rendererVersion} viewId={viewId} requestId={requestId} onViewChange={onViewChange} onStatus={onStatus} />
-        <div className="stage-label" aria-hidden="true"><span>留园</span><span>SUZHOU · LIUYUAN</span></div>
         <div className={`render-status render-status--${renderStatus}`} role="status" aria-live="polite">
           <span className="status-dot" />
           {renderStatus === 'error' ? UI_CONTENT.errorStatus : renderStatus === 'ready' ? UI_CONTENT.ready : UI_CONTENT.loading}
@@ -109,7 +108,7 @@ export default function App() {
                 aria-pressed={activeId === view.id}
                 onClick={() => selectView(view.id)}
               >
-                <span className="view-button-top"><span className="view-number">0{index + 1}</span><span className="view-arrow" aria-hidden="true">↗</span></span>
+                <span className="view-button-top"><span className="view-number">0{index + 1}</span></span>
                 <span className="view-button-label">{view.label}</span>
                 <span className="view-button-eyebrow">{view.eyebrow}</span>
               </button>

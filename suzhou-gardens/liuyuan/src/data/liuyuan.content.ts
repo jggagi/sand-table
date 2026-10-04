@@ -3,7 +3,7 @@ export const UI_CONTENT = {
   title: '掌上留园',
   englishTitle: 'LIUYUAN / A GARDEN IN MINIATURE',
   location: '中国 · 苏州',
-  milestone: 'M2 · 文人画意',
+  milestone: '水 · 廊 · 石',
   introduction: '水面舒展，廊院层叠，奇石独立。',
   stageLabel: '可旋转与缩放的留园三维微缩景观',
   edition: '一园，四种凝望',
