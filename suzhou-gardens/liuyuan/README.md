@@ -1,42 +1,56 @@
-# 苏州园林微缩景观 · 掌上留园
+# 掌上留园 · M2 文人画意
 
-把留园的代表性山水、廊院和奇石提炼为一件可在浏览器里旋转、拉近、点选观察的数字微缩作品。
+留园代表性空间的艺术化 Web 微缩景观：中部池景、转折廊院与东部冠云峰庭院在同一薄底座上连接。非等比例全园复原；建筑、山石与植物均由本项目程序化制作，具体轮廓和位置为艺术化估计。M2 在原构图上打磨留白、曲折石峰、树姿、屋顶与柔光。
 
-**首座已经确定为留园。不是全园 1:1 重建，不做摄影测量；先完成一座值得把玩的作品，再考虑其他园林。**
+本应用、依赖、测试与截图全部位于 `suzhou-gardens/liuyuan/`。先阅读系列 [共同约束](../AGENTS.md)、本园 [AGENTS.md](AGENTS.md)、[任务书](CODEX_TASK.md)、[规格](docs/LIUYUAN_SPEC.md)、[计划](docs/IMPLEMENTATION_PLAN.md) 与 [参考资料](docs/REFERENCES.md)。M1 完成后，用户确认进入 M2 文人画意美术打磨；2026-10-04 的新任务启动另外四座独立园林，留园保持当前已发布作品。
 
-## 当前状态
+## 运行
 
-- 2026-10-03：设计与 Codex 实施任务书就绪。
-- 应用、三维资产、截图、自动化测试及部署：均未实现。
-- 当前任务：执行 `CODEX_TASK.md` 中的 M1 构图原型；不要一口气实现整个路线图。
+需要 Node.js **22.12+**、npm **10+** 和支持 WebGL 2 的浏览器。本次验证使用 Node 24.19.0、npm 11.9.0。依赖版本锁定在 `package-lock.json`；不需要模型下载、远程图片、字体服务或 API。
 
-## 作品范围
+```bash
+cd suzhou-gardens/liuyuan
+npm ci
+npm run dev
+```
 
-同一石质底座上组织三个艺术化片段：中部池景、简化廊院连接、东部冠云峰庭院。保留山水的疏朗与庭院的密集对比；压缩距离但不把冠云峰搬进中部大池。具体空间依据和艺术化边界见 [设计规格](docs/LIUYUAN_SPEC.md) 与 [资料记录](docs/REFERENCES.md)。
+打开终端给出的本地地址，默认 `http://localhost:5173`。首次安装和后续洁净安装均使用 `npm ci`；仅在明确更改依赖时使用 `npm install` 更新锁文件。
 
-视觉方向为暖白墙、深灰瓦、深褐木构、低饱和水色、柔和光照和有姿态的树石。不是卡通积木，不是随机拼接的泛中式庭院，也不依靠重景深和浓雾掩盖模型问题。
+```bash
+npm run typecheck
+npm run test
+npm run build
+npm run preview -- --port 4173
+```
 
-完整首作计划包含：整体旋转缩放、四个观景点、一个可恢复的屋顶抬升“看层次”模式。M1 只交付前两项及基础页面，屋顶抬升安排在 M3。
+`test` 一次运行后退出。`preview` 查看 `dist/` 构建，默认端口 4173；Vite 使用相对资源基路径，静态产物无需后端。
 
-## 文档入口
+浏览器检查：
 
-| 文件 | 用途 |
-| --- | --- |
-| [../AGENTS.md](../AGENTS.md) | 系列共同约束：每座园林独立目录 |
-| [AGENTS.md](AGENTS.md) | 本子目录的开发约束和验收原则 |
-| [CODEX_TASK.md](CODEX_TASK.md) | 可以直接执行的当前轮任务 |
-| [docs/LIUYUAN_SPEC.md](docs/LIUYUAN_SPEC.md) | 场景、美术、相机、UI 与技术规格 |
-| [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | M1–M4 里程碑、测试和验收清单 |
-| [docs/REFERENCES.md](docs/REFERENCES.md) | 已核对的公开资料、待补参考与资产来源规范 |
+```bash
+# 系统没有 Chromium 时，先安装 Playwright 所用浏览器
+npx playwright install chromium
+npm run test:e2e
+```
 
-## 项目边界
+已有 `/usr/bin/chromium` 时直接使用；也可通过 `PLAYWRIGHT_CHROMIUM_EXECUTABLE=/绝对路径/chromium` 指定浏览器。测试自动启动端口 5173 的开发服务器，使用确定性的软件 WebGL 渲染；五张真实截图会写入 `docs/reviews/m2/`；M1 原截图保留在 `docs/reviews/m1/`。此环境的触摸模拟不代表真实手机 GPU 或手势体验。
 
-前端采用 React、TypeScript、Vite、Three.js、React Three Fiber 与 Drei；版本兼容性在实现时核对并锁定。程序化几何先行，重点建筑和石峰后续允许替换为 GLB。应用不需要后端、账号、云模型或外部运行时服务。
+## 操作
 
-后续的 `package.json`、锁文件、`src/`、`public/` 和测试均放在本目录，运行工作目录为 `suzhou-gardens/liuyuan/`。仓库根目录和上层 `suzhou-gardens/` 保持为索引与共同约束；不在上层初始化应用，不提前建设多项目框架，也不依赖其他园林目录。
+鼠标左键拖动旋转、滚轮缩放；触屏单指旋转、双指缩放。四个观景按钮可通过 Tab、Enter 或空格操作；“回到全园”恢复整体机位。手动输入中断正在进行的相机过渡并显示“自由观察”；快速切换以最后一次选择为准。禁止平移和翻到底座下，缩放受限。系统开启“减少动态效果”时直接切换机位。
 
-## 运行与验证
+## 源码与交付
 
-当前只有文档，尚不能执行应用命令。M1 实现后须在此处补齐实际验证过的安装、开发、构建、测试和预览命令，以及所需 Node/npm 版本。
+- `src/data/`：稳定场景 ID、布局参数、机位与中文文案。
+- `src/scene/`：程序化共享几何、材质、真实开口和单个正交相机控制器。
+- `tests/`：配置边界、真实渲染、鼠标/触摸、异常与响应式检查。
+- [2026-10-04 五园交付复验：15项单元与完整7项浏览器检查](docs/reviews/collection/REPORT.md)。
+- [M2 实现报告、五张真实截图与同机位对照](docs/reviews/m2/REPORT.md)。
+- [M1 构图原型与原截图](docs/reviews/m1/REPORT.md)。
+- [程序化资产与艺术化边界](docs/ASSET_SOURCES.md)。
 
-页面需保留说明：**根据留园代表性空间提炼的艺术化微缩景观，非等比例全园复原。**
+冠云峰为自制隐式雕刻网格，有三处真实贯穿孔洞和克制风化起伏；配峰拥有独立较低宽的轮廓。尚未完成冠云峰实物的多角度参考匹配，不声明写实还原。没有屋顶抬升、第一人称、导航、复杂水反射、后台或遥测。美术与真实设备性能仍需要后续反馈和测试。
+
+## ChatGPT Sites
+
+按后续请求使用 ChatGPT Sites 托管此静态应用，默认仅所有者可访问。站点身份及静态输出目录保存在 `.openai/hosting.json`；凭据不写入源码。站点地址为 [掌上留园](https://liuyuan-miniature-m1.jggagi.chatgpt.site)，M2 继续更新同一站点，保留原地址与私有访问范围。Sites 工作目录与发布缓存位于忽略的 `.sites-runtime/`，不会改变上层仓库或其他园林目录。

@@ -1,29 +1,33 @@
 # 苏州园林微缩景观
 
-一组可在浏览器里把玩的艺术化微缩园林。**每座园林一个独立子目录**，分别维护自己的场景、应用、资产、文档与实现任务。
+五座可在浏览器里旋转、缩放与观景的艺术化微缩园林。每园一个独立应用、独立依赖和独立 ChatGPT Site；尺寸、朝向与细节均为艺术化压缩，非测绘复原。
 
-## 园林目录
+用户于2026-10-04明确启动全部五园。留园保留已获授权的M2，其余四园按自己的规格完成M1。
 
-| 园林 | 目录 | 当前状态 |
-| --- | --- | --- |
-| 留园 ·《掌上留园》 | [liuyuan/](liuyuan/) | 首作；设计与 M1 Codex 任务书就绪，应用待实现 |
-| 网师园 | [wangshiyuan/](wangshiyuan/) | 仅目录占位，未启动 |
-| 拙政园 | [zhuozhengyuan/](zhuozhengyuan/) | 仅目录占位，未启动 |
-| 狮子林 | [shizilin/](shizilin/) | 仅目录占位，未启动 |
-| 沧浪亭 | [canglangting/](canglangting/) | 仅目录占位，未启动 |
+| 园林与源码 | 独立构图 | 状态 | 单元/E2E | ChatGPT Site | 真图与检查 |
+|---|---|---|---|---|---|
+| [留园](liuyuan/) | 文人画意 · 冠云庭院 | M2已实现 | 15/15 · 7/7 | [打开](https://liuyuan-miniature-m1.jggagi.chatgpt.site) | [报告](liuyuan/docs/reviews/collection/REPORT.md) |
+| [网师园](wangshiyuan/) | 小园大境 · 池亭叠院 | M1已实现 | 8/8 · 7/7 | [打开](https://wangshiyuan-miniature.jggagi.chatgpt.site) | [报告](wangshiyuan/docs/reviews/m1/REPORT.md) |
+| [拙政园](zhuozhengyuan/) | 疏朗水乡 · 广池树岛 | M1已实现 | 8/8 · 7/7 | [打开](https://zhuozhengyuan-miniature.jggagi.chatgpt.site) | [报告](zhuozhengyuan/docs/reviews/m1/REPORT.md) |
+| [狮子林](shizilin/) | 石境回转 · 连续洞壑 | M1已实现 | 9/9 · 7/7 | [打开](https://shizilin-miniature.jggagi.chatgpt.site) | [报告](shizilin/docs/reviews/m1/REPORT.md) |
+| [沧浪亭](canglangting/) | 水外山林 · 外河复廊 | M1已实现 | 11/11 · 7/7 | [打开](https://canglangting-miniature.jggagi.chatgpt.site) | [报告](canglangting/docs/reviews/m1/REPORT.md) |
 
-目录顺序不代表新增排期。当前只实现留园，不同时启动其他园林。
+本轮实际完成五园类型检查、生产构建、**51项单元检查与35项完整浏览器验收**。截图来自Chromium151＋SwiftShader，桌面1440×1000与手机390×844、DPR1；本轮最终25张真图逐张检查，留园原M1对照图另保留。每园报告记录运行环境、检查范围与已知限制。最终构建产物另逐园运行生产预览：五园均返回HTTP200，观景切换与复位成功，页面脚本异常0；标签页图标与描述匹配本园身份。软件WebGL与触摸模拟不能替代真机性能验证。
 
-## 目录约定
+## 运行
 
-- 每园的 `README.md`、`AGENTS.md`、`CODEX_TASK.md`、`docs/`、`src/`、`public/`、测试、`package.json` 和锁文件均属于该园目录；不存在的实现文件在相应任务启动后创建。
-- 本层只放系列索引和共同开发约束，不直接放单园应用、场景配置或任务书。
-- 各园独立安装、开发、构建与验证；当前不建立根级 npm workspace、共享运行时或跨园依赖。
-- 其他园林启动时另写自己的规格和任务书，不复制留园的布局、冠云峰资产或验收场景冒充另一座园林。
-- 只有实际出现复用需求后，才另行评估共享基础代码；不为未来园林提前建设通用平台。
+要求Node22.12+、npm10+及WebGL2。进入任意园林自己的目录，例如：
 
-## 当前 Codex 入口
+```bash
+cd suzhou-gardens/wangshiyuan
+npm ci
+npm run dev -- --port 5175 --strictPort
+```
 
-先阅读 [共同约束](AGENTS.md)，再进入 [liuyuan/](liuyuan/) 阅读 [留园开发约束](liuyuan/AGENTS.md) 与 [当前 M1 任务](liuyuan/CODEX_TASK.md)。
+鼠标拖动旋转、滚轮缩放；手机单指旋转、双指缩放；四个观景点与“回到全园”可键盘操作。类型、单元、构建、预览和浏览器命令见各园README。软件GPU环境逐园运行E2E，各园独占自己测试端口。
 
-**留园实现工作目录：`suzhou-gardens/liuyuan/`。** 留园原有规格、实施计划和参考资料均已归入该目录，任务范围不变。本层不保留另一份留园任务书，以免后续修改出现分叉。
+## 目录与来源
+
+先读 [共同约束](AGENTS.md)，再读当前园的AGENTS、CODEX_TASK和docs规格。源码、依赖、资产、截图、任务和测试均归本园；仓库根与本层只有索引和共同约束，没有上层应用、npm workspace、统一注册表或跨园运行时依赖。
+
+五园几何由本项目程序化制作，未导入远程照片、模型、纹理或字体；史料和建筑形制的核对状态按各园REFERENCES记录。没有后端、导航、第一人称或屋顶抬升。保留Vite大包提示与真机性能限制。Sites沿用用户选择的所有者私有访问；project_id记录在各园.openai/hosting.json，凭据与发布缓存不提交。
