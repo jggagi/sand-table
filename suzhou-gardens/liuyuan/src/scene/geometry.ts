@@ -9,7 +9,7 @@ type Ring = readonly [number, number, number, number, number];
 
 const PALETTE: Record<MaterialName, string> = {
   base: '#c9bda8', paving: '#ddd3bf', stone: '#aaa99a', wood: '#675143',
-  wall: '#eee8da', roof: '#454e4c', water: '#638b83', leaf: '#556b55',
+  wall: '#eee8da', roof: '#454e4c', water: '#588883', leaf: '#556b55',
 };
 
 /** Small deterministic PRNG, used only while constructing the immutable scene. */

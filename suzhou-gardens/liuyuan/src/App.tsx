@@ -2,7 +2,9 @@ import { useCallback, useState } from 'react';
 import GardenCanvas from './scene/GardenCanvas';
 import { VIEW_PRESETS, type ViewId } from './data/liuyuan.views';
 import { UI_CONTENT } from './data/liuyuan.content';
+import { getMapHref } from './navigation/mapLink';
 import './styles.css';
+import MusicPanel from './audio/MusicPanel';
 
 type RenderStatus = 'loading' | 'ready' | 'error';
 
@@ -63,15 +65,14 @@ export default function App() {
             <h1>{UI_CONTENT.title}</h1>
           </div>
         </div>
-        <div className="edition">
+        <div className="header-navigation"><a className="map-return" href={getMapHref(window.location.href)} data-testid="return-map"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 4.5 7 2l6 2.5L18 2v13.5L13 18l-6-2.5L2 18V4.5ZM7 2v13.5M13 4.5V18" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /></svg><span>返回地图</span></a><div className="edition">
           <p className="edition-location">{UI_CONTENT.location}<span />{UI_CONTENT.milestone}</p>
           <p className="edition-introduction">{UI_CONTENT.introduction}</p>
-        </div>
+        </div></div>
       </header>
 
       <section className="garden-stage" data-testid="garden-stage" aria-label={UI_CONTENT.stageLabel} aria-describedby="interaction-hint">
         <GardenCanvas key={rendererVersion} viewId={viewId} requestId={requestId} onViewChange={onViewChange} onStatus={onStatus} />
-        <div className="stage-label" aria-hidden="true"><span>留园</span><span>SUZHOU · LIUYUAN</span></div>
         <div className={`render-status render-status--${renderStatus}`} role="status" aria-live="polite">
           <span className="status-dot" />
           {renderStatus === 'error' ? UI_CONTENT.errorStatus : renderStatus === 'ready' ? UI_CONTENT.ready : UI_CONTENT.loading}
@@ -109,7 +110,7 @@ export default function App() {
                 aria-pressed={activeId === view.id}
                 onClick={() => selectView(view.id)}
               >
-                <span className="view-button-top"><span className="view-number">0{index + 1}</span><span className="view-arrow" aria-hidden="true">↗</span></span>
+                <span className="view-button-top"><span className="view-number">0{index + 1}</span></span>
                 <span className="view-button-label">{view.label}</span>
                 <span className="view-button-eyebrow">{view.eyebrow}</span>
               </button>
@@ -121,6 +122,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <MusicPanel />
 
       <footer className="art-notice">
         <p>{UI_CONTENT.artNotice}<span className="placeholder-notice">{UI_CONTENT.placeholderNotice}</span></p>

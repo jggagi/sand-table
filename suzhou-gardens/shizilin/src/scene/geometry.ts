@@ -5,8 +5,8 @@ import { SCENE_NAME, SCENE_OBJECTS, SCENE_SEED, type SceneObject, type Vec3 } fr
 
 type Surface = 'earth' | 'paving' | 'stone' | 'wall' | 'wood' | 'tile' | 'water' | 'leaf';
 const COLORS: Record<Surface, string> = {
-  earth: '#c8bda6', paving: '#d4cbb8', stone: '#8d9587', wall: '#eee8db',
-  wood: '#76614d', tile: '#485752', water: '#78988d', leaf: '#62765d',
+  earth: '#c8bda6', paving: '#d4cbb8', stone: '#818b85', wall: '#eee8db',
+  wood: '#76614d', tile: '#444f51', water: '#6d928a', leaf: '#62765d',
 };
 type Materials = Record<Surface, THREE.MeshStandardMaterial>;
 type Templates = { box: THREE.BoxGeometry; column: THREE.CylinderGeometry; leaves: THREE.BufferGeometry };

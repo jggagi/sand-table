@@ -31,3 +31,21 @@ npm run test:e2e
 [ChatGPT Site · 掌上拙政园](https://zhuozhengyuan-miniature.jggagi.chatgpt.site) · [实际检查与五张截图](docs/reviews/m1/REPORT.md)。Sites 身份保存在 `.openai/hosting.json`，静态产物为本园 `dist/`；采用默认所有者私有访问，凭据和发布缓存不提交。
 
 本轮类型检查、生产构建、**8 项单元检查和 7 项完整浏览器验收**通过。软件 WebGL 与触摸模拟不代表 iOS/Android 真机性能。保留 Vite 大包提示；准确形制与史料尚待进一步核对。
+
+
+## 后续画面与手机打磨
+
+本轮增强光色层次，改善手机近景构图、文字与触控尺寸，并降低粗指针设备的像素预算。真实截图、实际检查、运行说明与真机限制见 [打磨报告](docs/reviews/polish-1/REPORT.md)。历史 M1/M2 报告保留；新截图不覆盖旧版本。
+
+## 苏州地图入口与往返
+
+页头新增“返回地图”。从苏州地图入园后可随时回到地图，地图保留刚游过的园子；浏览器前进后退也可使用。独立 Site 与 CloudBase 子路径自动选择各自地图，未新增三维模式、后端或跨园运行时依赖。
+
+本轮检查与真实手机视口截图见 [地图往返报告](docs/reviews/map-1/REPORT.md)。本园的 `npm ci`、`npm run dev`、`npm run typecheck`、`npm run test` 和 `npm run build` 运行方法不变；完整同站点往返请在仓库入口目录生成 CloudBase 包并预览。
+
+
+## 园中听音
+
+背景音乐《荷风入水》：笛韵意象 · 水面舒展。由本项目原创旋律与合成音色制作，非真实乐器演奏录音。进入页面默认安静，点击“开启音乐”才加载本地MP3；可暂停/继续与调节音量。切到后台或返回地图时暂停，回到园内不自动恢复播放；只在当前浏览器保存本园音量，禁用存储仍可操作。
+
+音乐不需要账号、外部播放器或网络API。应用安装、构建与运行仍使用上方原命令；重新生成音轨仅需可选的Python 3、NumPy、SciPy和ffmpeg，执行 `python3 scripts/render-music.py`。音轨已提交在 `public/audio/`，普通运行无需这些制作工具。来源、检查与真机限制见 [音乐报告](docs/reviews/music-1/REPORT.md)。

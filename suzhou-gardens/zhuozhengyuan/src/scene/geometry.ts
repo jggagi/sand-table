@@ -5,7 +5,7 @@ import { SCENE_NAME, SCENE_OBJECTS, SCENE_SEED, type Point2, type SceneObject, t
 type Surface = 'sand' | 'paving' | 'bank' | 'wall' | 'wood' | 'tile' | 'water' | 'foliage';
 const COLORS: Record<Surface, string> = {
   sand: '#c8bea5', paving: '#dfd5c0', bank: '#aaa994', wall: '#f0ebdf',
-  wood: '#705d4d', tile: '#515b57', water: '#709b90', foliage: '#6d805e',
+  wood: '#705d4d', tile: '#47575a', water: '#608f8a', foliage: '#617951',
 };
 type Materials = Record<Surface, THREE.MeshStandardMaterial>;
 interface Templates { cube: THREE.BoxGeometry; cylinder: THREE.CylinderGeometry; foliage: THREE.BufferGeometry }

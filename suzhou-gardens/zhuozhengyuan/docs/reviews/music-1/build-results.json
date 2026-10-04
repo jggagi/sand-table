@@ -1,0 +1,99 @@
+{
+  "build_exit_code": 0,
+  "inputs": [
+    {
+      "path": "package.json",
+      "sha256": "746a7087760cff0e357a7e28ac891246fc8a1d6e61824c45f7d3310fec0b7519"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "6846a99194fb2700a475237000aa8d55d826a3cecf7c446faefd32e16b6df80e"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "5fd62cbc11a3b945df0b0f02de158ad05c97e63be3cc92ed4f1d2cc7e66a8d79"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "d2be1c98456ab5bc9df57162f40bef8ae7ccd8ef5bed50531fb0fd659eb4f0cb"
+    },
+    {
+      "path": "index.html",
+      "sha256": "fe91be70d9c01ddb013d6d6d40b3736d28ea73a36e08416aecc0401eb7f88e6b"
+    },
+    {
+      "path": "public/audio/zhuozhengyuan-lotus-breeze.mp3",
+      "sha256": "f60ecffa139735650896a22b73b1c808da15e0aac6862e2fe128151bc5606fe0"
+    },
+    {
+      "path": "src/App.tsx",
+      "sha256": "167d546d223e51c2e43ccd8dbffeb7cd997d37ca572397dee7805a061d1cadda"
+    },
+    {
+      "path": "src/audio/MusicPanel.tsx",
+      "sha256": "3563bb85a011e9a7f9b34a96572176712f3257897e8388bfdd4a3881b891e7c9"
+    },
+    {
+      "path": "src/audio/music.css",
+      "sha256": "eb299f0fa7314e430736ab60e4b48994664be267a2d9dea8a39c047652c594dc"
+    },
+    {
+      "path": "src/audio/score.ts",
+      "sha256": "b0576fe95d1941bcd09a6a6cc8a777168915641f7b1513b06814932989b2a078"
+    },
+    {
+      "path": "src/data/garden.content.ts",
+      "sha256": "88b57239e0385095954eeb04540f69190f4e7000701c1342b8142f1306d7c337"
+    },
+    {
+      "path": "src/data/garden.layout.ts",
+      "sha256": "ae87b03fd07e5829cb90493aa81a7351caf4f846c7669736baffa95b4e2d2fff"
+    },
+    {
+      "path": "src/data/garden.views.ts",
+      "sha256": "d70359c7ffafb07c880924380000a3d4571c485b4e858e4318c33d2ac40907e1"
+    },
+    {
+      "path": "src/main.tsx",
+      "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+    },
+    {
+      "path": "src/navigation/mapLink.ts",
+      "sha256": "a21adaf272c8b45ca911229cbd550e52a6b7bbc10e73343352201c6079d56006"
+    },
+    {
+      "path": "src/scene/GardenCanvas.tsx",
+      "sha256": "e5036ad8459fbe45db3a0c7e0acd9e74c30027b28de67008d7d5fe0c1daea9e9"
+    },
+    {
+      "path": "src/scene/GardenScene.tsx",
+      "sha256": "1a5f89895ec034a1fd26608ac2d65c272891ff2fdcd17972a049cadf008ee30e"
+    },
+    {
+      "path": "src/scene/geometry.ts",
+      "sha256": "f924def616077cd8f73978f0f25277c2515df46dafa0d424720d94ba1de640b3"
+    },
+    {
+      "path": "src/styles.css",
+      "sha256": "3dc207a63ea72b5e8986873c508d3870e34b1ec886782b8f0e2ff7f4b421758e"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "dist/assets/index-BugeOd0m.js",
+      "sha256": "03a56ae6b9de105f8686d9b6921009940e6903c4f74acbe902f2d9f7c4f73d3d"
+    },
+    {
+      "path": "dist/assets/index-DqdUmSv-.css",
+      "sha256": "ab936268ba6a2c8484fb51406640f7096e14a409e6f65517873198957d849d73"
+    },
+    {
+      "path": "dist/audio/zhuozhengyuan-lotus-breeze.mp3",
+      "sha256": "f60ecffa139735650896a22b73b1c808da15e0aac6862e2fe128151bc5606fe0"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "3021f49a9a500f02f7fa32e4adbf6fbf7daa4efaa78dd064ad018b80c64fe032"
+    }
+  ]
+}

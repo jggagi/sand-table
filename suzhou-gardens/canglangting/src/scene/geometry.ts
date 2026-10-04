@@ -7,7 +7,7 @@ type Materials = Record<MaterialId, THREE.MeshStandardMaterial>;
 type Point2 = readonly [number, number];
 const COLOURS: Record<MaterialId, string> = {
   base: '#bfb29c', ground: '#b6b594', paving: '#d6ceba', stone: '#a4a38e',
-  wood: '#6c5644', wall: '#f0ecdf', roof: '#535b55', water: '#789d91', leaf: '#627352',
+  wood: '#6c5644', wall: '#f0ecdf', roof: '#465246', water: '#6e958e', leaf: '#5a704c',
 };
 export function seededRandom(seed: number): () => number {
   let state = seed >>> 0;

@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-04",
+  "site": "https://suzhou-gardens.jggagi.chatgpt.site",
+  "project_id": "appgprj_6ac1c19a84c08191986dc4f4a40d7ee3",
+  "source_commit": "ee5bb2c52e0ffa3a524a4883c3511356007451ac",
+  "version_id": "appgprj_6ac1c19a84c08191986dc4f4a40d7ee3~appgver_6782d429064481919301e61e36a1c24d",
+  "deployment_id": "appgdep_6ac228126ab88191b3a61f53581e3547",
+  "status": "succeeded",
+  "audience": "Existing owner-only access preserved",
+  "verified": "Native Sites deployment succeeded; no production-page scraping",
+  "cloudbase": "Updated local 24-file ZIP; Tencent Cloud online files not uploaded",
+  "scope": "Portal only; five garden sources and built outputs unchanged"
+}

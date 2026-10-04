@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { Mesh, Raycaster, Vector3 } from 'three';
 import { REGION_IDS, SCENE_BOUNDS, SCENE_OBJECTS, SCENE_SEED, type SceneObject } from '../src/data/liuyuan.layout';
-import { CAMERA_LIMITS, getFittedZoom, getViewPreset, VIEW_PRESETS } from '../src/data/liuyuan.views';
+import { CAMERA_LIMITS, getViewSpans, getFittedZoom, getViewPreset, VIEW_PRESETS } from '../src/data/liuyuan.views';
 import { createGarden } from '../src/scene/geometry';
 
 describe('留园场景的可替换资产配置', () => {
@@ -137,8 +137,8 @@ describe('四个正交观景点与视口边界', () => {
       const zoom = getFittedZoom(width, height, view);
       expect(Number.isFinite(zoom)).toBe(true);
       expect(zoom).toBeGreaterThan(0);
-      expect(zoom * view.verticalSpan).toBeLessThanOrEqual(height + 0.0001);
-      expect(zoom * view.horizontalSpan).toBeLessThanOrEqual(width + 0.0001);
+      expect(zoom * getViewSpans(width, height, view).verticalSpan).toBeLessThanOrEqual(height + 0.0001);
+      expect(zoom * getViewSpans(width, height, view).horizontalSpan).toBeLessThanOrEqual(width + 0.0001);
     }
   });
 
@@ -147,6 +147,26 @@ describe('四个正交观景点与视口边界', () => {
       expect(getFittedZoom(390, 844, view)).toBeLessThan(getFittedZoom(1440, 1000, view));
       expect(getFittedZoom(0, 0, view)).toBeGreaterThan(0);
       expect(Number.isFinite(getFittedZoom(0, 0, view))).toBe(true);
+    }
+  });
+});
+
+describe('手机近景保持主体可读，横屏恢复宽幅构图', () => {
+  it('全园保持完整包络，窄屏近景使用更集中的视野', () => {
+    const overview = getViewPreset('overview');
+    expect(getViewSpans(390, 460, overview)).toEqual({ verticalSpan: overview.verticalSpan, horizontalSpan: overview.horizontalSpan });
+    for (const view of VIEW_PRESETS.filter(view => view.id !== 'overview')) {
+      expect(getFittedZoom(390, 460, view)).toBeGreaterThan(Math.min(460 / view.verticalSpan, 390 / view.horizontalSpan));
+      const spans = getViewSpans(390, 460, view);
+      expect(spans.verticalSpan).toBeGreaterThan(0);
+      expect(spans.horizontalSpan).toBeGreaterThan(0);
+    }
+  });
+  it('短横屏与桌面不采用竖屏局部裁切', () => {
+    for (const view of VIEW_PRESETS) {
+      const expected = { verticalSpan: view.verticalSpan, horizontalSpan: view.horizontalSpan };
+      expect(getViewSpans(844, 240, view)).toEqual(expected);
+      expect(getViewSpans(1280, 680, view)).toEqual(expected);
     }
   });
 });

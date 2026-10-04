@@ -1,0 +1,15 @@
+{
+  "id": "wangshiyuan-moonlit-pool",
+  "title": "一池月色",
+  "duration_seconds": 83.478,
+  "bpm": 46,
+  "channels": 2,
+  "sample_rate": 44100,
+  "codec": "MP3",
+  "bitrate": 80000,
+  "bytes": 835517,
+  "sha256": "7b50ec1cd76a33fd7706de42ebfcb0dff598965add8b6f672aadbf8d7f5f20db",
+  "peak_dbfs_before_encoding": -5.68,
+  "rms_dbfs_before_encoding": -19.4,
+  "origin": "Original notes and additive synthesis; no third-party samples or music recordings"
+}
