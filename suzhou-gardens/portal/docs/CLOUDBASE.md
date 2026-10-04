@@ -52,3 +52,8 @@ python3 -m http.server 4190 --bind 127.0.0.1 --directory suzhou-gardens/portal/.
 ## 手绘地图更新
 
 最新包使用淡彩手绘风格底图，共24个文件，约2.37MB。五园构建内容与地图往返版本一致。本轮最终上传产物检查和文件指纹见 [手绘地图记录](reviews/handpaint-1/check-results.json)。请覆盖上传完整包内文件，尤其是 `index.html`、`styles.css` 和 `assets/suzhou-handpaint.jpg`；继续使用原环境和原分享地址。当前交付ZIP已更新，腾讯云在线文件需自行在控制台重新上传。
+
+
+## 五园音乐更新
+
+最新包共29个文件，约5.79MB，包含五园各自的 `audio/` 目录。音轨只在访客点击“开启音乐”后下载。请解压完整包并覆盖原托管根目录，保留每个园子目录内的 `index.html`、`assets/` 和 `audio/`。五园配乐、检查与包内文件指纹见 [音乐版本报告](reviews/music-1/REPORT.md)。腾讯云在线文件仍需用户在原环境控制台上传，原分享网址继续使用。

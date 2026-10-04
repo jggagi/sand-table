@@ -1,0 +1,107 @@
+{
+  "build_exit_code": 0,
+  "inputs": [
+    {
+      "path": "package.json",
+      "sha256": "7cb2adc63f90255365724e366ff1f9ab52ed3e001a70f6d4d3239de4dad7e2db"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "53315ea35986a10b79d6f4c4fdad8d1eec432fb0388effca78f2b0b13a0ea4c1"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "5fd62cbc11a3b945df0b0f02de158ad05c97e63be3cc92ed4f1d2cc7e66a8d79"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "d2be1c98456ab5bc9df57162f40bef8ae7ccd8ef5bed50531fb0fd659eb4f0cb"
+    },
+    {
+      "path": "index.html",
+      "sha256": "c7d72d4dc034ba2e0ffccafa37ba34e5db9945d19f64e65713a8a49948af68ad"
+    },
+    {
+      "path": "public/audio/liuyuan-clear-strings.mp3",
+      "sha256": "667ccedd11b2fdf8db8fa641f38d08d3d7e0d00a5166101797d2509bee500613"
+    },
+    {
+      "path": "src/App.tsx",
+      "sha256": "053e33dede1efdad3407629c6462187d6fda7a1dab74891b0a8b4fdc87bde7a8"
+    },
+    {
+      "path": "src/audio/MusicPanel.tsx",
+      "sha256": "3563bb85a011e9a7f9b34a96572176712f3257897e8388bfdd4a3881b891e7c9"
+    },
+    {
+      "path": "src/audio/music.css",
+      "sha256": "eb299f0fa7314e430736ab60e4b48994664be267a2d9dea8a39c047652c594dc"
+    },
+    {
+      "path": "src/audio/score.ts",
+      "sha256": "a479ad54411f2c05d9b9bc9ec3d3560363418b508feb023abea4b36d5209f34c"
+    },
+    {
+      "path": "src/data/liuyuan.content.ts",
+      "sha256": "a8d273c33b452280665d16c7355887f9231b325c3a17a6c22eb98cc44ecc4989"
+    },
+    {
+      "path": "src/data/liuyuan.layout.ts",
+      "sha256": "f4cf23bfa05526afa43038cadc2f52ce4e145896ad2bd0a6bbf8f4d9b14e9688"
+    },
+    {
+      "path": "src/data/liuyuan.views.ts",
+      "sha256": "263b9d58f32e9f7e4b5f06dc19d18dd6819d0b55626987ab737a4e9b148d53ee"
+    },
+    {
+      "path": "src/main.tsx",
+      "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+    },
+    {
+      "path": "src/navigation/mapLink.ts",
+      "sha256": "15e808d02d050219b53d9807b76fff3d396ca66669a918a41d002f118be986be"
+    },
+    {
+      "path": "src/scene/GardenCanvas.tsx",
+      "sha256": "5bebb229e102592b2323a3fcefaed7b66d34cd214cfdd107defdb59a25dc92aa"
+    },
+    {
+      "path": "src/scene/GardenScene.tsx",
+      "sha256": "e2328548ee47a40aefdad07bc16c8eb889bb55f38355c6e0d349b8e784f74158"
+    },
+    {
+      "path": "src/scene/geometry.ts",
+      "sha256": "bb3e07aab882c3ed6df234b13b71ed079330d8225c26ce1455544c20420795fc"
+    },
+    {
+      "path": "src/scene/scholarRock.ts",
+      "sha256": "45df6ec3f1d8802c183bb9c38e530e301a31593b0f371a3242aa9f926a371a43"
+    },
+    {
+      "path": "src/scene/treePose.ts",
+      "sha256": "afdeb2622b41874532940768b3706a0b9e1e8a9ca2cfd87dd47624557aa4b97d"
+    },
+    {
+      "path": "src/styles.css",
+      "sha256": "3dc207a63ea72b5e8986873c508d3870e34b1ec886782b8f0e2ff7f4b421758e"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "dist/assets/index-C-hIlAjs.js",
+      "sha256": "06172d788505c7f2b4a3ac3f7b5bebc78ab01ca4891c5921ae84a799c6c5e844"
+    },
+    {
+      "path": "dist/assets/index-DqdUmSv-.css",
+      "sha256": "ab936268ba6a2c8484fb51406640f7096e14a409e6f65517873198957d849d73"
+    },
+    {
+      "path": "dist/audio/liuyuan-clear-strings.mp3",
+      "sha256": "667ccedd11b2fdf8db8fa641f38d08d3d7e0d00a5166101797d2509bee500613"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "9afdac347b21ad0bc54b484fe1189b8ace347422903694aae8d22b12d166b454"
+    }
+  ]
+}

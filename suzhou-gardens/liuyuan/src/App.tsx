@@ -4,6 +4,7 @@ import { VIEW_PRESETS, type ViewId } from './data/liuyuan.views';
 import { UI_CONTENT } from './data/liuyuan.content';
 import { getMapHref } from './navigation/mapLink';
 import './styles.css';
+import MusicPanel from './audio/MusicPanel';
 
 type RenderStatus = 'loading' | 'ready' | 'error';
 
@@ -121,6 +122,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <MusicPanel />
 
       <footer className="art-notice">
         <p>{UI_CONTENT.artNotice}<span className="placeholder-notice">{UI_CONTENT.placeholderNotice}</span></p>

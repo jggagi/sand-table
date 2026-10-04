@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-04",
+  "site": "https://wangshiyuan-miniature.jggagi.chatgpt.site",
+  "project_id": "appgprj_6ac1b53e856481918a9821d28311b615",
+  "source_commit": "378809e4145a8871ceefc2b8720d4fc0dd66c464",
+  "version_id": "appgprj_6ac1b53e856481918a9821d28311b615~appgver_f0e2c34b34d08191ae2b17280805fc0a",
+  "deployment_id": "appgdep_6ac230884e1881918dd94fc08b20ef2d",
+  "status": "succeeded",
+  "audience": "Existing owner-only access preserved",
+  "verification": "Native deployment succeeded. Local final bytes passed real media decoding and WebGL checks; no production scraping.",
+  "cloudbase": "Updated local 29-file ZIP; Tencent Cloud online files require console upload"
+}

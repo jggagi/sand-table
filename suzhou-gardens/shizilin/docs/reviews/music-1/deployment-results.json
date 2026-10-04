@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-04",
+  "site": "https://shizilin-miniature.jggagi.chatgpt.site",
+  "project_id": "appgprj_6ac1b57c451c8191871d25d5183e795f",
+  "source_commit": "ced2b23bbc83ceebbeee111b0c5c15efc2ffb242",
+  "version_id": "appgprj_6ac1b57c451c8191871d25d5183e795f~appgver_0a63f5c8f67c8191b4af79c04a11ef37",
+  "deployment_id": "appgdep_6ac230c1842081918bc1efdaed80f5d5",
+  "status": "succeeded",
+  "audience": "Existing owner-only access preserved",
+  "verification": "Native deployment succeeded. Local final bytes passed real media decoding and WebGL checks; no production scraping.",
+  "cloudbase": "Updated local 29-file ZIP; Tencent Cloud online files require console upload"
+}
