@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import GardenCanvas from './scene/GardenCanvas';
 import { VIEW_PRESETS, type ViewId } from './data/liuyuan.views';
 import { UI_CONTENT } from './data/liuyuan.content';
+import { getMapHref } from './navigation/mapLink';
 import './styles.css';
 
 type RenderStatus = 'loading' | 'ready' | 'error';
@@ -63,10 +64,10 @@ export default function App() {
             <h1>{UI_CONTENT.title}</h1>
           </div>
         </div>
-        <div className="edition">
+        <div className="header-navigation"><a className="map-return" href={getMapHref(window.location.href)} data-testid="return-map"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 4.5 7 2l6 2.5L18 2v13.5L13 18l-6-2.5L2 18V4.5ZM7 2v13.5M13 4.5V18" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /></svg><span>返回地图</span></a><div className="edition">
           <p className="edition-location">{UI_CONTENT.location}<span />{UI_CONTENT.milestone}</p>
           <p className="edition-introduction">{UI_CONTENT.introduction}</p>
-        </div>
+        </div></div>
       </header>
 
       <section className="garden-stage" data-testid="garden-stage" aria-label={UI_CONTENT.stageLabel} aria-describedby="interaction-hint">

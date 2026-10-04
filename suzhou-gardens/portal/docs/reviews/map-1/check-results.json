@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-04",
+  "browser": "151.0.7922.173",
+  "rendering": "Chromium + SwiftShader, DPR=1, reduced motion",
+  "passed": true,
+  "checks": [
+    {
+      "check": "Sites map desktop",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "realAnchorLinks": [
+        {
+          "id": "liuyuan",
+          "href": "https://liuyuan-miniature-m1.jggagi.chatgpt.site/",
+          "target": ""
+        },
+        {
+          "id": "zhuozhengyuan",
+          "href": "https://zhuozhengyuan-miniature.jggagi.chatgpt.site/",
+          "target": ""
+        },
+        {
+          "id": "shizilin",
+          "href": "https://shizilin-miniature.jggagi.chatgpt.site/",
+          "target": ""
+        },
+        {
+          "id": "wangshiyuan",
+          "href": "https://wangshiyuan-miniature.jggagi.chatgpt.site/",
+          "target": ""
+        },
+        {
+          "id": "canglangting",
+          "href": "https://canglangting-miniature.jggagi.chatgpt.site/",
+          "target": ""
+        }
+      ]
+    },
+    {
+      "check": "Keyboard and five authentic preview images",
+      "passed": true
+    },
+    {
+      "check": "Phone map",
+      "viewport": [
+        390,
+        844
+      ],
+      "markers": [
+        {
+          "name": "liuyuan",
+          "x": 64.93250274658203,
+          "y": 341,
+          "width": 81.99999237060547,
+          "height": 46
+        },
+        {
+          "name": "zhuozhengyuan",
+          "x": 208.1875,
+          "y": 194.25,
+          "width": 100,
+          "height": 46
+        },
+        {
+          "name": "shizilin",
+          "x": 218.359375,
+          "y": 297.125,
+          "width": 100,
+          "height": 46
+        },
+        {
+          "name": "wangshiyuan",
+          "x": 230.46875,
+          "y": 506.75,
+          "width": 100,
+          "height": 46
+        },
+        {
+          "name": "canglangting",
+          "x": 157.453125,
+          "y": 577.4375,
+          "width": 100,
+          "height": 46
+        }
+      ]
+    },
+    {
+      "check": "Real phone garden round trip",
+      "garden": "liuyuan",
+      "calls": 74,
+      "triangles": 162487,
+      "pixels": {
+        "variance": 2802,
+        "darkPixels": 12722,
+        "width": 390,
+        "height": 420
+      },
+      "preset": "guanyun",
+      "directReload": 200,
+      "font200NoOverflow": true,
+      "explicitReturnSelection": "liuyuan"
+    },
+    {
+      "check": "Real phone garden round trip",
+      "garden": "zhuozhengyuan",
+      "calls": 78,
+      "triangles": 101621,
+      "pixels": {
+        "variance": 2475,
+        "darkPixels": 9799,
+        "width": 390,
+        "height": 420
+      },
+      "preset": "bridge",
+      "directReload": 200,
+      "font200NoOverflow": true,
+      "explicitReturnSelection": "zhuozhengyuan"
+    },
+    {
+      "check": "Real phone garden round trip",
+      "garden": "shizilin",
+      "calls": 41,
+      "triangles": 98588,
+      "pixels": {
+        "variance": 2389,
+        "darkPixels": 9807,
+        "width": 390,
+        "height": 420
+      },
+      "preset": "corridor",
+      "directReload": 200,
+      "font200NoOverflow": true,
+      "explicitReturnSelection": "shizilin"
+    },
+    {
+      "check": "Real phone garden round trip",
+      "garden": "wangshiyuan",
+      "calls": 74,
+      "triangles": 108630,
+      "pixels": {
+        "variance": 2078,
+        "darkPixels": 8651,
+        "width": 390,
+        "height": 420
+      },
+      "preset": "courtyard",
+      "directReload": 200,
+      "font200NoOverflow": true,
+      "explicitReturnSelection": "wangshiyuan"
+    },
+    {
+      "check": "Real phone garden round trip",
+      "garden": "canglangting",
+      "calls": 79,
+      "triangles": 137996,
+      "pixels": {
+        "variance": 2668,
+        "darkPixels": 11330,
+        "width": 390,
+        "height": 420
+      },
+      "preset": "corridor",
+      "directReload": 200,
+      "font200NoOverflow": true,
+      "explicitReturnSelection": "canglangting"
+    },
+    {
+      "check": "Browser back / forward and explicit return",
+      "passed": true
+    },
+    {
+      "check": "320px / 200% text",
+      "markers": [
+        {
+          "name": "liuyuan",
+          "x": 37.78093719482422,
+          "y": 737.09375,
+          "width": 118.01563262939453,
+          "height": 69
+        },
+        {
+          "name": "zhuozhengyuan",
+          "x": 127.85843658447266,
+          "y": 468,
+          "width": 154.015625,
+          "height": 69
+        },
+        {
+          "name": "shizilin",
+          "x": 149.3000030517578,
+          "y": 656.625,
+          "width": 154.01560974121094,
+          "height": 69
+        },
+        {
+          "name": "wangshiyuan",
+          "x": 128.08218383789062,
+          "y": 1041.046875,
+          "width": 154.015625,
+          "height": 69
+        },
+        {
+          "name": "canglangting",
+          "x": 92.9921875,
+          "y": 1170.6875,
+          "width": 154.015625,
+          "height": 69
+        }
+      ],
+      "noOverlap": true,
+      "noOverflow": true
+    },
+    {
+      "check": "Short landscape",
+      "noOverlap": true,
+      "noOverflow": true
+    },
+    {
+      "check": "Direct index link, untrusted return input, storage blocked",
+      "passed": true
+    },
+    {
+      "check": "Map anchors without JavaScript",
+      "passed": true
+    }
+  ],
+  "scriptErrors": [],
+  "failedRequests": [],
+  "externalRequests": [],
+  "packageFiles": {
+    "assets/canglangting.jpg": "082302e3dbda4a86af0aa179c5f758aa43e1f3ea7568f809d46cbf666b759e25",
+    "assets/liuyuan.jpg": "eb43e7c1aa9464e0e779c66fec771c14aa57dd64cefdd4aaa808e7c511e13070",
+    "assets/shizilin.jpg": "d80d958a415fbfc0e406447af8660c17ce3cc64e7db6d55596753984a1d85d09",
+    "assets/wangshiyuan.jpg": "f8ebf6a515b0d0209660016be11f4a973f7a66c9cc6a222b397ddf2de576e4e7",
+    "assets/zhuozhengyuan.jpg": "d5d39b75d71938943a0b24fd6ac14f3fd3cd76e82b3e26830825e5d935917207",
+    "canglangting/assets/index-5IGWIsdJ.js": "4dcad6777ea5f106ae7ef1901f53156113c16e9b50a29792742dcba19382d0d0",
+    "canglangting/assets/index-C7VeQoVw.css": "42146356763c281c051c1d951685109cfa9b53637f8dc6270c34e3e39d47c39e",
+    "canglangting/index.html": "e01e17cce56bb71109198b857feb7c70efef5d3068b633f160457cb0189e7e18",
+    "index.html": "49cd74655ed2d5222b6ad920fcabe47958a09fd1c8ac218d6d4a760731424781",
+    "liuyuan/assets/index-AcdWHTId.js": "49bea58de280c4bd5a80699fa358234efac8d0134fa5993ecc1a10d5a38eaadc",
+    "liuyuan/assets/index-C7VeQoVw.css": "42146356763c281c051c1d951685109cfa9b53637f8dc6270c34e3e39d47c39e",
+    "liuyuan/index.html": "685584027abe35d570f82673c8d1c0338158b1c5c93234ec28d9b8f78326cf32",
+    "map.js": "ec5d26e8123daa332ca8ec3259e5f89081789fb7caebeee9847400f08c46cbd7",
+    "shizilin/assets/index-C7VeQoVw.css": "42146356763c281c051c1d951685109cfa9b53637f8dc6270c34e3e39d47c39e",
+    "shizilin/assets/index-Coag7-lR.js": "40f44c677c360ccd93268f113959e7da3a3676f2f0089c0ed3e230bbb7791266",
+    "shizilin/index.html": "b7fef8ea98b91057c8632926c2661f18f30b06beec1a405e7894cf4aa8c7d3ec",
+    "styles.css": "b0b1e9f61d54e358081aa92b2c56845d2201893e2c81f5485f9213f41f683c21",
+    "wangshiyuan/assets/index-C7VeQoVw.css": "42146356763c281c051c1d951685109cfa9b53637f8dc6270c34e3e39d47c39e",
+    "wangshiyuan/assets/index-CNVPnmFM.js": "2033d3e1d66787024e7deda66ca329cee160d7f1f86afaff8e3e83617e39fef7",
+    "wangshiyuan/index.html": "c7642f12f801d1e933732af48303dd91ec5554464e66bb7727e1919af57cd141",
+    "zhuozhengyuan/assets/index-BTf617eM.js": "7887b4a2a71fbb5c480286304a6b55b56f26dd86ff4ae30f48021a84d79999bc",
+    "zhuozhengyuan/assets/index-C7VeQoVw.css": "42146356763c281c051c1d951685109cfa9b53637f8dc6270c34e3e39d47c39e",
+    "zhuozhengyuan/index.html": "32cdbe87b1c204171e707c5caa55fa4a7dbf004efc6607ad445665727d3bde23"
+  },
+  "limits": "Local final static output. Physical phones, Safari, mainland networks and CloudBase live upload are not verified. Map geometry is an original schematic, not measured cartography."
+}

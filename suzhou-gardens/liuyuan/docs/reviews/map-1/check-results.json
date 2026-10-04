@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-04",
+  "garden": "liuyuan",
+  "browser": "151.0.7922.173",
+  "rendering": "Chromium + SwiftShader, DPR=1, reduced motion",
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "seconds": 5.79
+    },
+    {
+      "command": "npm run test",
+      "exit_code": 0,
+      "seconds": 5.72
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "seconds": 25.64
+    }
+  ],
+  "unit_tests": 22,
+  "navigation": {
+    "check": "Real phone garden round trip",
+    "garden": "liuyuan",
+    "calls": 74,
+    "triangles": 162487,
+    "pixels": {
+      "variance": 2802,
+      "darkPixels": 12722,
+      "width": 390,
+      "height": 420
+    },
+    "preset": "guanyun",
+    "directReload": 200,
+    "font200NoOverflow": true,
+    "explicitReturnSelection": "liuyuan"
+  },
+  "build": {
+    "garden": "liuyuan",
+    "build_exit_code": 0,
+    "command": "npm run build",
+    "inputs": [
+      {
+        "path": "src/App.tsx",
+        "sha256": "d52554671bfc4704700ea4a0da0f5e6b3062096496ce580d0d73c407a6a36f61"
+      },
+      {
+        "path": "src/data/liuyuan.content.ts",
+        "sha256": "a8d273c33b452280665d16c7355887f9231b325c3a17a6c22eb98cc44ecc4989"
+      },
+      {
+        "path": "src/data/liuyuan.layout.ts",
+        "sha256": "f4cf23bfa05526afa43038cadc2f52ce4e145896ad2bd0a6bbf8f4d9b14e9688"
+      },
+      {
+        "path": "src/data/liuyuan.views.ts",
+        "sha256": "263b9d58f32e9f7e4b5f06dc19d18dd6819d0b55626987ab737a4e9b148d53ee"
+      },
+      {
+        "path": "src/main.tsx",
+        "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+      },
+      {
+        "path": "src/navigation/mapLink.ts",
+        "sha256": "15e808d02d050219b53d9807b76fff3d396ca66669a918a41d002f118be986be"
+      },
+      {
+        "path": "src/scene/GardenCanvas.tsx",
+        "sha256": "5bebb229e102592b2323a3fcefaed7b66d34cd214cfdd107defdb59a25dc92aa"
+      },
+      {
+        "path": "src/scene/GardenScene.tsx",
+        "sha256": "e2328548ee47a40aefdad07bc16c8eb889bb55f38355c6e0d349b8e784f74158"
+      },
+      {
+        "path": "src/scene/geometry.ts",
+        "sha256": "bb3e07aab882c3ed6df234b13b71ed079330d8225c26ce1455544c20420795fc"
+      },
+      {
+        "path": "src/scene/scholarRock.ts",
+        "sha256": "45df6ec3f1d8802c183bb9c38e530e301a31593b0f371a3242aa9f926a371a43"
+      },
+      {
+        "path": "src/scene/treePose.ts",
+        "sha256": "afdeb2622b41874532940768b3706a0b9e1e8a9ca2cfd87dd47624557aa4b97d"
+      },
+      {
+        "path": "src/styles.css",
+        "sha256": "3dc207a63ea72b5e8986873c508d3870e34b1ec886782b8f0e2ff7f4b421758e"
+      },
+      {
+        "path": "index.html",
+        "sha256": "c7d72d4dc034ba2e0ffccafa37ba34e5db9945d19f64e65713a8a49948af68ad"
+      },
+      {
+        "path": "package.json",
+        "sha256": "7cb2adc63f90255365724e366ff1f9ab52ed3e001a70f6d4d3239de4dad7e2db"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "53315ea35986a10b79d6f4c4fdad8d1eec432fb0388effca78f2b0b13a0ea4c1"
+      },
+      {
+        "path": "tsconfig.json",
+        "sha256": "d2be1c98456ab5bc9df57162f40bef8ae7ccd8ef5bed50531fb0fd659eb4f0cb"
+      },
+      {
+        "path": "vite.config.ts",
+        "sha256": "5fd62cbc11a3b945df0b0f02de158ad05c97e63be3cc92ed4f1d2cc7e66a8d79"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "dist/assets/index-AcdWHTId.js",
+        "sha256": "49bea58de280c4bd5a80699fa358234efac8d0134fa5993ecc1a10d5a38eaadc"
+      },
+      {
+        "path": "dist/assets/index-C7VeQoVw.css",
+        "sha256": "42146356763c281c051c1d951685109cfa9b53637f8dc6270c34e3e39d47c39e"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "685584027abe35d570f82673c8d1c0338158b1c5c93234ec28d9b8f78326cf32"
+      }
+    ]
+  },
+  "screenshot_sha256": "f3b3690d99d566df773a5acd891662bc1ec1d8d8063d98b681d32c0642d33e6c",
+  "limits": "Local final static output. Physical phones, Safari, mainland networks and CloudBase live upload are not verified. Map geometry is an original schematic, not measured cartography."
+}

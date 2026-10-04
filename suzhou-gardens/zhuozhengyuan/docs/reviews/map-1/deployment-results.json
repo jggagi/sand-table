@@ -1,0 +1,17 @@
+{
+  "name": "zhuozhengyuan",
+  "source_commit": "34d39ca93bd1e85be5e3b86f8ce8264a99a77af1",
+  "id": "appgdep_6ac21f13c0388191af3677dd991629ac",
+  "project_id": "appgprj_6ac1b55903908191bff229a3b0877a73",
+  "title": "掌上拙政园 · 疏朗水乡",
+  "version_id": "appgprj_6ac1b55903908191bff229a3b0877a73~appgver_f31010621f648191a2f9866d2fa41ff0",
+  "type": "publish",
+  "status": "succeeded",
+  "url": "https://zhuozhengyuan-miniature.jggagi.chatgpt.site",
+  "has_mcp": false,
+  "screenshot_asset_pointer": null,
+  "provider_deployment_id": "site---6ac1b55903908191bff229a3b0877a73",
+  "failure_message": null,
+  "env_set_revision": 0,
+  "updated_at": "2026-10-04T09:40:50.736850+00:00"
+}

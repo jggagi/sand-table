@@ -1,45 +1,52 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f5ef">
-  <meta name="description" content="从一处入口，走进留园、网师园、拙政园、狮子林与沧浪亭的艺术微缩园景。">
-  <title>掌上园林 · 苏州五园</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='3' fill='%238e4937'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-size='26' fill='%23ffffff'%3E园%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css">
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="theme-color" content="#f6f4ed"><meta name="description" content="从苏州古城游览图，走进留园、拙政园、狮子林、网师园与沧浪亭的艺术微缩园景。">
+ <title>苏州园林游览图 · 掌上园林</title>
+ <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='3' fill='%238e4937'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-size='26' fill='%23ffffff'%3E园%3C/text%3E%3C/svg%3E">
+ <link rel="stylesheet" href="styles.css"><script src="map.js" defer></script>
 </head>
 <body>
-  <div class="page">
-    <header class="masthead">
-      <div class="identity"><span class="seal" aria-hidden="true">游<span>园</span></span><div><p class="eyebrow">SUZHOU · GARDENS IN MINIATURE</p><h1>掌上园林</h1></div></div>
-      <p class="intro">五座园，五重山水。<span>选择一座，慢慢看。</span></p>
-    </header>
-    <main aria-label="选择苏州园林">
-      <div class="garden-grid">
-        <a class="garden-card featured" href="https://liuyuan-miniature-m1.jggagi.chatgpt.site/" aria-label="进入掌上留园，文人画意">
-          <div class="image-frame"><img src="assets/liuyuan.jpg" alt="留园微缩景观：池水、转折回廊与冠云峰庭院" width="1312" height="656" fetchpriority="high"></div>
-          <div class="card-copy"><div class="card-heading"><span class="index">一</span><h2>留园</h2><span class="enter">入园</span></div><p class="theme">文人画意</p><p class="description">水面舒展，廊院层叠，奇石独立。</p></div>
-        </a>
-        <a class="garden-card" href="https://wangshiyuan-miniature.jggagi.chatgpt.site/" aria-label="进入掌上网师园，小园大境">
-          <div class="image-frame"><img src="assets/wangshiyuan.jpg" alt="网师园微缩景观：小池、六角亭与月洞庭院" width="1312" height="656" decoding="async"></div>
-          <div class="card-copy"><div class="card-heading"><span class="index">二</span><h2>网师园</h2><span class="enter">入园</span></div><p class="theme">小园大境</p><p class="description">一池留白，几重亭廊，院深一隅。</p></div>
-        </a>
-        <a class="garden-card" href="https://zhuozhengyuan-miniature.jggagi.chatgpt.site/" aria-label="进入掌上拙政园，疏朗水乡">
-          <div class="image-frame"><img src="assets/zhuozhengyuan.jpg" alt="拙政园微缩景观：广池、树岛、远堂与折桥" width="1312" height="656" decoding="async"></div>
-          <div class="card-copy"><div class="card-heading"><span class="index">三</span><h2>拙政园</h2><span class="enter">入园</span></div><p class="theme">疏朗水乡</p><p class="description">池接树岛，曲桥牵起远堂与小亭。</p></div>
-        </a>
-        <a class="garden-card" href="https://shizilin-miniature.jggagi.chatgpt.site/" aria-label="进入掌上狮子林，石境回转">
-          <div class="image-frame"><img src="assets/shizilin.jpg" alt="狮子林微缩景观：连续洞壑、岩上桥与池亭" width="1312" height="656" decoding="async"></div>
-          <div class="card-copy"><div class="card-heading"><span class="index">四</span><h2>狮子林</h2><span class="enter">入园</span></div><p class="theme">石境回转</p><p class="description">石中藏路，岩间架桥，清水留白。</p></div>
-        </a>
-        <a class="garden-card" href="https://canglangting-miniature.jggagi.chatgpt.site/" aria-label="进入掌上沧浪亭，水外山林">
-          <div class="image-frame"><img src="assets/canglangting.jpg" alt="沧浪亭微缩景观：沿边外河、复廊、丘亭与密林" width="1312" height="656" decoding="async"></div>
-          <div class="card-copy"><div class="card-heading"><span class="index">五</span><h2>沧浪亭</h2><span class="enter">入园</span></div><p class="theme">水外山林</p><p class="description">河在园外，亭在丘上，复廊两望。</p></div>
-        </a>
-      </div>
-    </main>
-    <footer><p>入园后，拖动旋转、缩放细看；亦可选择四个观景点。</p><span>艺术化微缩 · 非等比例复原</span></footer>
-  </div>
+ <div class="page">
+  <header class="masthead"><div class="identity"><span class="seal" aria-hidden="true">游<span>园</span></span><p>掌上园林<span class="brand-location">苏州</span></p></div><p class="edition">SUZHOU · FIVE GARDENS</p></header>
+  <main class="map-layout">
+   <div class="map-heading"><p class="eyebrow">一城山水 · 五处园林</p><h1>苏州园林<br class="desktop-break">游览图</h1><p class="instruction">点选园名，即可入园。</p><p class="return-note" id="return-note" role="status" aria-live="polite"></p></div>
+   <section class="map-board" aria-label="苏州五园游览示意图" aria-describedby="map-notice">
+    <svg class="city-map" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+ <defs><pattern id="urban-grain" width="63" height="54" patternUnits="userSpaceOnUse"><rect x="10" y="9" width="43" height="33" rx="3" fill="#e8e8dd"/></pattern></defs>
+ <path class="city-area" d="M400 155L828 148Q887 153 906 218L919 802Q908 891 828 902L454 908Q372 885 365 805L366 267Q368 204 400 155Z"/>
+ <path fill="url(#urban-grain)" opacity=".6" d="M415 179L826 173Q863 180 881 222L891 800Q881 867 822 877L458 882Q400 865 394 800L393 273Q392 213 415 179Z"/>
+ <g class="canal-bank"><path d="M400 155L828 148Q887 153 906 218L919 802Q908 891 828 902L454 908Q372 885 365 805L366 267Q368 204 400 155Z"/><path d="M-20 208L121 297Q203 336 262 396L363 438"/></g>
+ <g class="canals"><path d="M400 155L828 148Q887 153 906 218L919 802Q908 891 828 902L454 908Q372 885 365 805L366 267Q368 204 400 155Z"/><path d="M-20 208L121 297Q203 336 262 396L363 438"/><path d="M803 312L801 624L882 652M677 304L676 426L716 429L716 700L675 734L676 883M395 604L880 604M457 873L457 787L526 768"/></g>
+ <g class="road-edge"><path d="M570 173L563 882M84 534L981 534M394 442L878 442M391 709L893 709M459 212L858 212M91 370L303 370L365 413M783 176L781 414M391 789L647 789M721 643L892 643"/></g>
+ <g class="roads"><path d="M570 173L563 882M84 534L981 534M394 442L878 442M391 709L893 709M459 212L858 212M91 370L303 370L365 413M783 176L781 414M391 789L647 789M721 643L892 643"/></g>
+ <g class="garden-grounds"><path d="M101 299L191 299L199 347L111 353Z"/><path d="M700 167L802 167L808 202L703 205Z"/><path d="M726 260L776 260L781 298L731 302Z"/><path d="M784 698L839 696L842 739L786 742Z"/><path d="M564 818L623 816L630 856L570 861Z"/></g>
+ <g class="leader-lines"><path d="M151 327L151 400L213 400M750 183L700 183L700 99M752 281L678 281L678 310M811 718L830 718L830 740M595 838L535 838L535 885"/></g>
+ <g class="garden-dots"><circle cx="151" cy="327" r="9"/><circle cx="750" cy="183" r="9"/><circle cx="752" cy="281" r="9"/><circle cx="811" cy="718" r="9"/><circle cx="595" cy="838" r="9"/></g>
+ </svg>
+    <div class="map-labels" aria-hidden="true"><span class="map-label city-name" style="--x:61%;--y:61%">苏州古城</span>
+<span class="map-label water-label angled" style="--x:22%;--y:29%">山塘街</span>
+<span class="map-label road-label" style="--x:20%;--y:47%">留园路</span>
+<span class="map-label road-label vertical" style="--x:55%;--y:59%">人民路</span>
+<span class="map-label road-label" style="--x:47%;--y:56%">干将路</span>
+<span class="map-label road-label" style="--x:59%;--y:22%">东北街</span>
+<span class="map-label water-label vertical" style="--x:83%;--y:47%">平江路</span>
+<span class="map-label water-label vertical" style="--x:94%;--y:62%">环城河</span>
+<span class="map-label landmark-label" style="--x:57%;--y:32%">北寺塔</span>
+<span class="map-label landmark-label" style="--x:65%;--y:44%">观前街</span>
+<span class="map-label landmark-label" style="--x:45%;--y:87%">盘门</span></div>
+    <nav class="map-markers" aria-label="选择园林"><a class="garden-marker marker-liuyuan" id="garden-liuyuan" data-garden="liuyuan" data-name="留园" data-theme="文人画意" data-description="水面舒展，廊院层叠，奇石独立。" data-alt="园景：池水、回廊与冠云峰庭院" style="--x:21.3%;--y:40%" href="https://liuyuan-miniature-m1.jggagi.chatgpt.site/" aria-label="进入掌上留园"><span class="marker-number" aria-hidden="true">一</span><span>留园</span><span class="marker-enter" aria-hidden="true">入园</span></a>
+<a class="garden-marker marker-zhuozhengyuan" id="garden-zhuozhengyuan" data-garden="zhuozhengyuan" data-name="拙政园" data-theme="疏朗水乡" data-description="池接树岛，曲桥牵起远堂与小亭。" data-alt="园景：广池、树岛与折桥" style="--x:70%;--y:9.9%" href="https://zhuozhengyuan-miniature.jggagi.chatgpt.site/" aria-label="进入掌上拙政园"><span class="marker-number" aria-hidden="true">二</span><span>拙政园</span><span class="marker-enter" aria-hidden="true">入园</span></a>
+<a class="garden-marker marker-shizilin" id="garden-shizilin" data-garden="shizilin" data-name="狮子林" data-theme="石境回转" data-description="石中藏路，岩间架桥，清水留白。" data-alt="园景：连续洞壑与池亭" style="--x:67.8%;--y:31%" href="https://shizilin-miniature.jggagi.chatgpt.site/" aria-label="进入掌上狮子林"><span class="marker-number" aria-hidden="true">三</span><span>狮子林</span><span class="marker-enter" aria-hidden="true">入园</span></a>
+<a class="garden-marker marker-wangshiyuan" id="garden-wangshiyuan" data-garden="wangshiyuan" data-name="网师园" data-theme="小园大境" data-description="一池留白，几重亭廊，院深一隅。" data-alt="园景：小池、六角亭与月洞庭院" style="--x:83%;--y:74%" href="https://wangshiyuan-miniature.jggagi.chatgpt.site/" aria-label="进入掌上网师园"><span class="marker-number" aria-hidden="true">四</span><span>网师园</span><span class="marker-enter" aria-hidden="true">入园</span></a>
+<a class="garden-marker marker-canglangting" id="garden-canglangting" data-garden="canglangting" data-name="沧浪亭" data-theme="水外山林" data-description="河在园外，亭在丘上，复廊两望。" data-alt="园景：外河、复廊与丘亭密林" style="--x:53.5%;--y:88.5%" href="https://canglangting-miniature.jggagi.chatgpt.site/" aria-label="进入掌上沧浪亭"><span class="marker-number" aria-hidden="true">五</span><span>沧浪亭</span><span class="marker-enter" aria-hidden="true">入园</span></a></nav>
+    <div class="north" aria-label="上方为北"><span>北</span><svg viewBox="0 0 18 32" aria-hidden="true"><path d="M9 1L16 24L9 20L2 24Z" fill="none" stroke="currentColor"/><path d="M9 1V30" stroke="currentColor"/></svg><span>N</span></div>
+    <div class="map-key" aria-hidden="true"><span><i class="key-garden"></i>园林</span><span><i class="key-water"></i>水系</span></div>
+   </section>
+   <aside class="garden-preview" aria-label="园景一瞥"><div class="preview-image"><img id="preview-image" src="assets/liuyuan.jpg" alt="园景：池水、回廊与冠云峰庭院" width="1312" height="656" fetchpriority="high"></div><div class="preview-copy"><p class="preview-eyebrow">园景一瞥</p><h2 id="preview-name">留园<span id="preview-theme">文人画意</span></h2><p id="preview-description">水面舒展，廊院层叠，奇石独立。</p></div></aside>
+  </main>
+  <footer><p id="map-notice">游览示意图 · 点位与街巷经过概括，不用于实地导航。</p><p>艺术化微缩 · 非等比例复原</p></footer>
+ </div>
 </body>
 </html>

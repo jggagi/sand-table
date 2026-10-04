@@ -150,3 +150,12 @@ h1 { font-family: var(--serif); font-weight: 500; font-size: 2.5rem; letter-spac
 }
 @media (pointer: coarse) { .desktop-hint { display: none; } .touch-hint { display: inline; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* Tourist-map entry and garden pages share the same quiet paper surface. */
+.header-navigation { display:flex; align-items:center; gap:24px; min-width:0; }
+.map-return { display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:44px; padding:8px 12px; flex-shrink:0; color:var(--jade); background:transparent; border:1px solid var(--rule); border-radius:2px; font-size:.875rem; text-decoration:none; white-space:nowrap; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.map-return svg { width:18px; height:18px; flex-shrink:0; }
+.map-return:focus-visible { outline:2px solid var(--clay); outline-offset:3px; }
+@media (hover:hover) { .map-return:hover { background:#eceee5; border-color:var(--jade); } }
+@media (max-width:1023px) { .header-navigation .edition { display:none; } }
+@media (max-width:680px) { .map-return { padding:8px; gap:5px; } .masthead { flex-wrap:wrap; } .header-navigation { margin-left:auto; } }

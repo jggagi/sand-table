@@ -59,3 +59,9 @@ npm run test:e2e
 ## 后续画面与手机打磨
 
 本轮增强光色层次，改善手机近景构图、文字与触控尺寸，并降低粗指针设备的像素预算。真实截图、实际检查、运行说明与真机限制见 [打磨报告](docs/reviews/polish-1/REPORT.md)。历史 M1/M2 报告保留；新截图不覆盖旧版本。
+
+## 苏州地图入口与往返
+
+页头新增“返回地图”。从苏州地图入园后可随时回到地图，地图保留刚游过的园子；浏览器前进后退也可使用。独立 Site 与 CloudBase 子路径自动选择各自地图，未新增三维模式、后端或跨园运行时依赖。
+
+本轮检查与真实手机视口截图见 [地图往返报告](docs/reviews/map-1/REPORT.md)。本园的 `npm ci`、`npm run dev`、`npm run typecheck`、`npm run test` 和 `npm run build` 运行方法不变；完整同站点往返请在仓库入口目录生成 CloudBase 包并预览。
