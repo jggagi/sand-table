@@ -8,7 +8,9 @@ if (!playwrightPath || !path.isAbsolute(playwrightPath)) throw Error('Pass the a
 const { chromium } = await import(playwrightPath);
 const { PNG } = createRequire(playwrightPath)('pngjs');
 const root = path.resolve(import.meta.dirname, '..');
-const output = path.join(root, 'docs/reviews/map-1');
+const reviewDirectory = process.env.MAP_REVIEW_DIRECTORY || 'map-1';
+if (!/^[a-z0-9-]+$/.test(reviewDirectory)) throw Error('Invalid review directory.');
+const output = path.join(root, 'docs/reviews', reviewDirectory);
 fs.mkdirSync(output, { recursive: true });
 const siteOrigin = process.env.MAP_SITE_ORIGIN || 'http://127.0.0.1:4610';
 const packageOrigin = process.env.MAP_PACKAGE_ORIGIN || 'http://127.0.0.1:4192';
@@ -27,6 +29,17 @@ await context.route('**/*', route => {
 });
 const noOverflow = async () => assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Horizontal overflow');
 const loadedImage = async () => page.waitForFunction(() => [...document.images].every(image => image.complete && image.naturalWidth > 0));
+async function illustrationIntact() {
+ const image = await page.locator('.map-art').evaluate(e => ({
+  natural: [e.naturalWidth, e.naturalHeight],
+  width: e.getBoundingClientRect().width, height: e.getBoundingClientRect().height,
+  fit: getComputedStyle(e).objectFit
+ }));
+ assert.deepEqual(image.natural, [1254, 1254]);
+ assert(Math.abs(image.width - image.height) < 1, 'Illustration stretched or cropped');
+ assert.equal(image.fit, 'contain');
+ return image;
+}
 async function markersAccessible() {
  const rects = await page.locator('.garden-marker').evaluateAll(es => es.map(e => {
   const r = e.getBoundingClientRect(); return { name: e.dataset.garden, x: r.x, y: r.y, width: r.width, height: r.height };
@@ -61,7 +74,7 @@ try {
  assert(hrefs.every(e => e.href.endsWith('.jggagi.chatgpt.site/') && e.target === ''));
  await markersAccessible();
  await page.screenshot({ path: path.join(output, 'map-desktop.jpg'), type: 'jpeg', quality: 86, fullPage: true });
- records.push({ check: 'Sites map desktop', viewport: [1440, 1000], realAnchorLinks: hrefs });
+ records.push({ check: 'Sites map desktop', viewport: [1440, 1000], illustration: await illustrationIntact(), realAnchorLinks: hrefs });
  for (const key of gardens) { await page.locator(`[data-garden="${key}"]`).focus(); await loadedImage(); assert((await page.locator('#preview-image').getAttribute('src')).includes(key)); }
  // DOM order is the same five Tab stops as the visible map, Enter is tested below.
  await page.locator('.garden-marker').first().focus();
@@ -70,7 +83,7 @@ try {
  await page.setViewportSize({ width: 390, height: 844 }); await page.goto(packageOrigin + '/'); await loadedImage();
  const mobileRects = await markersAccessible();
  await page.screenshot({ path: path.join(output, 'map-mobile.jpg'), type: 'jpeg', quality: 86, fullPage: true });
- records.push({ check: 'Phone map', viewport: [390, 844], markers: mobileRects });
+ records.push({ check: 'Phone map', viewport: [390, 844], illustration: await illustrationIntact(), markers: mobileRects });
  for (const key of gardens) {
   await page.locator(`[data-garden="${key}"]`).focus();
   if (key === 'liuyuan') await page.keyboard.press('Enter'); else await page.locator(`[data-garden="${key}"]`).click();
@@ -79,8 +92,13 @@ try {
   const pixels = await realCanvas();
   const back = page.getByTestId('return-map'); const r = await back.boundingBox();
   assert(r.width >= 44 && r.height >= 44); assert.equal(await back.getAttribute('href'), packageOrigin + '/#garden=' + key);
-  fs.mkdirSync(path.join(root, '../' + key + '/docs/reviews/map-1'), { recursive: true });
-  await page.screenshot({ path: path.join(root, '../' + key + '/docs/reviews/map-1/mobile-return.jpg'), type: 'jpeg', quality: 84, fullPage: true });
+  // New portal art reviews keep their evidence inside the portal directory.
+  if (reviewDirectory === 'map-1') {
+   fs.mkdirSync(path.join(root, '../' + key + '/docs/reviews/map-1'), { recursive: true });
+   await page.screenshot({ path: path.join(root, '../' + key + '/docs/reviews/map-1/mobile-return.jpg'), type: 'jpeg', quality: 84, fullPage: true });
+  } else if (key === 'liuyuan') {
+   await page.screenshot({ path: path.join(output, 'garden-mobile.jpg'), type: 'jpeg', quality: 84, fullPage: true });
+  }
   const style = await page.addStyleTag({ content: 'html { font-size:200%; }' }); await noOverflow(); await style.evaluate(e => e.remove());
   const lastView = page.locator('[data-testid^="view-"]').last();
   const view = (await lastView.getAttribute('data-testid')).slice(5); await lastView.click();
@@ -101,7 +119,9 @@ try {
  records.push({ check: 'Browser back / forward and explicit return', passed: true });
  await page.setViewportSize({ width: 320, height: 700 }); await page.goto(packageOrigin + '/'); await markersAccessible();
  const font = await page.addStyleTag({ content: 'html { font-size:200%; }' }); const largeRects = await markersAccessible();
- await font.evaluate(e => e.remove()); records.push({ check: '320px / 200% text', markers: largeRects, noOverlap: true, noOverflow: true });
+ records.push({ check: '320px / 200% text', illustration: await illustrationIntact(), markers: largeRects, noOverlap: true, noOverflow: true });
+ await page.screenshot({ path: path.join(output, 'map-large-text.jpg'), type: 'jpeg', quality: 86, fullPage: true });
+ await font.evaluate(e => e.remove());
  await page.setViewportSize({ width: 844, height: 390 }); await markersAccessible(); records.push({ check: 'Short landscape', noOverlap: true, noOverflow: true });
  // The default destination remains functional for direct links and storage denial.
  await page.setViewportSize({ width: 390, height: 844 });
@@ -119,6 +139,6 @@ try {
  await noJs.close(); records.push({ check: 'Map anchors without JavaScript', passed: true });
  assert.deepEqual(errors, []); assert.deepEqual(failedRequests, []); assert.deepEqual(external, []);
  const receipt = JSON.parse(fs.readFileSync(path.join(root, '.cloudbase-runtime/package-receipt.json'), 'utf8'));
- const result = { date: new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Shanghai' }), browser: browser.version(), rendering: 'Chromium + SwiftShader, DPR=1, reduced motion', passed: true, checks: records, scriptErrors: errors, failedRequests, externalRequests: external, packageFiles: receipt.files, limits: 'Local final static output. Physical phones, Safari, mainland networks and CloudBase live upload are not verified. Map geometry is an original schematic, not measured cartography.' };
+ const result = { date: new Date().toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' }), browser: browser.version(), rendering: 'Chromium + SwiftShader, DPR=1, reduced motion', passed: true, checks: records, scriptErrors: errors, failedRequests, externalRequests: external, packageFiles: receipt.files, limits: 'Local final static output. Physical phones, Safari, mainland networks and CloudBase live upload are not verified. Map is a generated hand-painted-style illustration, not measured cartography.' };
  fs.writeFileSync(path.join(output, 'check-results.json'), JSON.stringify(result, null, 2) + '\n'); console.log(JSON.stringify({ passed: true, checks: records.length, gardens: 5, browser: browser.version(), errors: errors.length, externalRequests: external.length }));
 } finally { await browser.close(); }

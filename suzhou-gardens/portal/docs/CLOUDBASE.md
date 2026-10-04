@@ -47,3 +47,8 @@ python3 -m http.server 4190 --bind 127.0.0.1 --directory suzhou-gardens/portal/.
 地图增加本地 `map.js`，新版包共23个文件。解压后请把 **index.html、styles.css、map.js、assets 和五园目录** 一并上传到托管根目录，覆盖旧入口。此次会替换入口页面以及五园带返回按钮的构建文件，只更新入口不能获得完整往返体验。
 
 地图版检查与包内逐文件指纹见 [地图检查记录](reviews/map-1/check-results.json)。实际腾讯云上传仍需在原账户控制台执行；原分享地址继续使用。默认测试域名提示页与这次页面更新无关。
+
+
+## 手绘地图更新
+
+最新包使用淡彩手绘风格底图，共24个文件，约2.37MB。五园构建内容与地图往返版本一致。本轮最终上传产物检查和文件指纹见 [手绘地图记录](reviews/handpaint-1/check-results.json)。请覆盖上传完整包内文件，尤其是 `index.html`、`styles.css` 和 `assets/suzhou-handpaint.jpg`；继续使用原环境和原分享地址。当前交付ZIP已更新，腾讯云在线文件需自行在控制台重新上传。

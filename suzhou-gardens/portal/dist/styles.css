@@ -5,7 +5,11 @@
 .map-layout { display:grid; grid-template-columns:minmax(250px,300px) minmax(0,1fr); grid-template-rows:auto 1fr; gap:26px 50px; padding:34px 0 28px; align-items:start; }
 .map-heading { grid-column:1; grid-row:1; padding:26px 0 0; } .eyebrow { font-size:.875rem; color:var(--jade); letter-spacing:2px; margin-bottom:24px; } h1 { font-family:var(--serif); font-size:3rem; font-weight:500; letter-spacing:3px; line-height:1.45; } .instruction { font-size:1rem; color:var(--muted); margin-top:24px; } .return-note { color:var(--seal); font-size:.875rem; margin-top:12px; min-height:1.5em; }
 .map-board { grid-column:2; grid-row:1 / 3; width:100%; height:clamp(650px,74svh,820px); position:relative; background:#efefe5; border:1px solid #daddd0; border-radius:3px; isolation:isolate; }
-.city-map,.map-labels,.map-markers { position:absolute; inset:0; width:100%; height:100%; } .city-area { fill:#f6f5ef; } .canal-bank path { fill:none; stroke:#d2e0d9; stroke-width:24; stroke-linejoin:round; } .canals path { fill:none; stroke:#a0bdb2; stroke-width:11; stroke-linejoin:round; } .canals path:last-child { stroke-width:5; } .road-edge path { fill:none; stroke:#fffdf6; stroke-width:11; stroke-linejoin:round; } .roads path { fill:none; stroke:#d3d3c3; stroke-width:2.5; } .garden-grounds { fill:#ccd7c4; stroke:#a0b197; stroke-width:1; } .leader-lines { fill:none; stroke:var(--seal); stroke-width:1.2; opacity:.6; } .garden-dots { fill:var(--seal); stroke:var(--paper); stroke-width:4; }
+.map-art,.map-guides,.map-labels,.map-markers { position:absolute; inset:0; width:100%; height:100%; }
+.map-art { display:block; object-fit:contain; border-radius:2px; }
+.map-guides { pointer-events:none; }
+.leader-lines { fill:none; stroke:#9b493d; stroke-width:1.2; opacity:.65; }
+.garden-dots { fill:#9b493d; stroke:#fff9ea; stroke-width:3; }
 .map-label { position:absolute; left:var(--x); top:var(--y); transform:translate(-50%,-50%); pointer-events:none; white-space:nowrap; font-size:.875rem; color:#798275; letter-spacing:2px; } .city-name { font-family:var(--serif); font-size:2.5rem; letter-spacing:12px; color:#d8dbcd; } .water-label { color:#668477; } .vertical { writing-mode:vertical-rl; } .angled { transform:translate(-50%,-50%) rotate(29deg); } .landmark-label { font-size:.75rem; color:#737e71; background:#f5f4ecd9; padding:4px; letter-spacing:1px; }
 .garden-marker { position:absolute; left:var(--x); top:var(--y); transform:translate(-50%,-50%); display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:9px 13px 9px 9px; color:var(--seal); background:#fffdf5; text-decoration:none; border:1px solid #c69d8c; border-radius:3px; box-shadow:0 4px 14px #5a4c3220; font-family:var(--serif); font-size:1.25rem; letter-spacing:1px; white-space:nowrap; transition:background-color 150ms,color 150ms,box-shadow 150ms; -webkit-tap-highlight-color:transparent; touch-action:manipulation; z-index:1; }
 .marker-number { width:26px; height:26px; flex-shrink:0; border:1px solid #c99c8f; display:grid; place-items:center; border-radius:50%; font-family:var(--serif); font-size:.875rem; letter-spacing:0; } .marker-enter { font-family:system-ui,sans-serif; font-size:.75rem; letter-spacing:0; color:#967369; border-left:1px solid #dcc4b9; padding-left:10px; }
@@ -17,3 +21,21 @@ footer { display:flex; justify-content:space-between; gap:16px; padding:18px 0 2
 @media (max-width:1023px) { .map-layout { grid-template-columns:minmax(200px,240px) minmax(0,1fr); gap:24px; } h1 { font-size:2.5rem; } .marker-enter { display:none; } .garden-marker { gap:7px; font-size:1.125rem; } }
 @media (max-width:680px) { .page { padding:0 16px; } .masthead { padding:14px 0; } .identity { gap:10px; } .seal { width:24px; height:36px; font-size:16px; } .identity p { font-size:1.125rem; } .brand-location { margin-left:14px; padding-left:14px; } .edition { display:none; } .map-layout { display:flex; flex-direction:column; gap:16px; padding:20px 0; } .map-heading { padding:0; width:100%; } .eyebrow { display:none; } h1 { font-size:1.75rem; letter-spacing:2px; line-height:1.5; } .desktop-break { display:none; } .instruction { font-size:.875rem; margin-top:5px; } .return-note { margin-top:4px; min-height:0; } .return-note:empty { display:none; } .map-board { height:clamp(28rem,58svh,36rem); flex-shrink:0; } .garden-marker { font-size:1.125rem; gap:6px; min-height:46px; padding:8px; letter-spacing:0; } .marker-number { width:22px; height:22px; font-size:.875rem; } .marker-liuyuan { transform:translate(-34%,-50%); } .marker-zhuozhengyuan { transform:translate(-58%,-50%); } .marker-shizilin { transform:translate(-40%,-50%); } .marker-wangshiyuan { transform:translate(-82%,-50%); } .city-name { font-size:1.5rem; letter-spacing:6px; } .map-label { font-size:.75rem; letter-spacing:1px; } .landmark-label { font-size:.75rem; } .north { left:14px; top:14px; } .map-key { left:14px; bottom:14px; gap:12px; } .garden-preview { display:flex; gap:14px; padding-top:0; border:0; align-items:center; align-self:stretch; } .preview-image { width:38%; flex-shrink:0; aspect-ratio:1.28; } .preview-copy { margin:0; min-width:0; } .preview-eyebrow { display:none; } h2 { font-size:1.375rem; margin:0 0 6px; } #preview-theme { display:block; font-size:.75rem; margin:4px 0 0; } #preview-description { font-size:.875rem; line-height:1.6; } footer { flex-direction:column; gap:4px; padding:14px 0 22px; } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+
+/* Preserve the illustration's square composition on every screen. */
+.map-board { width:min(100%,78svh); height:auto; aspect-ratio:1; justify-self:end; background:#f8f3e7; border-color:#d8ccb4; box-shadow:0 8px 28px #88754b0b; }
+.map-label { color:#536557; background:#fff9e9d9; padding:3px 5px; border-radius:2px; }
+.city-name { display:none; }
+.garden-marker { background:#fff9ea; border-color:#b99678; border-radius:3px 5px 4px 2px; box-shadow:1px 3px 10px #71533120; }
+.garden-marker.is-current { box-shadow:1px 4px 14px #9b493d35; }
+@media (max-width:1023px) { .map-board { width:100%; } }
+@media (max-width:680px) {
+ .map-board { width:100%; height:auto; aspect-ratio:1; }
+ .garden-marker { font-size:1rem; min-height:46px; padding:8px 10px; line-height:1.25; }
+ .marker-number { display:none; }
+ .marker-shizilin { transform:translate(-50%,-50%); }
+ .map-key { display:none; }
+ .map-label { font-size:.75rem; padding:2px 3px; letter-spacing:0; }
+ .landmark-label { display:none; }
+ .north { left:12px; top:12px; }
+}
