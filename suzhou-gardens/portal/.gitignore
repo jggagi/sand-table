@@ -1,4 +1,5 @@
 .sites-runtime/
+.cloudbase-runtime/
 test-results/
 .env*
 *.local

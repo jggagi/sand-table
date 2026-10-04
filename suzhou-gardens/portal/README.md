@@ -2,6 +2,8 @@
 
 [打开统一入口](https://suzhou-gardens.jggagi.chatgpt.site)
 
+面向国内朋友的CloudBase分享包及控制台上传步骤见[CloudBase说明](docs/CLOUDBASE.md)。原Sites入口继续保持现有链接及私有访问。
+
 五张真实园景缩略图，分别通往留园、网师园、拙政园、狮子林与沧浪亭的独立 ChatGPT Site。整张卡片均可点击；键盘 Tab 选择、Enter 入园，浏览器返回即可回到入口。
 
 本目录是用户于2026-10-04明确要求的独立入口。手写静态HTML/CSS及本地图片全部位于 `dist/` 并纳入Git；无构建步骤、包安装、共享三维引擎、后端或外部字体。五园仍按各自目录独立运行。入口及各园沿用所有者私有访问。

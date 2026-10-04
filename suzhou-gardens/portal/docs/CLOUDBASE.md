@@ -1,0 +1,39 @@
+# CloudBase五园静态分享包
+
+用户选择CloudBase静态网站托管，以平台默认地址向国内朋友分享。此上传包使用一个入口与五个独立子路径，不连接ChatGPT账号或Sites；原Sites页面保留现有状态。
+
+## 生成
+
+各园在自己的目录执行 `npm ci`、`npm run build` 后，在仓库根运行：
+
+```bash
+python3 suzhou-gardens/portal/scripts/package-cloudbase.py
+```
+
+程序读取五园已有 `dist/`，复制到入口目录的忽略缓存 `.cloudbase-runtime/upload/`；仅在包内将选园链接改为 `./liuyuan/` 等路径。原入口、各园源码及原构建产物不会改写，没有共享三维运行时或上层应用。
+
+输出 `.cloudbase-runtime/suzhou-gardens-upload.zip` 的根目录直接包含 `index.html`、`styles.css`、入口 `assets/` 与五个园林目录。ZIP不包含源码、依赖、凭据、Sites身份或检查缓存。包清单及SHA256另保存在忽略缓存。
+
+## 控制台上传
+
+1. 在本环境的「静态网站托管 → 网站部署」选择「本地项目上传」。
+2. 解压上传包，选择解压后目录内的全部文件/文件夹。托管根目录应直接是 `index.html`，不要再套一层 `upload` 或ZIP文件名目录。如果界面明确支持ZIP解压部署，也可选择ZIP并检查部署后的目录结构。
+3. 默认入口文档使用 `index.html`。在「基础配置」查看平台分配的访问域名与服务状态。
+4. 访问首页并依次入园，确认地址停留在同一个域名；刷新任一 `/liuyuan/` 等子路径仍应正常展开园景。
+5. 用未登录浏览器核对公开访问，再在国内手机的微信、Safari/Chrome及移动网络测试加载、旋转、缩放、观景切换与返回。
+
+无需填写数据库连接、部署React模板或上传 `node_modules`。默认域名的有效期、带宽、鉴权及套餐限制以账户控制台当前规则为准；本地检查不能证明国内网络可达性或真机性能。
+
+## 本地预览上传产物
+
+```bash
+python3 -m http.server 4190 --bind 127.0.0.1 --directory suzhou-gardens/portal/.cloudbase-runtime/upload
+```
+
+打开 `http://127.0.0.1:4190/`。此版本在本地就能逐园运行，不会跳转到原Sites。检查结果与实际渲染图见 `.cloudbase-runtime/check-results.json` 和该缓存目录的截图。
+
+## 本轮检查
+
+2026-10-03（America/Los_Angeles），Chromium151＋SwiftShader：包内五园同站点入园、各自子路径刷新HTTP200、真实三维ready、末观景点切换与复位、浏览器返回入口全部通过。390×844入口与留园布局无水平溢出，留园三维展开成功；脚本异常、请求失败、外部请求均为0。入口桌面与留园手机画布已截图目视检查。
+
+上传包包含24个静态文件，2306945字节（约2.3MB）。ZIP完整性通过；各园文件与其原独立构建产物一致。CloudBase控制台尚未上传发布，默认域名可达性及国内真机性能需在实际部署后验证。
