@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-22",
+  "project_id": "appgprj_6ac1b55903908191bff229a3b0877a73",
+  "source_commit": "1c330990b2b66bfb03c241a591937752c0c3b836",
+  "deployment_id": "appgdep_6ada2c4ca4188191a0d4b238c509d237",
+  "version_id": "appgprj_6ac1b55903908191bff229a3b0877a73~appgver_42737cf7453c8191bb5219970e71601c",
+  "status": "succeeded",
+  "url": "https://zhuozhengyuan-miniature.jggagi.chatgpt.site",
+  "updated_at": "2026-10-22T15:31:43.925265+00:00",
+  "evidence": "Native Sites successful deployment response. Existing owner-only audience preserved; production URL was not fetched for QA."
+}

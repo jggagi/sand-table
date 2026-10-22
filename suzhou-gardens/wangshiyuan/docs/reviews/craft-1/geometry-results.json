@@ -1,0 +1,63 @@
+{
+  "garden": "wangshiyuan",
+  "meshes": 83,
+  "triangles": 110188,
+  "vertices": 330564,
+  "triangleBudget": 150000,
+  "materials": 8,
+  "bounds": {
+    "min": [
+      -12,
+      -0.75,
+      -10
+    ],
+    "max": [
+      12,
+      5.030030250549316,
+      10
+    ]
+  },
+  "surfaces": [
+    {
+      "name": "base",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "paving",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "stone",
+      "roughness": 0.89,
+      "metalness": 0
+    },
+    {
+      "name": "water",
+      "roughness": 0.38,
+      "metalness": 0
+    },
+    {
+      "name": "wood",
+      "roughness": 0.77,
+      "metalness": 0
+    },
+    {
+      "name": "roof",
+      "roughness": 0.85,
+      "metalness": 0
+    },
+    {
+      "name": "wall",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "leaf",
+      "roughness": 0.88,
+      "metalness": 0
+    }
+  ],
+  "finite": true
+}

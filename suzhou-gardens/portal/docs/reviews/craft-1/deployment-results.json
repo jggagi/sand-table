@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-22",
+  "project_id": "appgprj_6ac1c19a84c08191986dc4f4a40d7ee3",
+  "source_commit": "f2bd511e080b863c48c90145d93719b25f1e0fcb",
+  "deployment_id": "appgdep_6ada2def14ec8191adf07a0d1bb22399",
+  "version_id": "appgprj_6ac1c19a84c08191986dc4f4a40d7ee3~appgver_79717b43866c8191a61837fe085c1878",
+  "status": "succeeded",
+  "url": "https://suzhou-gardens.jggagi.chatgpt.site",
+  "updated_at": "2026-10-22T15:38:37.021828+00:00",
+  "evidence": "Native Sites successful deployment response. Existing owner-only audience preserved; production URL was not fetched for QA."
+}

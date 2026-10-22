@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-22",
+  "project_id": "appgprj_6ac1b53e856481918a9821d28311b615",
+  "source_commit": "aa304e4d551835417ab61a61044a3b904e1ecd8a",
+  "deployment_id": "appgdep_6ada2c6e88d4819186a1f31e13c71107",
+  "version_id": "appgprj_6ac1b53e856481918a9821d28311b615~appgver_461ddf474cc88191a373e7fa719cb81e",
+  "status": "succeeded",
+  "url": "https://wangshiyuan-miniature.jggagi.chatgpt.site",
+  "updated_at": "2026-10-22T15:32:21.294065+00:00",
+  "evidence": "Native Sites successful deployment response. Existing owner-only audience preserved; production URL was not fetched for QA."
+}

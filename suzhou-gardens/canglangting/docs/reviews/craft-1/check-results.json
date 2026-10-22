@@ -1,0 +1,147 @@
+{
+  "checks": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "seconds": 35.43,
+      "output": "\n> canglangting-miniature@0.1.0 typecheck\n> tsc --noEmit\n\n"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=20000"
+      ],
+      "exit_code": 0,
+      "seconds": 38.73,
+      "output": "\n> canglangting-miniature@0.1.0 test\n> vitest run --maxWorkers=1 --no-file-parallelism --testTimeout=20000\n\n\n RUN  v3.2.4 /workspace/gardens-refinement/suzhou-gardens/canglangting/.sites-runtime/source\n\n ✓ tests/config.test.ts (10 tests) 10196ms\n   ✓ 本园独立布局与正交构图 > 场景包含全部稳定对象，固定种子几何重复一致且有合理预算  8621ms\n   ✓ 本园独立布局与正交构图 > 卸载释放全部自有网格和材质，重复释放不会产生二次事件  1541ms\n ✓ tests/geometry.test.ts (3 tests) 2786ms\n   ✓ 沧浪亭复廊与丘林真实几何 > 复廊十个漏窗从水侧与园侧都可透视，窗间实体仍能命中  311ms\n ✓ tests/mapLink.test.ts (5 tests) 5ms\n\n Test Files  3 passed (3)\n      Tests  18 passed (18)\n   Start at  14:59:01\n   Duration  30.31s (transform 2.22s, setup 0ms, collect 2.79s, tests 12.99s, environment 29ms, prepare 5.57s)\n\n"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 107.72,
+      "output": "\n> canglangting-miniature@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v6.4.1 building for production...\ntransforming...\n✓ 626 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                     0.85 kB │ gzip:   0.57 kB\ndist/assets/index-DqdUmSv-.css     11.45 kB │ gzip:   2.99 kB\ndist/assets/index-Bba5OO-Q.js   1,059.58 kB │ gzip: 294.91 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 1m 13s\n"
+    }
+  ],
+  "finalBuild": {
+    "build_exit_code": 0,
+    "seconds": 88.62,
+    "inputs": [
+      {
+        "path": "package.json",
+        "sha256": "aeaa0060e697faec5ed1d9bb2189a1b38857a8d23d60eaa16d94144a299e9fbc"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "ffc399d00b91474ff267dbcfe6df55a8fd53054ebe4e5d664458731a5a09b0f0"
+      },
+      {
+        "path": "tsconfig.json",
+        "sha256": "d2be1c98456ab5bc9df57162f40bef8ae7ccd8ef5bed50531fb0fd659eb4f0cb"
+      },
+      {
+        "path": "vite.config.ts",
+        "sha256": "5fd62cbc11a3b945df0b0f02de158ad05c97e63be3cc92ed4f1d2cc7e66a8d79"
+      },
+      {
+        "path": "index.html",
+        "sha256": "7c8721e24049377e27c2ca14bb0934b7cab488a7623cb803c5aea3278e2c2c00"
+      },
+      {
+        "path": "public/audio/canglangting-bamboo-water.mp3",
+        "sha256": "4e8ce0b45505fc96bfaec42147a6c0acd344c06c20fc33f896b20b91a73be789"
+      },
+      {
+        "path": "src/App.tsx",
+        "sha256": "167d546d223e51c2e43ccd8dbffeb7cd997d37ca572397dee7805a061d1cadda"
+      },
+      {
+        "path": "src/audio/MusicPanel.tsx",
+        "sha256": "3563bb85a011e9a7f9b34a96572176712f3257897e8388bfdd4a3881b891e7c9"
+      },
+      {
+        "path": "src/audio/music.css",
+        "sha256": "eb299f0fa7314e430736ab60e4b48994664be267a2d9dea8a39c047652c594dc"
+      },
+      {
+        "path": "src/audio/score.ts",
+        "sha256": "e595fc21eb152de61953bc8c7181a8f08ebd5bbeddf4ebb45e14defdbf369f99"
+      },
+      {
+        "path": "src/data/garden.content.ts",
+        "sha256": "5a4ebd2b97c553a0ea9f4194f98fd0d963a4eb4d2286ef4ff4ba9887a7e2ae94"
+      },
+      {
+        "path": "src/data/garden.layout.ts",
+        "sha256": "61e23acec15373b7bd7758e4f8a00c3f69c5b15d57299c1f1c7c36dbf2f40569"
+      },
+      {
+        "path": "src/data/garden.views.ts",
+        "sha256": "154e06f025ee2e054616d8095370a93fa2d8809346e70c60ed808b74607f2f4e"
+      },
+      {
+        "path": "src/main.tsx",
+        "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+      },
+      {
+        "path": "src/navigation/mapLink.ts",
+        "sha256": "f4465f213af24219e2c2a0f4d585eba9b85a12890d709488d7a6431eecd042fc"
+      },
+      {
+        "path": "src/scene/GardenCanvas.tsx",
+        "sha256": "e5036ad8459fbe45db3a0c7e0acd9e74c30027b28de67008d7d5fe0c1daea9e9"
+      },
+      {
+        "path": "src/scene/GardenScene.tsx",
+        "sha256": "97595d4e35427ce1ccfca9a71070478aa6d76b166d4c32f00dce8aaa7e1c51ba"
+      },
+      {
+        "path": "src/scene/geometry.ts",
+        "sha256": "a916d60e0562a27c20b1207ee3b39c9ea4d3a6094241e3a95e9c1adc8ff43de6"
+      },
+      {
+        "path": "src/scene/surfaceFinish.ts",
+        "sha256": "a71632bfb5b6a62acce44ba3cd9ce366fad5bbdf9d9ccc639524cf17ac6759e8"
+      },
+      {
+        "path": "src/scene/useStaticShadows.ts",
+        "sha256": "e25a5b6803ae24403b20185ea2ce2c453803fb5585da746e799d16c0ccba1ba9"
+      },
+      {
+        "path": "src/styles.css",
+        "sha256": "3dc207a63ea72b5e8986873c508d3870e34b1ec886782b8f0e2ff7f4b421758e"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "dist/assets/index-Bba5OO-Q.js",
+        "sha256": "036dbcf707f4975f8bc301b23ea1d38de27cdf9c2a9c7279764313f0e02057c5"
+      },
+      {
+        "path": "dist/assets/index-DqdUmSv-.css",
+        "sha256": "ab936268ba6a2c8484fb51406640f7096e14a409e6f65517873198957d849d73"
+      },
+      {
+        "path": "dist/audio/canglangting-bamboo-water.mp3",
+        "sha256": "4e8ce0b45505fc96bfaec42147a6c0acd344c06c20fc33f896b20b91a73be789"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "7076a140e877bb2da826400d45dc989869119c9589c0c8d2fe21d91b2a73dd12"
+      }
+    ],
+    "log": "\n> canglangting-miniature@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v6.4.1 building for production...\ntransforming...\n✓ 626 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                     0.85 kB │ gzip:   0.57 kB\ndist/assets/index-DqdUmSv-.css     11.45 kB │ gzip:   2.99 kB\ndist/assets/index-Bba5OO-Q.js   1,059.58 kB │ gzip: 294.91 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 1m 12s\n"
+  }
+}

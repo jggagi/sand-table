@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { finishSurfaces } from './surfaceFinish';
 import { MarchingCubes } from 'three/examples/jsm/objects/MarchingCubes.js';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { SCENE_NAME, SCENE_OBJECTS, SCENE_SEED, type SceneObject, type Vec3 } from '../data/garden.layout';
@@ -9,7 +11,7 @@ const COLORS: Record<Surface, string> = {
   wood: '#76614d', tile: '#444f51', water: '#6d928a', leaf: '#62765d',
 };
 type Materials = Record<Surface, THREE.MeshStandardMaterial>;
-type Templates = { box: THREE.BoxGeometry; column: THREE.CylinderGeometry; leaves: THREE.BufferGeometry };
+type Templates = { softPost: THREE.BufferGeometry; box: THREE.BoxGeometry; column: THREE.CylinderGeometry; leaves: THREE.BufferGeometry };
 
 export function seededRandom(seed: number): () => number {
   let state = seed >>> 0;
@@ -38,6 +40,7 @@ class Batch {
   private readonly parts = new Map<Surface, THREE.BufferGeometry[]>();
   constructor(private readonly resources: Templates, private readonly materials: Materials) {}
   add(source: THREE.BufferGeometry, surface: Surface, position: Vec3 = [0, 0, 0], scale: Vec3 = [1, 1, 1], rotation: Vec3 = [0, 0, 0], tint?: string, owned = false): void {
+    if (source === this.resources.leaves) scale = [scale[0] * .94, scale[1] * .96, scale[2] * .94];
     const copy = source.index ? source.toNonIndexed() : source.clone();
     copy.applyMatrix4(new THREE.Matrix4().compose(new THREE.Vector3(...position), new THREE.Quaternion().setFromEuler(new THREE.Euler(...rotation)), new THREE.Vector3(...scale)));
     copy.deleteAttribute('uv');
@@ -57,7 +60,7 @@ class Batch {
     if (owned) source.dispose();
   }
   box(surface: Surface, size: Vec3, position: Vec3, tint?: string, rotation: Vec3 = [0, 0, 0]): void {
-    this.add(this.resources.box, surface, position, size, rotation, tint);
+    this.add((surface === 'wood' && size[1] > 1.4 && Math.min(size[0],size[2]) >= .09 && Math.max(size[0],size[2]) < .4) ? this.resources.softPost : this.resources.box, surface, position, size, rotation, tint);
   }
   rod(surface: Surface, from: Vec3, to: Vec3, radius: number, tint?: string): void {
     const a = new THREE.Vector3(...from), b = new THREE.Vector3(...to);
@@ -407,7 +410,8 @@ function bamboo(object: SceneObject, batch: Batch, templates: Templates): void {
 export interface GardenResources { group: THREE.Group; dispose: () => void }
 export function createGarden(): GardenResources {
   const materials = Object.fromEntries(Object.keys(COLORS).map(name => [name, new THREE.MeshStandardMaterial({ color: '#ffffff', vertexColors: true, roughness: name === 'water' ? 0.9 : 0.96, metalness: 0, side: THREE.FrontSide })])) as Materials;
-  const templates: Templates = { box: new THREE.BoxGeometry(1, 1, 1), column: new THREE.CylinderGeometry(1, 1, 1, 8, 1, false), leaves: foliageTemplate() };
+  finishSurfaces(materials);
+  const templates: Templates = { softPost: new RoundedBoxGeometry(1, 1, 1, 1, .13), box: new THREE.BoxGeometry(1, 1, 1), column: new THREE.CylinderGeometry(1, 1, 1, 8, 1, false), leaves: foliageTemplate() };
   const group = new THREE.Group(); group.name = SCENE_NAME;
   group.userData = { seed: SCENE_SEED, theme: '石境回转', artisticReconstruction: true };
   const objects: readonly SceneObject[] = [...SCENE_OBJECTS].sort((a, b) => Number(b.geometry.kind === 'court') - Number(a.geometry.kind === 'court'));

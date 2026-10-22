@@ -1,0 +1,34 @@
+{
+  "tool": "Blender 4.3.2",
+  "source": "This garden original procedural stone; no external model",
+  "operations": [
+    "Weld",
+    "Smooth x2",
+    "Shallow directed folds",
+    "Decimate 0.78",
+    "16-ray baked vertex ambient occlusion",
+    "GLB export Y-up"
+  ],
+  "meshes": [
+    {
+      "id": "guanyun-peak",
+      "vertices": 8586,
+      "triangles": 17180,
+      "vertex_ao_samples": 16
+    },
+    {
+      "id": "guanyun-companion-west",
+      "vertices": 3018,
+      "triangles": 6036,
+      "vertex_ao_samples": 16
+    },
+    {
+      "id": "guanyun-companion-east",
+      "vertices": 3013,
+      "triangles": 6026,
+      "vertex_ao_samples": 16
+    }
+  ],
+  "bytes": 704852,
+  "sha256": "f01409d426be81f3d4c1571d0546ebc1624cf53825a94a963718d2a945c32b4a"
+}

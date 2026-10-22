@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-22",
+  "project_id": "appgprj_6ac1b5acc02c8191b778a17afc89fa20",
+  "source_commit": "fb52713c6a56194ecd7c616b360669f94f24f47c",
+  "deployment_id": "appgdep_6ada2dcd2aa8819186526ef2c0453c2a",
+  "version_id": "appgprj_6ac1b5acc02c8191b778a17afc89fa20~appgver_870968a92574819191c4b91ceed301ae",
+  "status": "succeeded",
+  "url": "https://canglangting-miniature.jggagi.chatgpt.site",
+  "updated_at": "2026-10-22T15:38:02.859582+00:00",
+  "evidence": "Native Sites successful deployment response. Existing owner-only audience preserved; production URL was not fetched for QA."
+}

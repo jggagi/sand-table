@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { finishSurfaces } from './surfaceFinish';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { SCENE_NAME, SCENE_OBJECTS, SCENE_SEED, type SceneObject, type Vec3 } from '../data/garden.layout';
 
@@ -31,12 +33,13 @@ function meshGeometry(vertices: number[], triangles: number[]): THREE.BufferGeom
   return geometry;
 }
 
-interface Templates { box: THREE.BufferGeometry; foliage: THREE.BufferGeometry }
+interface Templates { softPost: THREE.BufferGeometry; box: THREE.BufferGeometry; foliage: THREE.BufferGeometry }
 /** One mesh per material per semantic group; no per-frame geometry is generated. */
 class Batch {
   private pieces = new Map<MaterialId, THREE.BufferGeometry[]>();
   constructor(private templates: Templates, private materials: Materials) {}
   add(source: THREE.BufferGeometry, material: MaterialId, position: Vec3 = [0, 0, 0], scale: Vec3 = [1, 1, 1], rotation: Vec3 = [0, 0, 0], colour?: string, own = false): void {
+    if (source === this.templates.foliage) scale = [scale[0] * .94, scale[1] * .96, scale[2] * .94];
     const geometry = source.index ? source.toNonIndexed() : source.clone();
     geometry.applyMatrix4(new THREE.Matrix4().compose(new THREE.Vector3(...position), new THREE.Quaternion().setFromEuler(new THREE.Euler(...rotation)), new THREE.Vector3(...scale)));
     geometry.deleteAttribute('uv');
@@ -56,7 +59,7 @@ class Batch {
     if (own) source.dispose();
   }
   box(material: MaterialId, dimensions: Vec3, position: Vec3, colour?: string, rotation: Vec3 = [0, 0, 0]): void {
-    this.add(this.templates.box, material, position, dimensions, rotation, colour);
+    this.add((material === 'wood' && dimensions[1] > 1.4 && Math.min(dimensions[0],dimensions[2]) >= .09 && Math.max(dimensions[0],dimensions[2]) < .4) ? this.templates.softPost : this.templates.box, material, position, dimensions, rotation, colour);
   }
   branch(material: MaterialId, from: Vec3, to: Vec3, radius: number, tip = radius, colour?: string): void {
     const start = new THREE.Vector3(...from), end = new THREE.Vector3(...to);
@@ -150,6 +153,7 @@ function roofGeometry(width: number, depth: number, rise: number): THREE.BufferG
   return meshGeometry(vertices, indices);
 }
 function addRoof(batch: Batch, width: number, depth: number, eavesY: number, rise: number): void {
+  for (let x = -width / 2 + .3; x < width / 2 - .15; x += 1.2) for (const sign of [-1,1]) batch.box('wood', [.055,.085,.32], [x,eavesY+.025,0+sign*(depth/2-.13)], '#88745b');
   batch.add(roofGeometry(width, depth, rise), 'roof', [0, eavesY, 0], undefined, undefined, undefined, true);
   batch.box('wood', [width - 0.14, 0.12, depth - 0.1], [0, eavesY + 0.015, 0], '#5b4c3e');
   batch.branch('roof', [-width / 2 - 0.05, eavesY + rise + 0.04, 0], [width / 2 + 0.05, eavesY + rise + 0.04, 0], 0.066, 0.066, '#677065');
@@ -233,11 +237,21 @@ function perforatedWall(batch: Batch, length: number, height: number, bays: numb
     }
     rim.holes.push(hole.clone());
     batch.add(new THREE.ExtrudeGeometry(rim, { depth: 0.29, bevelEnabled: false, curveSegments: 18 }), 'stone', [0, 0, -0.145], undefined, undefined, '#b9b5a4', true);
-    // Four delicate crossbars leave most of each aperture open to both landscapes.
-    const barSize = half * 1.35;
-    for (const offset of [-half * 0.3, half * 0.3]) {
-      batch.box('wood', [0.028, barSize, 0.042], [x + offset, y, 0], '#81907a');
-      batch.box('wood', [barSize, 0.028, 0.042], [x, y + offset, 0], '#81907a');
+    const flower = new THREE.Shape(), inner = new THREE.Path();
+    const petals = i % 3 === 0 ? 4 : i % 3 === 1 ? 6 : 8;
+    const steps = 24;
+    for (let k=0;k<=steps;k++) {
+      const a=k/steps*Math.PI*2,r=half*(.62+.07*Math.cos(a*petals));
+      if(k===0)flower.moveTo(x+Math.cos(a)*r,y+Math.sin(a)*r);else flower.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r);
+    }
+    for (let k=steps;k>=0;k--) {
+      const a=k/steps*Math.PI*2,r=half*(.575+.07*Math.cos(a*petals));
+      if(k===steps)inner.moveTo(x+Math.cos(a)*r,y+Math.sin(a)*r);else inner.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r);
+    }
+    flower.closePath();inner.closePath();flower.holes.push(inner);
+    batch.add(new THREE.ExtrudeGeometry(flower,{depth:.06,bevelEnabled:false,steps:1}), 'stone', [0,0,-.03], undefined, undefined, '#a3ab94', true);
+    for(const a of [0,Math.PI/2,Math.PI,Math.PI*1.5]) {
+      batch.branch('wood',[x+Math.cos(a)*half*.69,y+Math.sin(a)*half*.69,0],[x+Math.cos(a)*half*.99,y+Math.sin(a)*half*.99,0],.014,.014,'#77866b');
     }
   }
   batch.add(new THREE.ExtrudeGeometry(shape, { depth: 0.23, bevelEnabled: false, curveSegments: 18 }), 'wall', [0, 0, -0.115], undefined, undefined, undefined, true);
@@ -466,11 +480,12 @@ function base(object: SceneObject, batch: Batch): void {
 
 export interface GardenResources { group: THREE.Group; dispose: () => void }
 export function createGarden(): GardenResources {
-  const templates: Templates = { box: new THREE.BoxGeometry(1, 1, 1), foliage: foliageTemplate() };
+  const templates: Templates = { softPost: new RoundedBoxGeometry(1, 1, 1, 1, .13), box: new THREE.BoxGeometry(1, 1, 1), foliage: foliageTemplate() };
   const materials = Object.fromEntries(Object.keys(COLOURS).map(name => [name, new THREE.MeshStandardMaterial({
     color: 'white', vertexColors: true, roughness: name === 'water' ? 0.68 : name === 'roof' ? 0.89 : 0.98,
     metalness: 0, side: name === 'roof' ? THREE.DoubleSide : THREE.FrontSide,
   })])) as Materials;
+  finishSurfaces(materials);
   const garden = new THREE.Group();
   garden.name = SCENE_NAME;
   for (const object of SCENE_OBJECTS as readonly SceneObject[]) {

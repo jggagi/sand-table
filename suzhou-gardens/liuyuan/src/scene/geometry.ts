@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { finishSurfaces } from './surfaceFinish';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { SCENE_OBJECTS, SCENE_SEED, type SceneObject, type Vec3 } from '../data/liuyuan.layout';
 import { createScholarRock } from './scholarRock';
@@ -156,6 +158,7 @@ class Batch {
   constructor(private templates: Templates, private materials: Record<MaterialName, THREE.MeshStandardMaterial>) {}
 
   add(source: THREE.BufferGeometry, material: MaterialName, position: Vec3 = [0, 0, 0], scale: Vec3 = [1, 1, 1], rotation: Vec3 = [0, 0, 0], color?: string, ownSource = false) {
+    if (source === this.templates.foliage) scale = [scale[0] * .94, scale[1] * .96, scale[2] * .94];
     const geometry = source.index ? source.toNonIndexed() : source.clone();
     const matrix = new THREE.Matrix4().compose(new THREE.Vector3(...position), new THREE.Quaternion().setFromEuler(new THREE.Euler(...rotation)), new THREE.Vector3(...scale));
     geometry.applyMatrix4(matrix);
@@ -178,7 +181,7 @@ class Batch {
   }
 
   box(material: MaterialName, size: Vec3, position: Vec3, color?: string, rotation: Vec3 = [0, 0, 0]) {
-    this.add(this.templates.box, material, position, size, rotation, color);
+    this.add((material === 'wood' && size[1] > 1.4 && Math.min(size[0],size[2]) >= .09 && Math.max(size[0],size[2]) < .4) ? this.templates.softPost : this.templates.box, material, position, size, rotation, color);
   }
 
   beam(material: MaterialName, from: Vec3, to: Vec3, radius: number, color?: string) {
@@ -219,7 +222,7 @@ class Batch {
   }
 }
 
-interface Templates {
+interface Templates { softPost: THREE.BufferGeometry;
   box: THREE.BoxGeometry;
   cylinder: THREE.CylinderGeometry;
   foliage: THREE.BufferGeometry;
@@ -242,6 +245,7 @@ function foliageGeometry(): THREE.BufferGeometry {
 }
 
 function roof(batch: Batch, width: number, depth: number, y: number, rise: number, positionZ = 0) {
+  for (let x = -width / 2 + .3; x < width / 2 - .15; x += 1.2) for (const sign of [-1,1]) batch.box('wood', [.055,.085,.32], [x,y+.025,positionZ+sign*(depth/2-.13)], '#88745b');
   batch.add(roofGeometry(width, depth, rise), 'roof', [0, y, positionZ], undefined, undefined, undefined, true);
   batch.box('wood', [width - 0.2, 0.16, depth - 0.1], [0, y + 0.035, positionZ], '#544739');
   batch.beam('roof', [-width / 2 - 0.1, y + rise + 0.04, positionZ], [width / 2 + 0.1, y + rise + 0.04, positionZ], 0.085, '#505b56');
@@ -500,8 +504,9 @@ export interface GardenResources {
 
 /** Build exactly once per mounted scene; all repeated components are material-batched. */
 export function createGarden(): GardenResources {
-  const templates: Templates = { box: new THREE.BoxGeometry(1, 1, 1), cylinder: new THREE.CylinderGeometry(1, 1, 1, 7, 1), foliage: foliageGeometry() };
+  const templates: Templates = { softPost: new RoundedBoxGeometry(1, 1, 1, 1, .13), box: new THREE.BoxGeometry(1, 1, 1), cylinder: new THREE.CylinderGeometry(1, 1, 1, 7, 1), foliage: foliageGeometry() };
   const materials = Object.fromEntries(Object.keys(PALETTE).map((name) => [name, new THREE.MeshStandardMaterial({ color: 'white', vertexColors: true, roughness: name === 'water' ? 0.56 : name === 'roof' ? 0.88 : 0.97, metalness: 0, side: name === 'roof' ? THREE.DoubleSide : THREE.FrontSide })])) as Record<MaterialName, THREE.MeshStandardMaterial>;
+  finishSurfaces(materials);
   const garden = new THREE.Group();
   garden.name = 'liuyuan-artistic-miniature';
   // Floors precede water in the scene; each still owns a distinct semantic identity.

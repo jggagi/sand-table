@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-22",
+  "garden": "zhuozhengyuan",
+  "browser": "151.0.7922.173",
+  "passed": true,
+  "checks": [
+    {
+      "check": "Real refined scene, shader compilation and nonempty pixels",
+      "calls": 78,
+      "triangles": 110037,
+      "pixelVariance": 2526
+    },
+    {
+      "check": "Camera presets reuse actual static shadow framebuffer",
+      "initial": {
+        "offscreen": 83,
+        "screen": 547
+      },
+      "afterCamera": {
+        "offscreen": 83,
+        "screen": 1685
+      }
+    },
+    {
+      "check": "Real one-finger orbit, two-finger zoom and reset",
+      "zoom": 9.985375278689105,
+      "min": 5.895348837209303,
+      "max": 21.767441860465116
+    },
+    {
+      "check": "Demand rendering sleeps at rest",
+      "passed": true
+    },
+    {
+      "check": "Existing opt-in music, actual media playback, pause and volume",
+      "passed": true
+    },
+    {
+      "check": "320px and 200% text, landscape and portrait resize",
+      "passed": true
+    },
+    {
+      "check": "Map round trip restores garden selection and keeps music paused",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "failures": [],
+  "externalRequests": [],
+  "limits": "Final local output, Chromium/SwiftShader, actual WebGL/media and CDP touch. No real iPhone/Android, Safari, mobile GPU frame-rate/heat or mainland network verification."
+}

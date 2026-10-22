@@ -1,0 +1,78 @@
+{
+  "garden": "liuyuan",
+  "meshes": 73,
+  "triangles": 161927,
+  "vertices": 412672,
+  "triangleBudget": 200000,
+  "materials": 11,
+  "bounds": {
+    "min": [
+      -16.09000015258789,
+      -0.8500000238418579,
+      -12.09000015258789
+    ],
+    "max": [
+      16.09000015258789,
+      7.24404764175415,
+      12.09000015258789
+    ]
+  },
+  "surfaces": [
+    {
+      "name": "paving",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "base",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "leaf",
+      "roughness": 0.88,
+      "metalness": 0
+    },
+    {
+      "name": "stone",
+      "roughness": 0.89,
+      "metalness": 0
+    },
+    {
+      "name": "water",
+      "roughness": 0.38,
+      "metalness": 0
+    },
+    {
+      "name": "wood",
+      "roughness": 0.77,
+      "metalness": 0
+    },
+    {
+      "name": "wall",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "roof",
+      "roughness": 0.85,
+      "metalness": 0
+    },
+    {
+      "name": "stone",
+      "roughness": 0.89,
+      "metalness": 0
+    },
+    {
+      "name": "stone",
+      "roughness": 0.89,
+      "metalness": 0
+    },
+    {
+      "name": "stone",
+      "roughness": 0.89,
+      "metalness": 0
+    }
+  ],
+  "finite": true
+}

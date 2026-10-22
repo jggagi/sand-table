@@ -1,0 +1,147 @@
+{
+  "checks": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "seconds": 13.61,
+      "output": "\n> zhuozhengyuan-miniature@0.1.0 typecheck\n> tsc --noEmit\n\n"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=20000"
+      ],
+      "exit_code": 0,
+      "seconds": 17.19,
+      "output": "\n> zhuozhengyuan-miniature@0.1.0 test\n> vitest run --maxWorkers=1 --no-file-parallelism --testTimeout=20000\n\n\n RUN  v3.2.4 /workspace/gardens-refinement/suzhou-gardens/zhuozhengyuan/.sites-runtime/source\n\n ✓ tests/config.test.ts (10 tests) 8071ms\n   ✓ 本园独立布局与正交构图 > 场景包含全部稳定对象，固定种子几何重复一致且有合理预算  3999ms\n   ✓ 本园独立布局与正交构图 > 卸载释放全部自有网格和材质，重复释放不会产生二次事件  4027ms\n ✓ tests/mapLink.test.ts (5 tests) 17ms\n\n Test Files  2 passed (2)\n      Tests  15 passed (15)\n   Start at  14:52:02\n   Duration  11.77s (transform 531ms, setup 0ms, collect 787ms, tests 8.09s, environment 2ms, prepare 1.04s)\n\n"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 157.67,
+      "output": "\n> zhuozhengyuan-miniature@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v6.4.1 building for production...\ntransforming...\n✓ 626 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                     0.86 kB │ gzip:   0.58 kB\ndist/assets/index-DqdUmSv-.css     11.45 kB │ gzip:   2.99 kB\ndist/assets/index-D2oye75W.js   1,060.47 kB │ gzip: 295.29 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 1m 39s\n"
+    }
+  ],
+  "finalBuild": {
+    "build_exit_code": 0,
+    "seconds": 40.43,
+    "inputs": [
+      {
+        "path": "package.json",
+        "sha256": "746a7087760cff0e357a7e28ac891246fc8a1d6e61824c45f7d3310fec0b7519"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "6846a99194fb2700a475237000aa8d55d826a3cecf7c446faefd32e16b6df80e"
+      },
+      {
+        "path": "tsconfig.json",
+        "sha256": "d2be1c98456ab5bc9df57162f40bef8ae7ccd8ef5bed50531fb0fd659eb4f0cb"
+      },
+      {
+        "path": "vite.config.ts",
+        "sha256": "5fd62cbc11a3b945df0b0f02de158ad05c97e63be3cc92ed4f1d2cc7e66a8d79"
+      },
+      {
+        "path": "index.html",
+        "sha256": "fe91be70d9c01ddb013d6d6d40b3736d28ea73a36e08416aecc0401eb7f88e6b"
+      },
+      {
+        "path": "public/audio/zhuozhengyuan-lotus-breeze.mp3",
+        "sha256": "f60ecffa139735650896a22b73b1c808da15e0aac6862e2fe128151bc5606fe0"
+      },
+      {
+        "path": "src/App.tsx",
+        "sha256": "167d546d223e51c2e43ccd8dbffeb7cd997d37ca572397dee7805a061d1cadda"
+      },
+      {
+        "path": "src/audio/MusicPanel.tsx",
+        "sha256": "3563bb85a011e9a7f9b34a96572176712f3257897e8388bfdd4a3881b891e7c9"
+      },
+      {
+        "path": "src/audio/music.css",
+        "sha256": "eb299f0fa7314e430736ab60e4b48994664be267a2d9dea8a39c047652c594dc"
+      },
+      {
+        "path": "src/audio/score.ts",
+        "sha256": "b0576fe95d1941bcd09a6a6cc8a777168915641f7b1513b06814932989b2a078"
+      },
+      {
+        "path": "src/data/garden.content.ts",
+        "sha256": "88b57239e0385095954eeb04540f69190f4e7000701c1342b8142f1306d7c337"
+      },
+      {
+        "path": "src/data/garden.layout.ts",
+        "sha256": "ae87b03fd07e5829cb90493aa81a7351caf4f846c7669736baffa95b4e2d2fff"
+      },
+      {
+        "path": "src/data/garden.views.ts",
+        "sha256": "d70359c7ffafb07c880924380000a3d4571c485b4e858e4318c33d2ac40907e1"
+      },
+      {
+        "path": "src/main.tsx",
+        "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+      },
+      {
+        "path": "src/navigation/mapLink.ts",
+        "sha256": "a21adaf272c8b45ca911229cbd550e52a6b7bbc10e73343352201c6079d56006"
+      },
+      {
+        "path": "src/scene/GardenCanvas.tsx",
+        "sha256": "e5036ad8459fbe45db3a0c7e0acd9e74c30027b28de67008d7d5fe0c1daea9e9"
+      },
+      {
+        "path": "src/scene/GardenScene.tsx",
+        "sha256": "97595d4e35427ce1ccfca9a71070478aa6d76b166d4c32f00dce8aaa7e1c51ba"
+      },
+      {
+        "path": "src/scene/geometry.ts",
+        "sha256": "944b724b58fa22cc46118bf3f1184a5554694475a3211bfbcabcfbe2f30680fb"
+      },
+      {
+        "path": "src/scene/surfaceFinish.ts",
+        "sha256": "a71632bfb5b6a62acce44ba3cd9ce366fad5bbdf9d9ccc639524cf17ac6759e8"
+      },
+      {
+        "path": "src/scene/useStaticShadows.ts",
+        "sha256": "e25a5b6803ae24403b20185ea2ce2c453803fb5585da746e799d16c0ccba1ba9"
+      },
+      {
+        "path": "src/styles.css",
+        "sha256": "3dc207a63ea72b5e8986873c508d3870e34b1ec886782b8f0e2ff7f4b421758e"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "dist/assets/index-D2oye75W.js",
+        "sha256": "e0bca90314372fd1805e686af209bbff52c1aaa7e6eb9bd9044537525a8a1dbf"
+      },
+      {
+        "path": "dist/assets/index-DqdUmSv-.css",
+        "sha256": "ab936268ba6a2c8484fb51406640f7096e14a409e6f65517873198957d849d73"
+      },
+      {
+        "path": "dist/audio/zhuozhengyuan-lotus-breeze.mp3",
+        "sha256": "f60ecffa139735650896a22b73b1c808da15e0aac6862e2fe128151bc5606fe0"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "336d5ded3bcef695206f9aadca7ecbbb9f4f9080974b8f712bafb1111a0f2148"
+      }
+    ],
+    "log": "\n> zhuozhengyuan-miniature@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v6.4.1 building for production...\ntransforming...\n✓ 626 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                     0.86 kB │ gzip:   0.58 kB\ndist/assets/index-DqdUmSv-.css     11.45 kB │ gzip:   2.99 kB\ndist/assets/index-D2oye75W.js   1,060.47 kB │ gzip: 295.29 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 33.93s\n"
+  }
+}

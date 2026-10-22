@@ -238,7 +238,7 @@ test('WebGL 不可用时显示可读错误和刷新指引', async ({ page }) => 
     const getContext = HTMLCanvasElement.prototype.getContext;
     HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, type: string, ...args: unknown[]) {
       if (type === 'webgl' || type === 'webgl2' || type === 'experimental-webgl') return null;
-      return getContext.call(this, type as '2d', ...args as []);
+      return Reflect.apply(getContext, this, [type, ...args]);
     } as typeof getContext;
   });
   await page.goto('/');

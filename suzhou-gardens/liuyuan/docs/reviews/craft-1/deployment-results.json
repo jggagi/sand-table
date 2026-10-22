@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-22",
+  "project_id": "appgprj_6ac11ff9d9ac8191a45ec3514bfed022",
+  "source_commit": "35c535cbf3b33746e410e536c8d53826f808c90c",
+  "deployment_id": "appgdep_6ada2c0b1950819182751342c5369ad4",
+  "version_id": "appgprj_6ac11ff9d9ac8191a45ec3514bfed022~appgver_f20e1488e52881918f5945e738d456a7",
+  "status": "succeeded",
+  "url": "https://liuyuan-miniature-m1.jggagi.chatgpt.site",
+  "updated_at": "2026-10-22T15:30:34.834581+00:00",
+  "evidence": "Native Sites successful deployment response. Existing owner-only audience preserved; production URL was not fetched for QA."
+}

@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { finishSurfaces } from './surfaceFinish';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { SCENE_NAME, SCENE_OBJECTS, SCENE_SEED, type SceneObject, type Vec3 } from '../data/garden.layout';
 
@@ -8,7 +10,7 @@ const PALETTE: Record<MaterialKey, string> = {
   base: '#bbaf98', paving: '#ded4bf', stone: '#a8aa98', wall: '#f1eadc',
   roof: '#475753', wood: '#735c47', leaf: '#5d7452', water: '#6b958b',
 };
-interface Templates { box: THREE.BoxGeometry; cylinder: THREE.CylinderGeometry; foliage: THREE.BufferGeometry }
+interface Templates { softPost: THREE.BufferGeometry; box: THREE.BoxGeometry; cylinder: THREE.CylinderGeometry; foliage: THREE.BufferGeometry }
 
 /** All variation is computed during construction; no frame-loop randomness. */
 export function seededRandom(seed: number): () => number {
@@ -29,6 +31,7 @@ class Batch {
   private parts = new Map<MaterialKey, THREE.BufferGeometry[]>();
   constructor(private templates: Templates, private materials: Materials) {}
   add(source: THREE.BufferGeometry, material: MaterialKey, position: Vec3 = [0, 0, 0], scale: Vec3 = [1, 1, 1], rotation: Vec3 = [0, 0, 0], color = PALETTE[material], ownSource = false): void {
+    if (source === this.templates.foliage) scale = [scale[0] * .94, scale[1] * .96, scale[2] * .94];
     const part = source.index ? source.toNonIndexed() : source.clone();
     part.applyMatrix4(new THREE.Matrix4().compose(new THREE.Vector3(...position), new THREE.Quaternion().setFromEuler(new THREE.Euler(...rotation)), new THREE.Vector3(...scale)));
     part.deleteAttribute('uv');
@@ -48,7 +51,7 @@ class Batch {
     if (ownSource) source.dispose();
   }
   box(material: MaterialKey, size: Vec3, position: Vec3, color = PALETTE[material], rotation: Vec3 = [0, 0, 0]): void {
-    this.add(this.templates.box, material, position, size, rotation, color);
+    this.add((material === 'wood' && size[1] > 1.4 && Math.min(size[0],size[2]) >= .09 && Math.max(size[0],size[2]) < .4) ? this.templates.softPost : this.templates.box, material, position, size, rotation, color);
   }
   beam(material: MaterialKey, from: Vec3, to: Vec3, radius: number, color = PALETTE[material], taper = 1): void {
     const start = new THREE.Vector3(...from), end = new THREE.Vector3(...to);
@@ -160,6 +163,7 @@ function roofGeometry(width: number, depth: number, rise: number): THREE.BufferG
   return geometry;
 }
 function roof(batch: Batch, width: number, depth: number, y: number, rise: number): void {
+  for (let x = -width / 2 + .3; x < width / 2 - .15; x += 1.2) for (const sign of [-1,1]) batch.box('wood', [.055,.085,.32], [x,y+.025,0+sign*(depth/2-.13)], '#88745b');
   batch.add(roofGeometry(width, depth, rise), 'roof', [0, y, 0], undefined, undefined, undefined, true);
   batch.beam('roof', [-width / 2 - 0.04, y + rise + 0.04, 0], [width / 2 + 0.04, y + rise + 0.04, 0], 0.057, '#46554f');
   for (const sign of [-1, 1]) {
@@ -213,8 +217,12 @@ function lattice(batch: Batch, center: Vec3, width: number, height: number, diam
     batch.box('wood', [width + 0.09, 0.065, 0.07], [x, y + edge * height / 2, z], '#71684f');
     batch.box('wood', [0.065, height + 0.09, 0.07], [x + edge * width / 2, y, z], '#71684f');
   }
-  for (let column = -1; column <= 1; column++) batch.box('wood', [0.025, height, 0.045], [x + column * width / 4, y, z], '#7b735b');
-  for (let row = -1; row <= 1; row++) batch.box('wood', [width, 0.025, 0.045], [x, y + row * height / 4, z], '#7b735b');
+  for (const column of [-1, 1]) batch.box('wood', [0.025, height, 0.045], [x + column * width / 4, y, z], '#7b735b');
+  for (const row of [-1, 1]) batch.box('wood', [width, 0.025, 0.045], [x, y + row * height / 4, z], '#7b735b');
+  for (const edge of [-1,1]) {
+    batch.box('wood',[width*.56,.025,.065],[x,y+edge*height*.28,z+.025],'#978369');
+    batch.box('wood',[.025,height*.56,.065],[x+edge*width*.28,y,z+.025],'#978369');
+  }
   if (diamond) {
     const halfW = width * 0.32, halfH = height * 0.32;
     const points: Vec3[] = [[x, y + halfH, z], [x + halfW, y, z], [x, y - halfH, z], [x - halfW, y, z], [x, y + halfH, z]];
@@ -440,8 +448,9 @@ function bamboo(batch: Batch, object: SceneObject, templates: Templates, random:
 export interface GardenResources { group: THREE.Group; dispose: () => void }
 /** One static scene per mount. Every generated and shared resource is released once. */
 export function createGarden(): GardenResources {
-  const templates: Templates = { box: new THREE.BoxGeometry(1, 1, 1), cylinder: new THREE.CylinderGeometry(1, 1, 1, 7, 1), foliage: leafTemplate() };
+  const templates: Templates = { softPost: new RoundedBoxGeometry(1, 1, 1, 1, .13), box: new THREE.BoxGeometry(1, 1, 1), cylinder: new THREE.CylinderGeometry(1, 1, 1, 7, 1), foliage: leafTemplate() };
   const materials = Object.fromEntries(Object.keys(PALETTE).map(key => [key, new THREE.MeshStandardMaterial({ color: '#ffffff', vertexColors: true, roughness: key === 'water' ? 0.73 : key === 'roof' ? 0.92 : 0.98, metalness: 0, side: THREE.FrontSide })])) as Materials;
+  finishSurfaces(materials);
   const garden = new THREE.Group(); garden.name = SCENE_NAME;
   for (const object of SCENE_OBJECTS as readonly SceneObject[]) {
     const batch = new Batch(templates, materials), random = seededRandom(seedFor(object.id));

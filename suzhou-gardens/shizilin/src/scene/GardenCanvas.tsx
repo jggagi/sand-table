@@ -1,6 +1,6 @@
 import { Component, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { CameraControls } from '@react-three/drei';
+import { CameraControls, useGLTF } from '@react-three/drei';
 import CameraControlsImpl from 'camera-controls';
 import { OrthographicCamera, Vector3, type WebGLRenderer } from 'three';
 import GardenScene from './GardenScene';
@@ -190,7 +190,7 @@ function CameraRig(props: GardenCanvasProps) {
 class SceneBoundary extends Component<{ children: ReactNode; onError: (message: string) => void }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
-  componentDidCatch(error: Error) { this.props.onError(`场景初始化失败：${error.message}`); }
+  componentDidCatch(error: Error) { useGLTF.clear(`${import.meta.env.BASE_URL}assets/craft-stone.glb`); this.props.onError(`场景初始化失败：${error.message}`); }
   render() { return this.state.failed ? null : this.props.children; }
 }
 
