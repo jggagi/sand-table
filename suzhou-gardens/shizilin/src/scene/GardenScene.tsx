@@ -1,14 +1,22 @@
+import { useStaticShadows } from './useStaticShadows';
+import { useGLTF, useTexture } from '@react-three/drei';
+import { installCraftStone } from './craftStone';
 import { useEffect, useState } from 'react';
 import { createGarden } from './geometry';
+import WaterSurface from './WaterSurface';
+import type {TimeId} from '../data/garden.time';
 
 /** Geometry and materials stay fixed for the lifetime of this scene. */
-export default function GardenScene() {
+export default function GardenScene({timeId}:{timeId:TimeId}) {
+  const asset = useGLTF(`${import.meta.env.BASE_URL}assets/craft-stone.glb`);
+  const normal=useTexture(`${import.meta.env.BASE_URL}assets/stone-normal.png`);
   const [resources, setResources] = useState<ReturnType<typeof createGarden> | null>(null);
   useEffect(() => {
     // React StrictMode may repeat setup/cleanup. Every setup owns fresh resources.
-    const nextResources = createGarden();
+    const nextResources = installCraftStone(createGarden(), asset.scene,normal);
     setResources(nextResources);
     return () => nextResources.dispose();
-  }, []);
-  return resources ? <primitive object={resources.group} dispose={null} /> : null;
+  }, [asset.scene,normal]);
+  useStaticShadows(resources !== null,timeId);
+  return resources ? <><primitive object={resources.group} dispose={null} /><WaterSurface group={resources.group} timeId={timeId} /></> : null;
 }

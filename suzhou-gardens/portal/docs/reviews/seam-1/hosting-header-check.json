@@ -1,0 +1,6 @@
+{
+  "url": "https://suzhou-gardens.jggagi.chatgpt.site/",
+  "method": "HEAD",
+  "purpose": "Check whether the existing hosted origin declares a same-origin iframe restriction; no page content or credentials requested.",
+  "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+}

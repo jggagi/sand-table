@@ -1,0 +1,63 @@
+{
+  "garden": "shizilin",
+  "meshes": 40,
+  "triangles": 90230,
+  "vertices": 196628,
+  "triangleBudget": 170000,
+  "materials": 8,
+  "bounds": {
+    "min": [
+      -14.050000190734863,
+      -0.8299999833106995,
+      -11.550000190734863
+    ],
+    "max": [
+      14.050000190734863,
+      5.909400463104248,
+      11.550000190734863
+    ]
+  },
+  "surfaces": [
+    {
+      "name": "paving",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "earth",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "stone",
+      "roughness": 0.89,
+      "metalness": 0
+    },
+    {
+      "name": "wood",
+      "roughness": 0.77,
+      "metalness": 0
+    },
+    {
+      "name": "water",
+      "roughness": 0.38,
+      "metalness": 0
+    },
+    {
+      "name": "tile",
+      "roughness": 0.85,
+      "metalness": 0
+    },
+    {
+      "name": "wall",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "leaf",
+      "roughness": 0.88,
+      "metalness": 0
+    }
+  ],
+  "finite": true
+}

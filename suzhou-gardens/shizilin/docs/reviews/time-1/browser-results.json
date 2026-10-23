@@ -1,0 +1,360 @@
+{
+  "date": "2026-10-23",
+  "browser": "151.0.7922.173",
+  "passed": true,
+  "checks": [
+    {
+      "check": "Four actual lighting states change scene pixels, refresh shadow and reflection with fixed camera, then cache again; GPU buffers/targets and scene identities remain stable",
+      "steps": [
+        {
+          "id": "dawn",
+          "before": {
+            "screen": 697,
+            "offscreen": {
+              "2048x2048": 54,
+              "512x512": 116
+            },
+            "buffers": 199,
+            "framebuffers": 3
+          },
+          "after": {
+            "screen": 697,
+            "offscreen": {
+              "2048x2048": 54,
+              "512x512": 116
+            },
+            "buffers": 199,
+            "framebuffers": 3
+          },
+          "captures": 2
+        },
+        {
+          "id": "noon",
+          "before": {
+            "screen": 752,
+            "offscreen": {
+              "2048x2048": 54,
+              "512x512": 116
+            },
+            "buffers": 199,
+            "framebuffers": 3
+          },
+          "after": {
+            "screen": 862,
+            "offscreen": {
+              "2048x2048": 96,
+              "512x512": 174
+            },
+            "buffers": 199,
+            "framebuffers": 3
+          },
+          "captures": 3
+        },
+        {
+          "id": "dusk",
+          "before": {
+            "screen": 917,
+            "offscreen": {
+              "2048x2048": 96,
+              "512x512": 174
+            },
+            "buffers": 199,
+            "framebuffers": 3
+          },
+          "after": {
+            "screen": 1027,
+            "offscreen": {
+              "2048x2048": 138,
+              "512x512": 232
+            },
+            "buffers": 199,
+            "framebuffers": 3
+          },
+          "captures": 4
+        },
+        {
+          "id": "night",
+          "before": {
+            "screen": 1082,
+            "offscreen": {
+              "2048x2048": 138,
+              "512x512": 232
+            },
+            "buffers": 199,
+            "framebuffers": 3
+          },
+          "after": {
+            "screen": 1192,
+            "offscreen": {
+              "2048x2048": 180,
+              "512x512": 290
+            },
+            "buffers": 199,
+            "framebuffers": 3
+          },
+          "captures": 5
+        }
+      ],
+      "differences": [
+        {
+          "against": "dawn",
+          "period": "noon",
+          "pixels": 288043,
+          "mean": 43.338266296369994
+        },
+        {
+          "against": "dawn",
+          "period": "dusk",
+          "pixels": 340634,
+          "mean": 84.93913032193316
+        },
+        {
+          "against": "dawn",
+          "period": "night",
+          "pixels": 302415,
+          "mean": 76.6669449659552
+        }
+      ]
+    },
+    {
+      "check": "All four original viewpoints render at night",
+      "passed": true
+    },
+    {
+      "check": "Time selection retains free camera; keyboard, rapid latest selection and reset preserve time",
+      "passed": true
+    },
+    {
+      "check": "No GLB/PNG reloads during time/view changes",
+      "passed": true
+    },
+    {
+      "check": "Mobile 256px reflection and time switching preserve actual music playback",
+      "passed": true
+    },
+    {
+      "check": "44px time targets, 320px/200% text and landscape remain usable",
+      "passed": true
+    },
+    {
+      "check": "Actual same-origin map round trip preserves garden selection and returns to the default dawn entry",
+      "passed": true
+    }
+  ],
+  "shots": [
+    {
+      "file": "desktop-waterside-dawn.jpg",
+      "pose": {
+        "position": [
+          28,
+          20,
+          16
+        ],
+        "target": [
+          6.3,
+          0.9,
+          1.8
+        ],
+        "zoom": 27.484375
+      },
+      "view": "waterside",
+      "period": "dawn",
+      "captures": 2,
+      "calls": 55,
+      "triangles": 107848
+    },
+    {
+      "file": "desktop-waterside-noon.jpg",
+      "pose": {
+        "position": [
+          28,
+          20,
+          16
+        ],
+        "target": [
+          6.3,
+          0.9,
+          1.8
+        ],
+        "zoom": 27.484375
+      },
+      "view": "waterside",
+      "period": "noon",
+      "captures": 3,
+      "calls": 55,
+      "triangles": 107848
+    },
+    {
+      "file": "desktop-waterside-dusk.jpg",
+      "pose": {
+        "position": [
+          28,
+          20,
+          16
+        ],
+        "target": [
+          6.3,
+          0.9,
+          1.8
+        ],
+        "zoom": 27.484375
+      },
+      "view": "waterside",
+      "period": "dusk",
+      "captures": 4,
+      "calls": 55,
+      "triangles": 107848
+    },
+    {
+      "file": "desktop-waterside-night.jpg",
+      "pose": {
+        "position": [
+          28,
+          20,
+          16
+        ],
+        "target": [
+          6.3,
+          0.9,
+          1.8
+        ],
+        "zoom": 27.484375
+      },
+      "view": "waterside",
+      "period": "night",
+      "captures": 5,
+      "calls": 55,
+      "triangles": 107848
+    },
+    {
+      "file": "desktop-overview-night.jpg",
+      "pose": {
+        "position": [
+          29.000000000000004,
+          31,
+          36
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "zoom": 18.650111607142858
+      },
+      "view": "overview",
+      "period": "night",
+      "captures": 6,
+      "calls": 59,
+      "triangles": 109324
+    },
+    {
+      "file": "desktop-rockery-night.jpg",
+      "pose": {
+        "position": [
+          -1.0000000000000004,
+          10.000000000000002,
+          28
+        ],
+        "target": [
+          -4.2,
+          1.7,
+          -1
+        ],
+        "zoom": 30.717830882352942
+      },
+      "view": "rockery",
+      "period": "night",
+      "captures": 7,
+      "calls": 59,
+      "triangles": 109324
+    },
+    {
+      "file": "desktop-corridor-night.jpg",
+      "pose": {
+        "position": [
+          -22.000000000000007,
+          10.999999999999996,
+          20
+        ],
+        "target": [
+          -8.6,
+          1,
+          5.1
+        ],
+        "zoom": 37.300223214285715
+      },
+      "view": "corridor",
+      "period": "night",
+      "captures": 8,
+      "calls": 52,
+      "triangles": 101298
+    },
+    {
+      "file": "mobile-overview-night.jpg",
+      "pose": {
+        "position": [
+          29.000000000000004,
+          31,
+          36
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "zoom": 9.75
+      },
+      "view": "overview",
+      "period": "night",
+      "captures": 2,
+      "calls": 59,
+      "triangles": 109324
+    },
+    {
+      "file": "mobile-waterside-night.jpg",
+      "pose": {
+        "position": [
+          28,
+          20,
+          16
+        ],
+        "target": [
+          6.3,
+          0.9,
+          1.8
+        ],
+        "zoom": 19.5
+      },
+      "view": "waterside",
+      "period": "night",
+      "captures": 3,
+      "calls": 51,
+      "triangles": 102678
+    },
+    {
+      "file": "mobile-waterside-dawn.jpg",
+      "pose": {
+        "position": [
+          28,
+          20,
+          16
+        ],
+        "target": [
+          6.3,
+          0.9,
+          1.8
+        ],
+        "zoom": 19.5
+      },
+      "view": "waterside",
+      "period": "dawn",
+      "captures": 4,
+      "calls": 51,
+      "triangles": 102678
+    }
+  ],
+  "errors": [],
+  "failures": [],
+  "external": [],
+  "limits": "Actual final local packaged output on Chromium/SwiftShader. No physical phone, Safari, FPS, heat or mainland-network measurements. Four manually selected artistic moods, not an astronomical clock."
+}

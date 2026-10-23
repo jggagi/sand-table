@@ -1,0 +1,220 @@
+{
+  "date": "2026-10-23",
+  "browser": "151.0.7922.173",
+  "dpr": 1,
+  "reducedMotion": true,
+  "records": [
+    {
+      "file": "desktop-overview-night.jpg",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "actual": {
+        "garden": {
+          "ready": true,
+          "view": "overview",
+          "zoom": 18.650111607142858,
+          "minZoom": 12.122572544642859,
+          "maxZoom": 44.76026785714286,
+          "position": [
+            29.000000000000004,
+            31,
+            36
+          ],
+          "target": [
+            0,
+            1,
+            0
+          ],
+          "calls": 59,
+          "triangles": 109324,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "frames": 24,
+          "seed": 2026100417,
+          "objects": 59
+        },
+        "water": {
+          "captures": 2,
+          "animationTicks": 0,
+          "reflectionSize": 512,
+          "active": false,
+          "time": 0,
+          "mode": "planar",
+          "period": "night"
+        },
+        "status": "ready"
+      }
+    },
+    {
+      "file": "desktop-rockery-night.jpg",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "actual": {
+        "garden": {
+          "ready": true,
+          "view": "rockery",
+          "zoom": 30.717830882352942,
+          "minZoom": 19.966590073529414,
+          "maxZoom": 73.72279411764706,
+          "position": [
+            -1.0000000000000004,
+            10.000000000000002,
+            28
+          ],
+          "target": [
+            -4.2,
+            1.7,
+            -1
+          ],
+          "calls": 59,
+          "triangles": 109324,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "frames": 32,
+          "seed": 2026100417,
+          "objects": 59
+        },
+        "water": {
+          "captures": 3,
+          "animationTicks": 0,
+          "reflectionSize": 512,
+          "active": false,
+          "time": 0,
+          "mode": "planar",
+          "period": "night"
+        },
+        "status": "ready"
+      }
+    },
+    {
+      "file": "desktop-waterside-night.jpg",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "actual": {
+        "garden": {
+          "ready": true,
+          "view": "waterside",
+          "zoom": 27.484375,
+          "minZoom": 17.864843750000002,
+          "maxZoom": 65.96249999999999,
+          "position": [
+            28,
+            20,
+            16
+          ],
+          "target": [
+            6.3,
+            0.9,
+            1.8
+          ],
+          "calls": 55,
+          "triangles": 107848,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "frames": 40,
+          "seed": 2026100417,
+          "objects": 59
+        },
+        "water": {
+          "captures": 4,
+          "animationTicks": 0,
+          "reflectionSize": 512,
+          "active": false,
+          "time": 0,
+          "mode": "planar",
+          "period": "night"
+        },
+        "status": "ready"
+      }
+    },
+    {
+      "file": "desktop-corridor-night.jpg",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "actual": {
+        "garden": {
+          "ready": true,
+          "view": "corridor",
+          "zoom": 37.300223214285715,
+          "minZoom": 24.245145089285717,
+          "maxZoom": 89.52053571428571,
+          "position": [
+            -22.000000000000007,
+            10.999999999999996,
+            20
+          ],
+          "target": [
+            -8.6,
+            1,
+            5.1
+          ],
+          "calls": 52,
+          "triangles": 101298,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "frames": 48,
+          "seed": 2026100417,
+          "objects": 59
+        },
+        "water": {
+          "captures": 5,
+          "animationTicks": 0,
+          "reflectionSize": 512,
+          "active": false,
+          "time": 0,
+          "mode": "planar",
+          "period": "night"
+        },
+        "status": "ready"
+      }
+    },
+    {
+      "file": "mobile-garden-night.jpg",
+      "viewport": [
+        390,
+        844
+      ],
+      "actual": {
+        "garden": {
+          "ready": true,
+          "view": "waterside",
+          "zoom": 19.5,
+          "minZoom": 12.675,
+          "maxZoom": 46.8,
+          "position": [
+            28,
+            20,
+            16
+          ],
+          "target": [
+            6.3,
+            0.9,
+            1.8
+          ],
+          "calls": 51,
+          "triangles": 102678,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "frames": 23,
+          "seed": 2026100417,
+          "objects": 59
+        },
+        "water": {
+          "captures": 3,
+          "animationTicks": 0,
+          "reflectionSize": 256,
+          "active": false,
+          "time": 0,
+          "mode": "planar",
+          "period": "night"
+        },
+        "status": "ready"
+      }
+    }
+  ],
+  "errors": [],
+  "note": "Final raw page screenshots wait for both actual WebGL diagnostics and rendered UI readiness, with stable canvas size and pose. No generated or edited screenshots."
+}

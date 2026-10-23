@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-23",
+  "source_commit": "111bf1b21748c18377afb04f45e3ae431eea7457",
+  "project_id": "appgprj_6ac1c19a84c08191986dc4f4a40d7ee3",
+  "version_id": "appgprj_6ac1c19a84c08191986dc4f4a40d7ee3~appgver_218066d79c0c8191bac07ac76a82f057",
+  "deployment_id": "appgdep_6adb1d63107081919559744f5e913d32",
+  "status": "succeeded",
+  "url": "https://suzhou-gardens.jggagi.chatgpt.site",
+  "updated_at": "2026-10-23T08:40:17.689215+00:00",
+  "audience": "Preserved previously verified owner-only custom audience",
+  "archive": "/workspace/gardens-refinement/suzhou-gardens/portal/.sites-runtime/water-site.tar.gz",
+  "verification": "Native successful deployment receipt; no production browser scraping. Local final output browser checks documented separately.",
+  "cloudbase_uploaded": false
+}

@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-23",
+  "standalone_typecheck_exit_code": 0,
+  "commands": [
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--no-file-parallelism",
+        "--testTimeout=20000"
+      ],
+      "exit_code": 0,
+      "seconds": 37.8,
+      "output": "\n> shizilin-miniature@0.1.0 test\n> vitest run --maxWorkers=1 --no-file-parallelism --testTimeout=20000\n\n\n RUN  v3.2.4 /workspace/gardens-refinement/suzhou-gardens/shizilin/.sites-runtime/source\n\n ✓ tests/craftStone.test.ts (3 tests) 13665ms\n   ✓ 实际Blender GLB的孔洞、坐标与资源所有权 > 与原机位/对象坐标一致，实际石洞可透视且实体存在  3936ms\n   ✓ 实际Blender GLB的孔洞、坐标与资源所有权 > 每次挂载拥有独立资源，释放两次不会损坏缓存或其他挂载  3985ms\n   ✓ 实际Blender GLB的孔洞、坐标与资源所有权 > 法线纹理按挂载克隆，释放不会损坏加载缓存  5734ms\n ✓ tests/config.test.ts (11 tests) 13753ms\n   ✓ 本园独立布局与正交构图 > 场景包含全部稳定对象，固定种子几何重复一致且有合理预算  9930ms\n   ✓ 本园独立布局与正交构图 > 卸载释放全部自有网格和材质，重复释放不会产生二次事件  2250ms\n   ✓ 连续洞壑有贯通主洞，同时保留侧壁和洞顶实体  1550ms\n ✓ tests/pondWater.test.ts (8 tests) 1539ms\n   ✓ 卸载水面回收自有材质/纹理/帧缓冲，不回收场景原材质和几何  899ms\n   ✓ Blender产物包含真实UV和独立法线烘焙，GLB不隐式引用图片  516ms\n ✓ tests/mapLink.test.ts (5 tests) 35ms\n\n Test Files  4 passed (4)\n      Tests  27 passed (27)\n   Start at  08:51:40\n   Duration  35.61s (transform 572ms, setup 0ms, collect 2.92s, tests 28.99s, environment 2ms, prepare 1.11s)\n\n"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 39.68,
+      "output": "\n> shizilin-miniature@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v6.4.1 building for production...\ntransforming...\n✓ 635 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                     0.86 kB │ gzip:   0.58 kB\ndist/assets/index-B-0nIALj.css     13.60 kB │ gzip:   3.40 kB\ndist/assets/index-DISuRcdd.js   1,162.33 kB │ gzip: 325.72 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 30.55s\n"
+    }
+  ],
+  "final_build": {
+    "build_exit_code": 0,
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "inputs": [
+      {
+        "path": "package.json",
+        "sha256": "90cc312d6800ebd7871a6de09f0dfbbd546137d09e25f3122bbebfc5be568073"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "c4fda964c1cfc62946abd82399ee1c218748ddb0352d4cc2b65a2e5b83116852"
+      },
+      {
+        "path": "tsconfig.json",
+        "sha256": "d2be1c98456ab5bc9df57162f40bef8ae7ccd8ef5bed50531fb0fd659eb4f0cb"
+      },
+      {
+        "path": "vite.config.ts",
+        "sha256": "5fd62cbc11a3b945df0b0f02de158ad05c97e63be3cc92ed4f1d2cc7e66a8d79"
+      },
+      {
+        "path": "index.html",
+        "sha256": "2daeab506e7ebbef7e66bfe24d2d8c6e4517eb2e8c1c0fa934974f4587a9f3ec"
+      },
+      {
+        "path": "src/App.tsx",
+        "sha256": "2e36fcda22c0ca12cc76685ec8c9eb681afbf6f9f67ce8970f47c617573ea0db"
+      },
+      {
+        "path": "src/TimePanel.tsx",
+        "sha256": "054271fc189f1f8e50143dfd6dd9ec0a5b06e79a6bb688b9a90634e7a5a6cd40"
+      },
+      {
+        "path": "src/audio/MusicPanel.tsx",
+        "sha256": "3563bb85a011e9a7f9b34a96572176712f3257897e8388bfdd4a3881b891e7c9"
+      },
+      {
+        "path": "src/audio/music.css",
+        "sha256": "eb299f0fa7314e430736ab60e4b48994664be267a2d9dea8a39c047652c594dc"
+      },
+      {
+        "path": "src/audio/score.ts",
+        "sha256": "95a00d313383bd322cc071e63f05aaaa97dbe8c94527f7880b9789f854c6861d"
+      },
+      {
+        "path": "src/data/garden.content.ts",
+        "sha256": "ccd5f807d2b12a5a6abe6d6eae3bfeb60b5bb87579ed77ad990b43eea7a073d6"
+      },
+      {
+        "path": "src/data/garden.layout.ts",
+        "sha256": "72c42e524841bd6e4f5d1b36e154804eedb8b2ac16fb0d8bd1608cba90d3edc3"
+      },
+      {
+        "path": "src/data/garden.time.ts",
+        "sha256": "d4084bf9e1709928eab46a97d07996ee769c5cea743550c40d6e7dd8263bf233"
+      },
+      {
+        "path": "src/data/garden.views.ts",
+        "sha256": "55db523a5222ce30c711edbbeb4b18da603d35fb5ebaf24d2f2244fd8426597c"
+      },
+      {
+        "path": "src/main.tsx",
+        "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+      },
+      {
+        "path": "src/navigation/mapLink.ts",
+        "sha256": "2a0c8e133334f7620e448bd0512c83423051c5057e57a4091fef3c5693454149"
+      },
+      {
+        "path": "src/scene/GardenCanvas.tsx",
+        "sha256": "bdb1868b5a2e4a4208d40111f5b3054289bb48135b29c9b1ce0217ac6bd7a7c7"
+      },
+      {
+        "path": "src/scene/GardenScene.tsx",
+        "sha256": "b44caf145cd0597208048eb84e830a32c7cdb32b6bd78d6369aa0e8b00ccf6b5"
+      },
+      {
+        "path": "src/scene/TimeLighting.tsx",
+        "sha256": "52d34e6646fc1c64bc6a791e7c2c775cf17e72f658341661eb589e28eb50c96d"
+      },
+      {
+        "path": "src/scene/WaterSurface.tsx",
+        "sha256": "b0ad108d4f87eef92b821bdc8ebe63e5173f0797838fb65ae92b3e5668d2f824"
+      },
+      {
+        "path": "src/scene/craftStone.ts",
+        "sha256": "c1ab457eda374427e98fea045b7dace7cd630a251c0a8c362b66479bebb5b304"
+      },
+      {
+        "path": "src/scene/geometry.ts",
+        "sha256": "210a79a2fb10bbe044ce30521c0956e60bc4a49192000efe4a68a3bb62d73765"
+      },
+      {
+        "path": "src/scene/pondShape.ts",
+        "sha256": "6c9fe64a65a8f8c89140ea13b007f8552e63d002297c4dd40462d101aa804dfa"
+      },
+      {
+        "path": "src/scene/pondWater.ts",
+        "sha256": "147ec056b126ecaea72b8134c11aa4e39d6a6aa8d5e556a80a439d68138804dd"
+      },
+      {
+        "path": "src/scene/surfaceFinish.ts",
+        "sha256": "a71632bfb5b6a62acce44ba3cd9ce366fad5bbdf9d9ccc639524cf17ac6759e8"
+      },
+      {
+        "path": "src/scene/useStaticShadows.ts",
+        "sha256": "d39683f51db10a51558ff2e9a1a14602cc9e05b7ffdf9c7f7c0e5f37cd3d20b5"
+      },
+      {
+        "path": "src/styles.css",
+        "sha256": "3dc207a63ea72b5e8986873c508d3870e34b1ec886782b8f0e2ff7f4b421758e"
+      },
+      {
+        "path": "src/time.css",
+        "sha256": "1accf23b4dbf6dcdca7aecef585aa31af0f6ca7ba9f218074c442320be189df1"
+      },
+      {
+        "path": "public/assets/craft-stone.glb",
+        "sha256": "497bfaf8defda9486d4891c18d18dcc7d42044056a0ac31c461981c732901b8e"
+      },
+      {
+        "path": "public/assets/stone-normal.png",
+        "sha256": "af803161b83236065c2fd2235bf2f765caa00e37e0d09fe83fbce5cb1e9ad493"
+      },
+      {
+        "path": "public/audio/shizilin-stone-echoes.mp3",
+        "sha256": "f14a0cdeab8cc564ecc95731b67b6f664bf351730db739c05e19db6c9afd0fe4"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "dist/assets/craft-stone.glb",
+        "sha256": "497bfaf8defda9486d4891c18d18dcc7d42044056a0ac31c461981c732901b8e"
+      },
+      {
+        "path": "dist/assets/index-B-0nIALj.css",
+        "sha256": "7e95a90b191f33197005df689955a8345c7f82051e5c44e236f44f0f19c7b471"
+      },
+      {
+        "path": "dist/assets/index-DISuRcdd.js",
+        "sha256": "fa3dd15e98f8a4fd4423bfe698a80a0d31034df76b845382a3633a4796648dca"
+      },
+      {
+        "path": "dist/assets/stone-normal.png",
+        "sha256": "af803161b83236065c2fd2235bf2f765caa00e37e0d09fe83fbce5cb1e9ad493"
+      },
+      {
+        "path": "dist/audio/shizilin-stone-echoes.mp3",
+        "sha256": "f14a0cdeab8cc564ecc95731b67b6f664bf351730db739c05e19db6c9afd0fe4"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "a54bf9cf2de10b1874de38911e95008de5762a6dd9a24bf670a3878253d72784"
+      }
+    ]
+  }
+}

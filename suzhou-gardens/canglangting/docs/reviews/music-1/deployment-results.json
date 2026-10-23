@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-04",
+  "site": "https://canglangting-miniature.jggagi.chatgpt.site",
+  "project_id": "appgprj_6ac1b5acc02c8191b778a17afc89fa20",
+  "source_commit": "f37f46dbca76b1f82f1cdf1545cc94bde350b38a",
+  "version_id": "appgprj_6ac1b5acc02c8191b778a17afc89fa20~appgver_0f8ec8d67a248191b3c29c188acd427c",
+  "deployment_id": "appgdep_6ac230ddfce88191bc7fe81ed6514ce0",
+  "status": "succeeded",
+  "audience": "Existing owner-only access preserved",
+  "verification": "Native deployment succeeded. Local final bytes passed real media decoding and WebGL checks; no production scraping.",
+  "cloudbase": "Updated local 29-file ZIP; Tencent Cloud online files require console upload"
+}

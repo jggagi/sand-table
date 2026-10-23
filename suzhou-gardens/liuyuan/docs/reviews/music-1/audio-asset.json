@@ -1,0 +1,15 @@
+{
+  "id": "liuyuan-clear-strings",
+  "title": "廊间清弦",
+  "duration_seconds": 64.0,
+  "bpm": 60,
+  "channels": 2,
+  "sample_rate": 44100,
+  "codec": "MP3",
+  "bitrate": 80000,
+  "bytes": 640643,
+  "sha256": "667ccedd11b2fdf8db8fa641f38d08d3d7e0d00a5166101797d2509bee500613",
+  "peak_dbfs_before_encoding": -5.68,
+  "rms_dbfs_before_encoding": -19.98,
+  "origin": "Original notes and additive synthesis; no third-party samples or music recordings"
+}

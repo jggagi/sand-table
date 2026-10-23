@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-04",
+  "site": "https://zhuozhengyuan-miniature.jggagi.chatgpt.site",
+  "project_id": "appgprj_6ac1b55903908191bff229a3b0877a73",
+  "source_commit": "1150b1814072a7db1c10d4f9a8bfcd5f303a231d",
+  "version_id": "appgprj_6ac1b55903908191bff229a3b0877a73~appgver_d96bd2277a1081918cc930cefdb237c6",
+  "deployment_id": "appgdep_6ac230a5657881918c43ce87ce25b508",
+  "status": "succeeded",
+  "audience": "Existing owner-only access preserved",
+  "verification": "Native deployment succeeded. Local final bytes passed real media decoding and WebGL checks; no production scraping.",
+  "cloudbase": "Updated local 29-file ZIP; Tencent Cloud online files require console upload"
+}

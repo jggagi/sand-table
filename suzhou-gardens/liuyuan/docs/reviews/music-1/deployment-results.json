@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-04",
+  "site": "https://liuyuan-miniature-m1.jggagi.chatgpt.site",
+  "project_id": "appgprj_6ac11ff9d9ac8191a45ec3514bfed022",
+  "source_commit": "8a7aac86e88c213e7abb384d2a5f49be0f3a4725",
+  "version_id": "appgprj_6ac11ff9d9ac8191a45ec3514bfed022~appgver_834946cef41c8191be49ea750c597dd3",
+  "deployment_id": "appgdep_6ac23042356881919102a3f1b681552d",
+  "status": "succeeded",
+  "audience": "Existing owner-only access preserved",
+  "verification": "Native deployment succeeded. Local final bytes passed real media decoding and WebGL checks; no production scraping.",
+  "cloudbase": "Updated local 29-file ZIP; Tencent Cloud online files require console upload"
+}

@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-04",
+  "garden": "canglangting",
+  "track": "canglangting-bamboo-water",
+  "browser": "151.0.7922.173",
+  "passed": true,
+  "checks": [
+    {
+      "check": "Silent initial entry and lazy local music",
+      "musicRequests": 0,
+      "touchTargets44": true
+    },
+    {
+      "check": "Keyboard opt-in, real MP3 decode and nonzero routed audio",
+      "time": 1.001361,
+      "rms": 0.0528378927491133,
+      "context": "running",
+      "gain": 0.3499999940395355
+    },
+    {
+      "check": "Real garden rendering, view change and reset while playing",
+      "view": "corridor",
+      "canvasVariance": 2668
+    },
+    {
+      "check": "Pause/resume and actual end-to-start media loop",
+      "passed": true
+    },
+    {
+      "check": "Keyboard volume reaches silent gain and changes audibly",
+      "passed": true
+    },
+    {
+      "check": "Visibility guard pauses real media; foreground needs explicit resume",
+      "passed": true,
+      "verification": "Controlled visibility input; native headless tabs stay visible"
+    },
+    {
+      "check": "390/320 phone, 200% text and desktop layout",
+      "noOverflow": true
+    },
+    {
+      "check": "Reload and map round trip retain volume but stop music",
+      "passed": true
+    },
+    {
+      "check": "Induced media error, successful retry and rapid on/off",
+      "passed": true
+    },
+    {
+      "check": "Blocked storage and unavailable Web Audio still play via native media",
+      "passed": true
+    }
+  ],
+  "scriptErrors": [],
+  "externalRequests": [],
+  "expectedFaultRequests": [
+    {
+      "url": "http://127.0.0.1:4194/canglangting/audio/canglangting-bamboo-water.mp3",
+      "faultTest": true,
+      "error": "net::ERR_FAILED"
+    }
+  ],
+  "limits": "Local final output, real media decoding, Web Audio analyser and SwiftShader rendering. No physical listening device, iOS/Safari, mainland network, or real mobile audio interruption verified."
+}

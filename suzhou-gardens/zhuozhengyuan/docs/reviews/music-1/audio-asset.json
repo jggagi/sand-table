@@ -1,0 +1,15 @@
+{
+  "id": "zhuozhengyuan-lotus-breeze",
+  "title": "荷风入水",
+  "duration_seconds": 73.846,
+  "bpm": 52,
+  "channels": 2,
+  "sample_rate": 44100,
+  "codec": "MP3",
+  "bitrate": 80000,
+  "bytes": 739125,
+  "sha256": "f60ecffa139735650896a22b73b1c808da15e0aac6862e2fe128151bc5606fe0",
+  "peak_dbfs_before_encoding": -5.68,
+  "rms_dbfs_before_encoding": -17.14,
+  "origin": "Original notes and additive synthesis; no third-party samples or music recordings"
+}

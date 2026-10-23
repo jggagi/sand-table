@@ -1,0 +1,99 @@
+{
+  "build_exit_code": 0,
+  "inputs": [
+    {
+      "path": "package.json",
+      "sha256": "90cc312d6800ebd7871a6de09f0dfbbd546137d09e25f3122bbebfc5be568073"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "c4fda964c1cfc62946abd82399ee1c218748ddb0352d4cc2b65a2e5b83116852"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "5fd62cbc11a3b945df0b0f02de158ad05c97e63be3cc92ed4f1d2cc7e66a8d79"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "d2be1c98456ab5bc9df57162f40bef8ae7ccd8ef5bed50531fb0fd659eb4f0cb"
+    },
+    {
+      "path": "index.html",
+      "sha256": "2daeab506e7ebbef7e66bfe24d2d8c6e4517eb2e8c1c0fa934974f4587a9f3ec"
+    },
+    {
+      "path": "public/audio/shizilin-stone-echoes.mp3",
+      "sha256": "f14a0cdeab8cc564ecc95731b67b6f664bf351730db739c05e19db6c9afd0fe4"
+    },
+    {
+      "path": "src/App.tsx",
+      "sha256": "167d546d223e51c2e43ccd8dbffeb7cd997d37ca572397dee7805a061d1cadda"
+    },
+    {
+      "path": "src/audio/MusicPanel.tsx",
+      "sha256": "3563bb85a011e9a7f9b34a96572176712f3257897e8388bfdd4a3881b891e7c9"
+    },
+    {
+      "path": "src/audio/music.css",
+      "sha256": "eb299f0fa7314e430736ab60e4b48994664be267a2d9dea8a39c047652c594dc"
+    },
+    {
+      "path": "src/audio/score.ts",
+      "sha256": "95a00d313383bd322cc071e63f05aaaa97dbe8c94527f7880b9789f854c6861d"
+    },
+    {
+      "path": "src/data/garden.content.ts",
+      "sha256": "ccd5f807d2b12a5a6abe6d6eae3bfeb60b5bb87579ed77ad990b43eea7a073d6"
+    },
+    {
+      "path": "src/data/garden.layout.ts",
+      "sha256": "72c42e524841bd6e4f5d1b36e154804eedb8b2ac16fb0d8bd1608cba90d3edc3"
+    },
+    {
+      "path": "src/data/garden.views.ts",
+      "sha256": "55db523a5222ce30c711edbbeb4b18da603d35fb5ebaf24d2f2244fd8426597c"
+    },
+    {
+      "path": "src/main.tsx",
+      "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+    },
+    {
+      "path": "src/navigation/mapLink.ts",
+      "sha256": "2a0c8e133334f7620e448bd0512c83423051c5057e57a4091fef3c5693454149"
+    },
+    {
+      "path": "src/scene/GardenCanvas.tsx",
+      "sha256": "e5036ad8459fbe45db3a0c7e0acd9e74c30027b28de67008d7d5fe0c1daea9e9"
+    },
+    {
+      "path": "src/scene/GardenScene.tsx",
+      "sha256": "1a5f89895ec034a1fd26608ac2d65c272891ff2fdcd17972a049cadf008ee30e"
+    },
+    {
+      "path": "src/scene/geometry.ts",
+      "sha256": "ca5bd64c89776ef87baecde1bca5702a103d56169a5d0a19a6c71ef02316d360"
+    },
+    {
+      "path": "src/styles.css",
+      "sha256": "3dc207a63ea72b5e8986873c508d3870e34b1ec886782b8f0e2ff7f4b421758e"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "dist/assets/index-CKff8YkP.js",
+      "sha256": "f0de8da461a5d1de42f523a296a2a5d123185f886ca11f34e6da40d9d96fe89a"
+    },
+    {
+      "path": "dist/assets/index-DqdUmSv-.css",
+      "sha256": "ab936268ba6a2c8484fb51406640f7096e14a409e6f65517873198957d849d73"
+    },
+    {
+      "path": "dist/audio/shizilin-stone-echoes.mp3",
+      "sha256": "f14a0cdeab8cc564ecc95731b67b6f664bf351730db739c05e19db6c9afd0fe4"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "2d03e8cd781435763ab62e494c324e8604e3085d3cba47bf819b2a8237963c3a"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "garden": "zhuozhengyuan",
+  "meshes": 77,
+  "triangles": 110035,
+  "vertices": 330105,
+  "triangleBudget": 150000,
+  "materials": 8,
+  "bounds": {
+    "min": [
+      -17.06999969482422,
+      -0.9300000071525574,
+      -12.569999694824219
+    ],
+    "max": [
+      17.06999969482422,
+      5.606263256072998,
+      12.569999694824219
+    ]
+  },
+  "surfaces": [
+    {
+      "name": "sand",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "paving",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "foliage",
+      "roughness": 0.88,
+      "metalness": 0
+    },
+    {
+      "name": "bank",
+      "roughness": 0.89,
+      "metalness": 0
+    },
+    {
+      "name": "water",
+      "roughness": 0.38,
+      "metalness": 0
+    },
+    {
+      "name": "wood",
+      "roughness": 0.77,
+      "metalness": 0
+    },
+    {
+      "name": "wall",
+      "roughness": 0.94,
+      "metalness": 0
+    },
+    {
+      "name": "tile",
+      "roughness": 0.85,
+      "metalness": 0
+    }
+  ],
+  "finite": true
+}

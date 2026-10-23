@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { expect, test, type Page } from '@playwright/test';
 import { PNG } from 'pngjs';
 import { SCENE_OBJECTS, SCENE_SEED } from '../../src/data/garden.layout';
-import { getViewPreset, VIEW_PRESETS, type ViewId } from '../../src/data/garden.views';
+import { getFittedZoom, getViewPreset, VIEW_PRESETS, type ViewId } from '../../src/data/garden.views';
 
 interface GardenDiagnostics {
   ready: boolean;
@@ -29,7 +29,7 @@ async function waitForScene(page: Page, view?: ViewId | null) {
   await expect.poll(async () => {
     const state = await diagnostics(page);
     return Boolean(state?.ready && state.calls > 0 && state.triangles > 0 && (view === undefined || state.view === view));
-  }).toBe(true);
+  }, {timeout:60_000}).toBe(true);
   await expect(page.locator('[data-render-status="ready"]')).toBeVisible();
   return (await diagnostics(page))!;
 }
@@ -85,6 +85,8 @@ async function dragCanvas(page: Page) {
 
 test('真实渲染四个机位，并交付固定视口的五张压缩截图', async ({ page, browser }) => {
   test.setTimeout(180_000);
+  // Capture fixed frames; live camera/water animation has separate checks.
+  await page.emulateMedia({reducedMotion:'reduce'});
   const errors: string[] = [];
   const externalRequests: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -98,7 +100,7 @@ test('真实渲染四个机位，并交付固定视口的五张压缩截图', as
   expect(initial.frames).toBeGreaterThan(4);
   expect(initial.renderer.length).toBeGreaterThan(0);
 
-  const screenshotDirectory = resolve('docs/reviews/m1');
+  const screenshotDirectory = resolve(process.env.GARDEN_REVIEW_DIR ?? 'docs/reviews/polish-1');
   await mkdir(screenshotDirectory, { recursive: true });
   const hashes = [];
   for (const view of VIEW_PRESETS) {
@@ -109,7 +111,7 @@ test('真实渲染四个机位，并交付固定视口的五张压缩截图', as
   }
   expect(new Set(hashes).size).toBe(4);
 
-  const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
+  const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, reducedMotion:'reduce' });
   const mobile = await mobileContext.newPage();
   mobile.on('pageerror', error => errors.push(error.message));
   await mobile.goto('/');
@@ -178,6 +180,7 @@ test('横竖屏 resize 重新适配正交范围，按钮与场景仍可操作', 
   await selectView(page, VIEW_PRESETS[3].id);
   await page.setViewportSize({ width: 844, height: 390 });
   await waitForScene(page, VIEW_PRESETS[3].id);
+  await page.getByTestId('reset-view').scrollIntoViewIfNeeded();
   await expect(page.getByTestId('reset-view')).toBeInViewport();
   await page.getByTestId('reset-view').click();
   await waitForScene(page, 'overview');
@@ -237,7 +240,7 @@ test('WebGL 不可用时显示可读错误和刷新指引', async ({ page }) => 
     const getContext = HTMLCanvasElement.prototype.getContext;
     HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, type: string, ...args: unknown[]) {
       if (type === 'webgl' || type === 'webgl2' || type === 'experimental-webgl') return null;
-      return getContext.call(this, type as '2d', ...args as []);
+      return Reflect.apply(getContext, this, [type, ...args]);
     } as typeof getContext;
   });
   await page.goto('/');
@@ -245,4 +248,61 @@ test('WebGL 不可用时显示可读错误和刷新指引', async ({ page }) => 
   await expect(page.getByRole('alert')).toContainText(/WebGL/);
   await expect(page.getByRole('alert')).toContainText(/刷新|重试/);
   await expect(page.locator('[data-render-status="ready"]')).toHaveCount(0);
+});
+
+test('转场期间 resize 保持预设机位和适配缩放，自由观察保留手动方向', async ({ page }) => {
+  // SwiftShader can take >30s wall time to render 200ms of controlled time.
+  // Preserve the virtual intervals and all pose/zoom assertions below.
+  test.setTimeout(300_000);
+  const now = new Date();
+  await page.clock.install({ time: now });
+  await page.clock.pauseAt(new Date(now.getTime() + 1000));
+  await page.goto('/');
+  await expect.poll(async () => {
+    await page.clock.runFor(200);
+    return (await diagnostics(page))?.ready ?? false;
+  }, { timeout: 90_000 }).toBe(true);
+  await waitForScene(page, 'overview');
+  const destination = VIEW_PRESETS[3];
+  await page.getByTestId(`view-${destination.id}`).click();
+  // The real camera and WebGL scene run with a controlled clock so slow software
+  // rendering cannot accidentally complete the transition before resize.
+  await page.clock.runFor(32);
+  const moving = (await diagnostics(page))!;
+  console.info('Interrupted preset before resize', JSON.stringify(moving));
+  expect(moving.ready).toBe(false);
+  expect(Math.max(...moving.position.map((value, axis) => Math.abs(value - destination.position[axis])))).toBeGreaterThan(0.1);
+  await page.evaluate(() => {
+    const stage = document.querySelector<HTMLElement>('.garden-stage')!;
+    stage.style.height = `${stage.getBoundingClientRect().height - 96}px`;
+  });
+  await expect.poll(async () => {
+    await page.clock.runFor(16);
+    const state = await diagnostics(page);
+    return state !== null && Math.abs(state.minZoom - moving.minZoom) > 0.01;
+  }).toBe(true);
+  await expect.poll(async () => {
+    await page.clock.runFor(200);
+    return (await diagnostics(page))?.ready ?? false;
+  }, { timeout: 90_000 }).toBe(true);
+  const afterResize = await waitForScene(page, destination.id);
+  afterResize.position.forEach((value, axis) => expect(value).toBeCloseTo(destination.position[axis], 2));
+  afterResize.target.forEach((value, axis) => expect(value).toBeCloseTo(destination.target[axis], 2));
+  const resizedCanvas = await page.locator('canvas').boundingBox();
+  expect(afterResize.zoom).toBeCloseTo(getFittedZoom(resizedCanvas!.width, resizedCanvas!.height, destination), 2);
+  await dragCanvas(page);
+  await expect.poll(async () => {
+    await page.clock.runFor(200);
+    return (await diagnostics(page))?.ready ?? false;
+  }, { timeout: 90_000 }).toBe(true);
+  const manual = await waitForScene(page, null);
+  await page.evaluate(() => { document.querySelector<HTMLElement>('.garden-stage')!.style.height = ''; });
+  await expect.poll(async () => {
+    await page.clock.runFor(200);
+    return (await diagnostics(page))?.ready ?? false;
+  }, { timeout: 90_000 }).toBe(true);
+  const restored = await waitForScene(page, null);
+  restored.position.forEach((value, axis) => expect(value).toBeCloseTo(manual.position[axis], 2));
+  restored.target.forEach((value, axis) => expect(value).toBeCloseTo(manual.target[axis], 2));
+  await expect(page.getByText('自由观察', { exact: true })).toBeVisible();
 });

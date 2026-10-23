@@ -1,0 +1,17 @@
+{
+  "name": "wangshiyuan",
+  "source_commit": "45574407b61553b655f3bfc5cf093e08c40273ee",
+  "id": "appgdep_6ac21ef9212c8191ab3fe373ce49ffba",
+  "project_id": "appgprj_6ac1b53e856481918a9821d28311b615",
+  "title": "掌上网师园 · 小园大境",
+  "version_id": "appgprj_6ac1b53e856481918a9821d28311b615~appgver_148bde6cad5c8191bfc0df71a7c8698c",
+  "type": "publish",
+  "status": "succeeded",
+  "url": "https://wangshiyuan-miniature.jggagi.chatgpt.site",
+  "has_mcp": false,
+  "screenshot_asset_pointer": null,
+  "provider_deployment_id": "site---6ac1b53e856481918a9821d28311b615",
+  "failure_message": null,
+  "env_set_revision": 0,
+  "updated_at": "2026-10-04T09:40:22.813188+00:00"
+}

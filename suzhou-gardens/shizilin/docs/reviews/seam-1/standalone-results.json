@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-23",
+  "browser": "151.0.7922.173",
+  "passed": true,
+  "checks": [
+    {
+      "check": "Standalone default has an actual ready scene, active water and quiet music without a host handshake",
+      "passed": true
+    },
+    {
+      "check": "Standalone night selection and real music playback/pause still work",
+      "passed": true
+    },
+    {
+      "check": "Unembedded return uses the native full-page anchor to the local map; no mistaken retained-host interception",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "limits": "Actual local static output, Chromium/SwiftShader and mobile emulation; no physical phone/Safari/network measurements."
+}

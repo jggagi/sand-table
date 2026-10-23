@@ -1,3 +1,4 @@
+import { useStaticShadows } from './useStaticShadows';
 import { useEffect, useState } from 'react';
 import { createGarden } from './geometry';
 
@@ -10,5 +11,6 @@ export default function GardenScene() {
     setResources(nextResources);
     return () => nextResources.dispose();
   }, []);
+  useStaticShadows(resources !== null);
   return resources ? <primitive object={resources.group} dispose={null} /> : null;
 }

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { createHash } from 'node:crypto';
 import { Box3, Material, Mesh, Raycaster, Vector3 } from 'three';
 import { ROCKERY_PROBES, REGION_IDS, SCENE_BOUNDS, SCENE_NAME, SCENE_OBJECTS, SCENE_SEED } from '../src/data/garden.layout';
-import { CAMERA_LIMITS, getFittedZoom, getViewPreset, VIEW_PRESETS } from '../src/data/garden.views';
+import { CAMERA_LIMITS, getViewSpans, getFittedZoom, getViewPreset, VIEW_PRESETS } from '../src/data/garden.views';
 import { createGarden } from '../src/scene/geometry';
 
 describe('本园独立布局与正交构图', () => {
@@ -41,8 +41,8 @@ describe('本园独立布局与正交构图', () => {
     for (const view of VIEW_PRESETS) {
       const zoom=getFittedZoom(width,height,view);
       expect(zoom).toBeGreaterThan(0);
-      expect(zoom*view.horizontalSpan).toBeLessThanOrEqual(width+.001);
-      expect(zoom*view.verticalSpan).toBeLessThanOrEqual(height+.001);
+      expect(zoom*getViewSpans(width,height,view).horizontalSpan).toBeLessThanOrEqual(width+.001);
+      expect(zoom*getViewSpans(width,height,view).verticalSpan).toBeLessThanOrEqual(height+.001);
       expect(Number.isFinite(getFittedZoom(0,0,view))).toBe(true);
     }
   });
@@ -103,4 +103,24 @@ it('连续洞壑有贯通主洞，同时保留侧壁和洞顶实体', () => {
     expect(hit(ROCKERY_PROBES.adjacentSolid).length).toBeGreaterThan(0);
     expect(hit(ROCKERY_PROBES.caveCeiling).length).toBeGreaterThan(0);
   } finally {resources.dispose();}
+});
+
+describe('手机近景保持主体可读，横屏恢复宽幅构图', () => {
+  it('全园保持完整包络，窄屏近景使用更集中的视野', () => {
+    const overview = getViewPreset('overview');
+    expect(getViewSpans(390, 460, overview)).toEqual({ verticalSpan: overview.verticalSpan, horizontalSpan: overview.horizontalSpan });
+    for (const view of VIEW_PRESETS.filter(view => view.id !== 'overview')) {
+      expect(getFittedZoom(390, 460, view)).toBeGreaterThan(Math.min(460 / view.verticalSpan, 390 / view.horizontalSpan));
+      const spans = getViewSpans(390, 460, view);
+      expect(spans.verticalSpan).toBeGreaterThan(0);
+      expect(spans.horizontalSpan).toBeGreaterThan(0);
+    }
+  });
+  it('短横屏与桌面不采用竖屏局部裁切', () => {
+    for (const view of VIEW_PRESETS) {
+      const expected = { verticalSpan: view.verticalSpan, horizontalSpan: view.horizontalSpan };
+      expect(getViewSpans(844, 240, view)).toEqual(expected);
+      expect(getViewSpans(1280, 680, view)).toEqual(expected);
+    }
+  });
 });

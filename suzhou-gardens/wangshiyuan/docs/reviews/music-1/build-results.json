@@ -1,0 +1,99 @@
+{
+  "build_exit_code": 0,
+  "inputs": [
+    {
+      "path": "package.json",
+      "sha256": "45bbd04f4d082a97035ba9138270ec05114f0c3644f6c9908d39f0a3563e0322"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "77c374f63544ef0fd3b9c3117a3a97675817ed7b360a639d01b32f6aae335c2f"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "5fd62cbc11a3b945df0b0f02de158ad05c97e63be3cc92ed4f1d2cc7e66a8d79"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "d2be1c98456ab5bc9df57162f40bef8ae7ccd8ef5bed50531fb0fd659eb4f0cb"
+    },
+    {
+      "path": "index.html",
+      "sha256": "9405d313b63e2266da2f0a9edc9d30f110fab2e854625d39d38e11f4765e03d8"
+    },
+    {
+      "path": "public/audio/wangshiyuan-moonlit-pool.mp3",
+      "sha256": "7b50ec1cd76a33fd7706de42ebfcb0dff598965add8b6f672aadbf8d7f5f20db"
+    },
+    {
+      "path": "src/App.tsx",
+      "sha256": "167d546d223e51c2e43ccd8dbffeb7cd997d37ca572397dee7805a061d1cadda"
+    },
+    {
+      "path": "src/audio/MusicPanel.tsx",
+      "sha256": "3563bb85a011e9a7f9b34a96572176712f3257897e8388bfdd4a3881b891e7c9"
+    },
+    {
+      "path": "src/audio/music.css",
+      "sha256": "eb299f0fa7314e430736ab60e4b48994664be267a2d9dea8a39c047652c594dc"
+    },
+    {
+      "path": "src/audio/score.ts",
+      "sha256": "293b5bbb66109999f3ad66fa98673d6376886be534366962b5f87a5d60b51c36"
+    },
+    {
+      "path": "src/data/garden.content.ts",
+      "sha256": "62842b566e6c7c6907b7af01a7da7ec3f95d3924617115e6badaa852ba298b6b"
+    },
+    {
+      "path": "src/data/garden.layout.ts",
+      "sha256": "3e384bd9ed49ce4fb2f908189906a5930801017eaf4a27b1eac52d536c0fd333"
+    },
+    {
+      "path": "src/data/garden.views.ts",
+      "sha256": "00ee4a15c0d0bb91511626c06e55b5271be47b545e531dad7061d6735f1e6a3d"
+    },
+    {
+      "path": "src/main.tsx",
+      "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+    },
+    {
+      "path": "src/navigation/mapLink.ts",
+      "sha256": "1bd14f5765cf4997315f87db38544fad82dc6a6ff2d7a32c6c8ba81739ec001a"
+    },
+    {
+      "path": "src/scene/GardenCanvas.tsx",
+      "sha256": "e5036ad8459fbe45db3a0c7e0acd9e74c30027b28de67008d7d5fe0c1daea9e9"
+    },
+    {
+      "path": "src/scene/GardenScene.tsx",
+      "sha256": "1a5f89895ec034a1fd26608ac2d65c272891ff2fdcd17972a049cadf008ee30e"
+    },
+    {
+      "path": "src/scene/geometry.ts",
+      "sha256": "d022d7731e6a463187c0bbfe4525ed09f31bd35b6080c3e758fff0424be5338c"
+    },
+    {
+      "path": "src/styles.css",
+      "sha256": "3dc207a63ea72b5e8986873c508d3870e34b1ec886782b8f0e2ff7f4b421758e"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "dist/assets/index-BO7nAVPM.js",
+      "sha256": "f38d3b82db92ce6e6e4afaf561fc0eb455d070ee0ea077991afe31f01d8e1b8f"
+    },
+    {
+      "path": "dist/assets/index-DqdUmSv-.css",
+      "sha256": "ab936268ba6a2c8484fb51406640f7096e14a409e6f65517873198957d849d73"
+    },
+    {
+      "path": "dist/audio/wangshiyuan-moonlit-pool.mp3",
+      "sha256": "7b50ec1cd76a33fd7706de42ebfcb0dff598965add8b6f672aadbf8d7f5f20db"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "cd4f44f7c52257e898b5cb77a31d1358a434b4b6f8c78af387c8c2b3e98c1064"
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+[
+  {
+    "label": "before-music",
+    "child": {
+      "zoom": 37.300223214285715,
+      "minZoom": 24.245145089285717,
+      "ready": true,
+      "position": [
+        -16.48247725788089,
+        16.70301857125246,
+        -8.787107691304586
+      ],
+      "target": [
+        -8.6,
+        1,
+        5.1
+      ],
+      "canvas": [
+        1311,
+        522
+      ],
+      "viewport": [
+        1425,
+        1000
+      ],
+      "musicMessage": "",
+      "musicButton": "开启音乐",
+      "audioTime": 0
+    },
+    "parent": {
+      "phase": "garden",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "clientWidth": 1440,
+      "frameRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 1000,
+        "top": 0,
+        "right": 1425,
+        "bottom": 1000,
+        "left": 0
+      }
+    }
+  },
+  {
+    "label": "playing-promise",
+    "child": {
+      "zoom": 35.300223214285715,
+      "minZoom": 22.945145089285717,
+      "ready": false,
+      "position": [
+        -16.48247725788089,
+        16.70301857125246,
+        -8.787107691304586
+      ],
+      "target": [
+        -8.6,
+        1,
+        5.1
+      ],
+      "canvas": [
+        1311,
+        494
+      ],
+      "viewport": [
+        1425,
+        1000
+      ],
+      "musicMessage": "",
+      "musicButton": "暂停音乐",
+      "audioTime": 0.730545
+    },
+    "parent": {
+      "phase": "garden",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "clientWidth": 1440,
+      "frameRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 1000,
+        "top": 0,
+        "right": 1425,
+        "bottom": 1000,
+        "left": 0
+      }
+    }
+  },
+  {
+    "label": "playing-after400",
+    "child": {
+      "zoom": 35.300223214285715,
+      "minZoom": 22.945145089285717,
+      "ready": false,
+      "position": [
+        -16.48247725788089,
+        16.70301857125246,
+        -8.787107691304586
+      ],
+      "target": [
+        -8.6,
+        1,
+        5.1
+      ],
+      "canvas": [
+        1311,
+        522
+      ],
+      "viewport": [
+        1425,
+        1000
+      ],
+      "musicMessage": "",
+      "musicButton": "暂停音乐",
+      "audioTime": 2.590468
+    },
+    "parent": {
+      "phase": "garden",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "clientWidth": 1440,
+      "frameRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 1000,
+        "top": 0,
+        "right": 1425,
+        "bottom": 1000,
+        "left": 0
+      }
+    }
+  },
+  {
+    "label": "returned",
+    "child": {
+      "zoom": 37.300223214285715,
+      "minZoom": 24.245145089285717,
+      "ready": false,
+      "position": [
+        -16.48247725788089,
+        16.70301857125246,
+        -8.787107691304586
+      ],
+      "target": [
+        -8.6,
+        1,
+        5.1
+      ],
+      "canvas": [
+        1311,
+        522
+      ],
+      "viewport": [
+        1425,
+        1000
+      ],
+      "musicMessage": "",
+      "musicButton": "继续音乐",
+      "audioTime": 4.199909
+    },
+    "parent": {
+      "phase": "map",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "clientWidth": 1440,
+      "frameRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 1000,
+        "top": 0,
+        "right": 1425,
+        "bottom": 1000,
+        "left": 0
+      }
+    }
+  },
+  {
+    "label": "reentered",
+    "child": {
+      "zoom": 37.300223214285715,
+      "minZoom": 24.245145089285717,
+      "ready": true,
+      "position": [
+        -16.48247725788089,
+        16.70301857125246,
+        -8.787107691304586
+      ],
+      "target": [
+        -8.6,
+        1,
+        5.1
+      ],
+      "canvas": [
+        1311,
+        522
+      ],
+      "viewport": [
+        1425,
+        1000
+      ],
+      "musicMessage": "",
+      "musicButton": "继续音乐",
+      "audioTime": 4.199909
+    },
+    "parent": {
+      "phase": "garden",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "clientWidth": 1440,
+      "frameRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 1000,
+        "top": 0,
+        "right": 1425,
+        "bottom": 1000,
+        "left": 0
+      }
+    }
+  },
+  {
+    "label": "reentered-after800",
+    "child": {
+      "zoom": 37.300223214285715,
+      "minZoom": 24.245145089285717,
+      "ready": true,
+      "position": [
+        -16.48247725788089,
+        16.70301857125246,
+        -8.787107691304586
+      ],
+      "target": [
+        -8.6,
+        1,
+        5.1
+      ],
+      "canvas": [
+        1311,
+        522
+      ],
+      "viewport": [
+        1425,
+        1000
+      ],
+      "musicMessage": "",
+      "musicButton": "继续音乐",
+      "audioTime": 4.199909
+    },
+    "parent": {
+      "phase": "garden",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "clientWidth": 1440,
+      "frameRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 1000,
+        "top": 0,
+        "right": 1425,
+        "bottom": 1000,
+        "left": 0
+      }
+    }
+  }
+]

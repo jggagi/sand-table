@@ -1,0 +1,23 @@
+{
+  "files": {
+    "assets/canglangting.jpg": "4f657e45b3df80e390bfa076e69019dd1ea8f026b0c16f69692b9479d0b39819",
+    "assets/liuyuan.jpg": "cbfe5e153d47f9b1b29b77f8279bb08b9ba532c1114d35685d943e34d994459d",
+    "assets/shizilin.jpg": "ae4d4fe1c85d12f72d4c661dd10974a8dd0224f337f0b00696386f8b30629216",
+    "assets/suzhou-handpaint.jpg": "c23cf283a32d9cc3bce3c4b2d65a856a04a49399f31d0e6b66be9e6b4d795675",
+    "assets/wangshiyuan.jpg": "4030116076ed7bf44f99b30e07c284ef0bae56f9a047f81439dbe91987b158ac",
+    "assets/zhuozhengyuan.jpg": "5d16b907920f8ac36fb605bdd4a5c817197f9ee28ed303387ab1ec577865647c",
+    "index.html": "e68a1c5611b56ff7867aefc35529d85bdb46087a2dabc54a1babdd92ae98d989",
+    "journey.css": "a7e079c0ea9d1affe2131e86b2c8e4a2d2431b1e2b7a4dc00030b72edca53815",
+    "journey.js": "67fe991cb34a44d28419a986259e806fce61b95804653d7204a8b9994c078349",
+    "map.js": "7bde1f731f3205d389ceb39f78180544b2c4f02b570a8eeeddd4b4b3e5959676",
+    "shizilin/assets/craft-stone.glb": "497bfaf8defda9486d4891c18d18dcc7d42044056a0ac31c461981c732901b8e",
+    "shizilin/assets/index-B-0nIALj.css": "7e95a90b191f33197005df689955a8345c7f82051e5c44e236f44f0f19c7b471",
+    "shizilin/assets/index-Dt5IxL5j.js": "27e6f1038786ec7371c561785eccb4f3f820988ab1cc537802b77e7a725b326b",
+    "shizilin/assets/stone-normal.png": "af803161b83236065c2fd2235bf2f765caa00e37e0d09fe83fbce5cb1e9ad493",
+    "shizilin/audio/shizilin-stone-echoes.mp3": "f14a0cdeab8cc564ecc95731b67b6f664bf351730db739c05e19db6c9afd0fe4",
+    "shizilin/index.html": "ce9859c0bcfd0e2261b99195f896fba868b1021ecbdf8b76a0858a5fcd1225cc",
+    "styles.css": "d0dbca9eae983ad1f4cbbf8e7b78d7012f7e7170570f821cd4c58282c067925b"
+  },
+  "count": 17,
+  "note": "Final locally browser-checked portal static files, including the unchanged independent Shizilin build."
+}

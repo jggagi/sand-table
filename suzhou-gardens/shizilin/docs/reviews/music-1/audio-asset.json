@@ -1,0 +1,15 @@
+{
+  "id": "shizilin-stone-echoes",
+  "title": "石径回声",
+  "duration_seconds": 56.471,
+  "bpm": 68,
+  "channels": 2,
+  "sample_rate": 44100,
+  "codec": "MP3",
+  "bitrate": 80000,
+  "bytes": 565411,
+  "sha256": "f14a0cdeab8cc564ecc95731b67b6f664bf351730db739c05e19db6c9afd0fe4",
+  "peak_dbfs_before_encoding": -5.68,
+  "rms_dbfs_before_encoding": -19.24,
+  "origin": "Original notes and additive synthesis; no third-party samples or music recordings"
+}

@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-22",
+  "garden": "shizilin",
+  "browser": "151.0.7922.173",
+  "passed": true,
+  "checks": [
+    {
+      "check": "Real refined scene, shader compilation and nonempty pixels",
+      "calls": 41,
+      "triangles": 90232,
+      "pixelVariance": 2270
+    },
+    {
+      "check": "Camera presets reuse actual static shadow framebuffer",
+      "initial": {
+        "offscreen": 52,
+        "screen": 208
+      },
+      "afterCamera": {
+        "offscreen": 52,
+        "screen": 775
+      }
+    },
+    {
+      "check": "Real one-finger orbit, two-finger zoom and reset",
+      "zoom": 10.734278424590789,
+      "min": 6.3375,
+      "max": 23.4
+    },
+    {
+      "check": "Demand rendering sleeps at rest",
+      "passed": true
+    },
+    {
+      "check": "Existing opt-in music, actual media playback, pause and volume",
+      "passed": true
+    },
+    {
+      "check": "320px and 200% text, landscape and portrait resize",
+      "passed": true
+    },
+    {
+      "check": "Map round trip restores garden selection and keeps music paused",
+      "passed": true
+    },
+    {
+      "check": "Real GLB failure feedback and successful retry after clearing rejected loader cache",
+      "passed": true
+    }
+  ],
+  "errors": [
+    {
+      "message": "Failed to load resource: net::ERR_FAILED",
+      "fault": true
+    },
+    {
+      "message": "Error: Could not load ./assets/craft-stone.glb: Failed to fetch\n    at http://127.0.0.1:4195/shizilin/assets/index-CHB3h-gO.js:3901:22622\n    at Object.c [as onError] (http://127.0.0.1:4195/shizilin/assets/index-CHB3h-gO.js:3901:38515)\n    at http://127.0.0.1:4195/shizilin/assets/index-CHB3h-gO.js:3867:169589",
+      "fault": true
+    },
+    {
+      "message": "Error: Could not load ./assets/craft-stone.glb: Failed to fetch\n    at http://127.0.0.1:4195/shizilin/assets/index-CHB3h-gO.js:3901:22622\n    at Object.c [as onError] (http://127.0.0.1:4195/shizilin/assets/index-CHB3h-gO.js:3901:38515)\n    at http://127.0.0.1:4195/shizilin/assets/index-CHB3h-gO.js:3867:169589",
+      "fault": true
+    }
+  ],
+  "failures": [
+    {
+      "url": "http://127.0.0.1:4195/shizilin/assets/craft-stone.glb",
+      "error": "net::ERR_FAILED",
+      "fault": true
+    }
+  ],
+  "externalRequests": [],
+  "limits": "Final local output, Chromium/SwiftShader, actual WebGL/media and CDP touch. No real iPhone/Android, Safari, mobile GPU frame-rate/heat or mainland network verification."
+}

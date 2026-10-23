@@ -1,0 +1,17 @@
+{
+  "name": "canglangting",
+  "source_commit": "c06e7cb7d2c8d6563e2dea9d50d3ceae7ae89f14",
+  "id": "appgdep_6ac21f4c2d0c81919a65c4c69865620e",
+  "project_id": "appgprj_6ac1b5acc02c8191b778a17afc89fa20",
+  "title": "掌上沧浪亭 · 水外山林",
+  "version_id": "appgprj_6ac1b5acc02c8191b778a17afc89fa20~appgver_fd58532426c88191997c989d4657d295",
+  "type": "publish",
+  "status": "succeeded",
+  "url": "https://canglangting-miniature.jggagi.chatgpt.site",
+  "has_mcp": false,
+  "screenshot_asset_pointer": null,
+  "provider_deployment_id": "site---6ac1b5acc02c8191b778a17afc89fa20",
+  "failure_message": null,
+  "env_set_revision": 0,
+  "updated_at": "2026-10-04T09:41:45.521259+00:00"
+}

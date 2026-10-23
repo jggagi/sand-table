@@ -1,0 +1,159 @@
+{
+  "garden": "shizilin",
+  "build": {
+    "command": "npm run build",
+    "inputs": [
+      {
+        "path": "src/App.tsx",
+        "sha256": "2aa4bc8c7d6aadcbb8797e095a3bd9bc56d5285bdfd464cb563b0d6e08dfd53c"
+      },
+      {
+        "path": "src/data/garden.content.ts",
+        "sha256": "ccd5f807d2b12a5a6abe6d6eae3bfeb60b5bb87579ed77ad990b43eea7a073d6"
+      },
+      {
+        "path": "src/data/garden.layout.ts",
+        "sha256": "72c42e524841bd6e4f5d1b36e154804eedb8b2ac16fb0d8bd1608cba90d3edc3"
+      },
+      {
+        "path": "src/data/garden.views.ts",
+        "sha256": "55db523a5222ce30c711edbbeb4b18da603d35fb5ebaf24d2f2244fd8426597c"
+      },
+      {
+        "path": "src/main.tsx",
+        "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+      },
+      {
+        "path": "src/scene/GardenCanvas.tsx",
+        "sha256": "e5036ad8459fbe45db3a0c7e0acd9e74c30027b28de67008d7d5fe0c1daea9e9"
+      },
+      {
+        "path": "src/scene/GardenScene.tsx",
+        "sha256": "1a5f89895ec034a1fd26608ac2d65c272891ff2fdcd17972a049cadf008ee30e"
+      },
+      {
+        "path": "src/scene/geometry.ts",
+        "sha256": "ca5bd64c89776ef87baecde1bca5702a103d56169a5d0a19a6c71ef02316d360"
+      },
+      {
+        "path": "src/styles.css",
+        "sha256": "dec4961675bd16ccd47d3677ec8fb27fe94f5f4d1cba5958b4d06c0f19be92f7"
+      },
+      {
+        "path": "index.html",
+        "sha256": "2daeab506e7ebbef7e66bfe24d2d8c6e4517eb2e8c1c0fa934974f4587a9f3ec"
+      },
+      {
+        "path": "package.json",
+        "sha256": "90cc312d6800ebd7871a6de09f0dfbbd546137d09e25f3122bbebfc5be568073"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "c4fda964c1cfc62946abd82399ee1c218748ddb0352d4cc2b65a2e5b83116852"
+      },
+      {
+        "path": "tsconfig.json",
+        "sha256": "d2be1c98456ab5bc9df57162f40bef8ae7ccd8ef5bed50531fb0fd659eb4f0cb"
+      },
+      {
+        "path": "vite.config.ts",
+        "sha256": "5fd62cbc11a3b945df0b0f02de158ad05c97e63be3cc92ed4f1d2cc7e66a8d79"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "dist/assets/index-CWwLmTdU.css",
+        "sha256": "1eeda90b3276b95c6cba2dbd2353d6dacf510db031257eff542d5f862646fbb8"
+      },
+      {
+        "path": "dist/assets/index-Ut56Po7O.js",
+        "sha256": "b471761d2c104a1d62ba692f3ec905160e916e0df8949fd10a278677a126a238"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "ecbf8e42ed514900877a5abb71019d9597f3cb9177c6be58cc125f08cf1a6451"
+      }
+    ]
+  },
+  "browser": "151.0.7922.173",
+  "rendering": "Chromium/SwiftShader; simulated touch, not a real phone",
+  "mobile": [
+    {
+      "view": "overview",
+      "zoom": 9.75,
+      "calls": 41,
+      "triangles": 98588,
+      "canvasDeviation": 49.06,
+      "resetBottom": 730.1875
+    },
+    {
+      "view": "rockery",
+      "zoom": 21.666666666666668,
+      "calls": 28,
+      "triangles": 85712,
+      "canvasDeviation": 61.44,
+      "resetBottom": 704.59375
+    },
+    {
+      "view": "waterside",
+      "zoom": 19.5,
+      "calls": 36,
+      "triangles": 91978,
+      "canvasDeviation": 61.51,
+      "resetBottom": 730.1875
+    },
+    {
+      "view": "corridor",
+      "zoom": 24.375,
+      "calls": 35,
+      "triangles": 94336,
+      "canvasDeviation": 53.34,
+      "resetBottom": 704.59375
+    }
+  ],
+  "layout": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "overflow": false,
+      "closeAndReset": true
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "overflow": false,
+      "closeAndReset": true
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "overflow": false,
+      "closeAndReset": true
+    }
+  ],
+  "pageerrors": [],
+  "externalRequests": [],
+  "textEnlargement": {
+    "rootFontSize": "200%",
+    "viewport": "320×568",
+    "overflow": false,
+    "controlsOperable": true
+  },
+  "productionDesktop": {
+    "http": 200,
+    "calls": 41,
+    "triangles": 98588,
+    "canvasDeviation": 50.42
+  },
+  "mobilePixelBudget": {
+    "devicePixelRatio": 3,
+    "drawingPixelRatio": 1.5,
+    "coarsePointer": true
+  }
+}

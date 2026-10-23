@@ -1,0 +1,56 @@
+{
+  "gardens": [
+    {
+      "garden": "liuyuan",
+      "project_id": "appgprj_6ac11ff9d9ac8191a45ec3514bfed022",
+      "source_commit": "71a6b6ce35444fcdd76d629ab67c410360f7f708",
+      "deployment_id": "appgdep_6ac20aaf44a8819199f7bf9e4b790cb8",
+      "version_id": "appgprj_6ac11ff9d9ac8191a45ec3514bfed022~appgver_940f367626688191b16c729b25b14685",
+      "status": "succeeded",
+      "url": "https://liuyuan-miniature-m1.jggagi.chatgpt.site",
+      "updated_at": "2026-10-04T08:13:47.842818+00:00"
+    },
+    {
+      "garden": "wangshiyuan",
+      "project_id": "appgprj_6ac1b53e856481918a9821d28311b615",
+      "source_commit": "885103f108883d92c0c396d70702133880bc646e",
+      "deployment_id": "appgdep_6ac20b450428819194f325399c2fa8ee",
+      "version_id": "appgprj_6ac1b53e856481918a9821d28311b615~appgver_891b741e399c81918dd6989ed46ffe6a",
+      "status": "succeeded",
+      "url": "https://wangshiyuan-miniature.jggagi.chatgpt.site",
+      "updated_at": "2026-10-04T08:16:18.730263+00:00"
+    },
+    {
+      "garden": "zhuozhengyuan",
+      "project_id": "appgprj_6ac1b55903908191bff229a3b0877a73",
+      "source_commit": "20627eec9b9b250cd2683f0dd34c64ab32341897",
+      "deployment_id": "appgdep_6ac20b781a2c8191acb1b067563687ef",
+      "version_id": "appgprj_6ac1b55903908191bff229a3b0877a73~appgver_ee90967a574081919c4ed38b79d2204d",
+      "status": "succeeded",
+      "url": "https://zhuozhengyuan-miniature.jggagi.chatgpt.site",
+      "updated_at": "2026-10-04T08:17:09.917861+00:00"
+    },
+    {
+      "garden": "shizilin",
+      "project_id": "appgprj_6ac1b57c451c8191871d25d5183e795f",
+      "source_commit": "ffae6027edf16b3a2bb021c1784b71ed8555cc9b",
+      "deployment_id": "appgdep_6ac20ba59bac8191b8827c5fe645ce85",
+      "version_id": "appgprj_6ac1b57c451c8191871d25d5183e795f~appgver_8a04b95e758481918df083a895e40c58",
+      "status": "succeeded",
+      "url": "https://shizilin-miniature.jggagi.chatgpt.site",
+      "updated_at": "2026-10-04T08:17:55.542983+00:00"
+    },
+    {
+      "garden": "canglangting",
+      "project_id": "appgprj_6ac1b5acc02c8191b778a17afc89fa20",
+      "source_commit": "f682999f7be7fb60e76226af977f6fbf372b3fb6",
+      "deployment_id": "appgdep_6ac20bd1bfd08191a0943dfe6c711c8b",
+      "version_id": "appgprj_6ac1b5acc02c8191b778a17afc89fa20~appgver_c681d7a1def88191a80698f73b9c4fa7",
+      "status": "succeeded",
+      "url": "https://canglangting-miniature.jggagi.chatgpt.site",
+      "updated_at": "2026-10-04T08:18:39.628671+00:00"
+    }
+  ],
+  "audience": "Existing owner-private audience retained",
+  "limits": "Backend deployment success; no signed-in cross-site journey or mainland physical-phone test claimed."
+}

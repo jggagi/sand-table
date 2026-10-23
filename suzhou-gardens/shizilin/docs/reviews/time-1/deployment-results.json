@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-23",
+  "project_id": "appgprj_6ac1b57c451c8191871d25d5183e795f",
+  "source_commit": "640c8aee0f5bccaeb320e2be0cf3081273e47736",
+  "version_id": "appgprj_6ac1b57c451c8191871d25d5183e795f~appgver_360ea8e49c7c8191b90f9fe9a9d0bf4b",
+  "deployment_id": "appgdep_6adb24193ff081918662313edd3802d6",
+  "status": "succeeded",
+  "url": "https://shizilin-miniature.jggagi.chatgpt.site",
+  "updated_at": "2026-10-23T09:08:55.630256+00:00",
+  "audience": "Existing owner-only custom access preserved",
+  "verification": "Native successful publication receipt; local final output QA recorded separately",
+  "cloudbase_uploaded": false
+}

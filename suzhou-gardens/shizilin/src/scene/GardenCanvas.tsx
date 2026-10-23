@@ -1,14 +1,17 @@
 import { Component, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { CameraControls } from '@react-three/drei';
+import { CameraControls, useGLTF, useTexture } from '@react-three/drei';
 import CameraControlsImpl from 'camera-controls';
 import { OrthographicCamera, Vector3, type WebGLRenderer } from 'three';
 import GardenScene from './GardenScene';
+import TimeLighting from './TimeLighting';
+import type {TimeId} from '../data/garden.time';
 import { SCENE_SEED, SCENE_NAME } from '../data/garden.layout';
 import { CAMERA_LIMITS, getFittedZoom, getViewPreset, type ViewId } from '../data/garden.views';
 
 type RenderStatus = 'loading' | 'ready' | 'error';
 interface GardenCanvasProps {
+  timeId:TimeId;
   viewId: ViewId;
   requestId: number;
   onViewChange: (id: ViewId | null) => void;
@@ -94,9 +97,11 @@ function CameraRig(props: GardenCanvasProps) {
     controller.maxZoom = nextZoom * CAMERA_LIMITS.maxZoomRatio;
     controller.smoothTime = reducedMotion ? 0.001 : 0.38;
     controller.draggingSmoothTime = reducedMotion ? 0.001 : 0.12;
-    if (newRequest) {
+    // An active preset must reach its requested pose even if resize or a
+    // reduced-motion change interrupts the transition. Manual views stay free.
+    if (newRequest || diagnostics.view === props.viewId) {
       diagnostics.view = props.viewId;
-      const animate = lastRequest.current !== -1 && !reducedMotion;
+      const animate = newRequest && lastRequest.current !== -1 && !reducedMotion;
       void controller.setLookAt(...view.position, ...view.target, animate);
       void controller.zoomTo(nextZoom, animate);
       if (!animate) {
@@ -109,7 +114,7 @@ function CameraRig(props: GardenCanvasProps) {
       }
       lastRequest.current = props.requestId;
     } else {
-      // Resize keeps the user's orientation and relative zoom, fitting the new aspect ratio.
+      // Free observation keeps its orientation and relative zoom after resize.
       void controller.zoomTo(Math.min(controller.maxZoom, Math.max(controller.minZoom, nextZoom * zoomRatio)), false);
     }
     fittedZoom.current = nextZoom;
@@ -175,7 +180,8 @@ function CameraRig(props: GardenCanvasProps) {
       gl.domElement.dataset.renderReady = 'false';
       invalidate();
     }
-  });
+  // Read the preceding main frame before the pond's auxiliary reflection pass.
+  }, -.75);
 
   return <CameraControls ref={controls} makeDefault
     minPolarAngle={CAMERA_LIMITS.minPolarAngle} maxPolarAngle={CAMERA_LIMITS.maxPolarAngle}
@@ -188,7 +194,11 @@ function CameraRig(props: GardenCanvasProps) {
 class SceneBoundary extends Component<{ children: ReactNode; onError: (message: string) => void }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
-  componentDidCatch(error: Error) { this.props.onError(`场景初始化失败：${error.message}`); }
+  componentDidCatch(error: Error) {
+    useGLTF.clear(`${import.meta.env.BASE_URL}assets/craft-stone.glb`);
+    useTexture.clear(`${import.meta.env.BASE_URL}assets/stone-normal.png`);
+    this.props.onError(`场景初始化失败：${error.message}`);
+  }
   render() { return this.state.failed ? null : this.props.children; }
 }
 
@@ -204,6 +214,7 @@ function hasWebGL(): boolean {
 
 export default function GardenCanvas(props: GardenCanvasProps) {
   const [supported] = useState(hasWebGL);
+  const [maxDpr] = useState(() => window.matchMedia('(pointer: coarse)').matches ? 1.5 : 2);
   const callback = useRef(props.onStatus);
   callback.current = props.onStatus;
   useEffect(() => {
@@ -212,7 +223,7 @@ export default function GardenCanvas(props: GardenCanvasProps) {
   if (!supported) return null;
 
   return <SceneBoundary onError={message => callback.current('error', message)}>
-    <Canvas orthographic shadows="variance" frameloop="demand" dpr={[1, 2]}
+    <Canvas orthographic shadows="variance" frameloop="demand" dpr={[1, maxDpr]}
       camera={{ position: [34, 30, 40], zoom: 20, near: 0.1, far: 180 }}
       gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       onCreated={({ gl }) => {
@@ -222,17 +233,12 @@ export default function GardenCanvas(props: GardenCanvasProps) {
           callback.current('error', '三维绘图连接已中断。请刷新页面重新加载场景。');
         }, { once: true });
       }}>
-      <ambientLight intensity={0.65} />
-      <hemisphereLight args={['#fff7e9', '#a8b6ac', 1.5]} />
-      <directionalLight position={[-14, 32, 18]} intensity={2.6} color="#fff5e5" castShadow
-        shadow-mapSize={[2048, 2048]} shadow-camera-left={-25} shadow-camera-right={25}
-        shadow-camera-top={25} shadow-camera-bottom={-25} shadow-camera-near={1} shadow-camera-far={90}
-        shadow-bias={-0.0003} shadow-normalBias={0.035} shadow-radius={6} shadow-blurSamples={6} />
+      <TimeLighting timeId={props.timeId} />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.92, 0]} receiveShadow>
         <planeGeometry args={[160, 160]} />
         <shadowMaterial transparent opacity={0.13} />
       </mesh>
-      <Suspense fallback={null}><GardenScene /></Suspense>
+      <Suspense fallback={null}><GardenScene timeId={props.timeId} /></Suspense>
       <CameraRig {...props} />
     </Canvas>
   </SceneBoundary>;

@@ -1,8 +1,14 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import GardenCanvas from './scene/GardenCanvas';
 import { VIEW_PRESETS, type ViewId } from './data/garden.views';
 import { UI_CONTENT } from './data/garden.content';
+import { getMapHref } from './navigation/mapLink';
+import {connectMapHost,isMapEmbedded,reportToMap,requestMapReturn} from './navigation/mapHost';
 import './styles.css';
+import MusicPanel from './audio/MusicPanel';
+import TimePanel from './TimePanel';
+import type {TimeId} from './data/garden.time';
+import './time.css';
 
 type RenderStatus = 'loading' | 'ready' | 'error';
 
@@ -24,6 +30,12 @@ function OrbitIcon() {
 }
 
 export default function App() {
+  useEffect(connectMapHost,[]);
+  const [timeId,setTimeId]=useState<TimeId>('dawn');
+  useEffect(()=>{
+    document.documentElement.dataset.period=timeId;
+    return ()=>{delete document.documentElement.dataset.period;};
+  },[timeId]);
   const [viewId, setViewId] = useState<ViewId>('overview');
   const [activeId, setActiveId] = useState<ViewId | null>('overview');
   const [requestId, setRequestId] = useState(0);
@@ -31,6 +43,8 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState<string>();
   const [hasRendered, setHasRendered] = useState(false);
   const [rendererVersion, setRendererVersion] = useState(0);
+
+  useEffect(()=>{reportToMap(renderStatus,timeId);},[renderStatus,timeId]);
 
   const currentView = VIEW_PRESETS.find((view) => view.id === activeId);
   const selectView = useCallback((id: ViewId) => {
@@ -54,7 +68,7 @@ export default function App() {
   };
 
   return (
-    <main className="garden-app" data-render-status={renderStatus} data-current-view={activeId ?? 'free'}>
+    <main className="garden-app" data-period={timeId} data-render-status={renderStatus} data-current-view={activeId ?? 'free'}>
       <header className="masthead">
         <div className="identity">
           <div className="garden-seal" aria-hidden="true">{UI_CONTENT.seal[0]}<span>{UI_CONTENT.seal.slice(1)}</span></div>
@@ -63,15 +77,16 @@ export default function App() {
             <h1>{UI_CONTENT.title}</h1>
           </div>
         </div>
-        <div className="edition">
+        <div className="header-navigation"><a className="map-return" href={getMapHref(window.location.href)} data-testid="return-map" target={isMapEmbedded()?'_top':undefined} onClick={event=>{if(event.button===0&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey&&requestMapReturn())event.preventDefault();}}><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 4.5 7 2l6 2.5L18 2v13.5L13 18l-6-2.5L2 18V4.5ZM7 2v13.5M13 4.5V18" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /></svg><span>返回地图</span></a><div className="edition">
           <p className="edition-location">{UI_CONTENT.location}<span />{UI_CONTENT.milestone}</p>
           <p className="edition-introduction">{UI_CONTENT.introduction}</p>
-        </div>
+        </div></div>
       </header>
 
+      <TimePanel value={timeId} onChange={setTimeId} />
+
       <section className="garden-stage" data-testid="garden-stage" aria-label={UI_CONTENT.stageLabel} aria-describedby="interaction-hint">
-        <GardenCanvas key={rendererVersion} viewId={viewId} requestId={requestId} onViewChange={onViewChange} onStatus={onStatus} />
-        <div className="stage-label" aria-hidden="true"><span>{UI_CONTENT.gardenName}</span><span>SUZHOU · {UI_CONTENT.romanName}</span></div>
+        <GardenCanvas key={rendererVersion} timeId={timeId} viewId={viewId} requestId={requestId} onViewChange={onViewChange} onStatus={onStatus} />
         <div className={`render-status render-status--${renderStatus}`} role="status" aria-live="polite">
           <span className="status-dot" />
           {renderStatus === 'error' ? UI_CONTENT.errorStatus : renderStatus === 'ready' ? UI_CONTENT.ready : UI_CONTENT.loading}
@@ -109,7 +124,7 @@ export default function App() {
                 aria-pressed={activeId === view.id}
                 onClick={() => selectView(view.id)}
               >
-                <span className="view-button-top"><span className="view-number">0{index + 1}</span><span className="view-arrow" aria-hidden="true">↗</span></span>
+                <span className="view-button-top"><span className="view-number">0{index + 1}</span></span>
                 <span className="view-button-label">{view.label}</span>
                 <span className="view-button-eyebrow">{view.eyebrow}</span>
               </button>
@@ -121,6 +136,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <MusicPanel />
 
       <footer className="art-notice">
         <p>{UI_CONTENT.artNotice}<span className="placeholder-notice">{UI_CONTENT.placeholderNotice}</span></p>

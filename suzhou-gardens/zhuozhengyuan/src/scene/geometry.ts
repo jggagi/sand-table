@@ -1,14 +1,16 @@
 import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { finishSurfaces } from './surfaceFinish';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { SCENE_NAME, SCENE_OBJECTS, SCENE_SEED, type Point2, type SceneObject, type Vec3 } from '../data/garden.layout';
 
 type Surface = 'sand' | 'paving' | 'bank' | 'wall' | 'wood' | 'tile' | 'water' | 'foliage';
 const COLORS: Record<Surface, string> = {
   sand: '#c8bea5', paving: '#dfd5c0', bank: '#aaa994', wall: '#f0ebdf',
-  wood: '#705d4d', tile: '#515b57', water: '#709b90', foliage: '#6d805e',
+  wood: '#705d4d', tile: '#47575a', water: '#608f8a', foliage: '#617951',
 };
 type Materials = Record<Surface, THREE.MeshStandardMaterial>;
-interface Templates { cube: THREE.BoxGeometry; cylinder: THREE.CylinderGeometry; foliage: THREE.BufferGeometry }
+interface Templates { softPost: THREE.BufferGeometry; cube: THREE.BoxGeometry; cylinder: THREE.CylinderGeometry; foliage: THREE.BufferGeometry }
 
 /** Construction-only random sequence: no animation or mutation in the render loop. */
 export function seededRandom(seed: number): () => number {
@@ -31,6 +33,7 @@ class Batch {
   private readonly parts = new Map<Surface, THREE.BufferGeometry[]>();
   constructor(private readonly templates: Templates, private readonly materials: Materials) {}
   add(source: THREE.BufferGeometry, surface: Surface, position: Vec3 = [0, 0, 0], scale: Vec3 = [1, 1, 1], rotation: Vec3 = [0, 0, 0], color = COLORS[surface], own = false): void {
+    if (source === this.templates.foliage) scale = [scale[0] * .94, scale[1] * .96, scale[2] * .94];
     const cloned = source.clone();
     const geometry = cloned.index ? cloned.toNonIndexed() : cloned;
     if (geometry !== cloned) cloned.dispose();
@@ -53,7 +56,7 @@ class Batch {
     if (own) source.dispose();
   }
   box(surface: Surface, size: Vec3, position: Vec3, color = COLORS[surface], rotation: Vec3 = [0, 0, 0]): void {
-    this.add(this.templates.cube, surface, position, size, rotation, color);
+    this.add((surface === 'wood' && size[1] > 1.4 && Math.min(size[0],size[2]) >= .09 && Math.max(size[0],size[2]) < .4) ? this.templates.softPost : this.templates.cube, surface, position, size, rotation, color);
   }
   rod(surface: Surface, from: Vec3, to: Vec3, radius: number, color = COLORS[surface]): void {
     const start = new THREE.Vector3(...from), end = new THREE.Vector3(...to);
@@ -236,6 +239,7 @@ function gableRoof(width: number, depth: number, rise: number): THREE.BufferGeom
   return makeGeometry(vertices, indices);
 }
 function addRoof(batch: Batch, width: number, depth: number, height: number, rise: number): void {
+  for (let x = -width / 2 + .3; x < width / 2 - .15; x += 1.2) for (const sign of [-1,1]) batch.box('wood', [.055,.085,.32], [x,height+.025,0+sign*(depth/2-.13)], '#88745b');
   batch.add(gableRoof(width, depth, rise), 'tile', [0, height, 0], undefined, undefined, undefined, true);
   batch.box('wood', [width - 0.16, 0.13, depth - 0.1], [0, height + 0.02, 0], '#655341');
   batch.rod('tile', [-width / 2 - 0.05, height + rise + 0.035, 0], [width / 2 + 0.05, height + rise + 0.035, 0], 0.08, '#69716a');
@@ -434,26 +438,45 @@ function tree(object: SceneObject, batch: Batch, templates: Templates): void {
 }
 
 function lotusLeaf(): THREE.BufferGeometry {
-  const vertices: number[] = [0, 0.055, 0], indices: number[] = [], sides = 16;
-  for (let side = 0; side <= sides; side++) {
-    const angle = (side / sides) * (Math.PI * 2 - 0.27) + 0.13;
-    vertices.push(Math.cos(angle), 0.035 * Math.sin(angle * 3), Math.sin(angle));
+  const vertices: number[]=[0,.075,0],indices:number[]=[],sides=32;
+  for(let side=0;side<=sides;side++) {
+    const a=side/sides*(Math.PI*2-.27)+.13;
+    vertices.push(Math.cos(a),.055*Math.sin(a*3)+.07*Math.cos(a*5),Math.sin(a));
   }
-  for (let side = 0; side < sides; side++) indices.push(0, side + 1, side + 2);
-  return makeGeometry(vertices, indices);
+  for(let side=0;side<sides;side++)indices.push(0,side+2,side+1);
+  return makeGeometry(vertices,indices);
+}
+function lotusPetal(): THREE.BufferGeometry {
+  const vertices:number[]=[],indices:number[]=[];
+  for(let y=0;y<=6;y++)for(let x=0;x<=4;x++) {
+    const t=y/6,w=(x/4-.5)*2;
+    vertices.push(w*.14*Math.sin(Math.PI*t),.44*t-.15*t*t+.055*w*w,.31*Math.sin(t*Math.PI*.65));
+  }
+  for(let y=0;y<6;y++)for(let x=0;x<4;x++){const a=y*5+x;indices.push(a,a+5,a+1,a+1,a+5,a+6);}
+  return makeGeometry(vertices,indices);
 }
 function lotus(object: SceneObject, batch: Batch): void {
-  if (object.geometry.kind !== 'lotus') return;
-  const { width, depth, count } = object.geometry, random = seededRandom(objectSeed(object.id)), leaf = lotusLeaf();
-  for (let index = 0; index < count; index++) {
-    const angle = index * 2.399, reach = Math.sqrt((index + 0.5) / count);
-    const x = Math.cos(angle) * reach * width / 2, z = Math.sin(angle) * reach * depth / 2;
-    const radius = 0.13 + random() * 0.13, y = 0.18 + random() * 0.075;
-    batch.rod('foliage', [x, 0.12, z], [x, y, z], 0.016, '#718d65');
-    batch.add(leaf, 'foliage', [x, y, z], [radius, radius, radius], [0.02, random() * 6, 0.03], index % 3 ? '#83a178' : '#9bad7c');
+  if(object.geometry.kind!=='lotus')return;
+  const {width,depth,count}=object.geometry,random=seededRandom(objectSeed(object.id)),leaf=lotusLeaf(),petal=lotusPetal();
+  for(let index=0;index<count;index++) {
+    const angle=index*2.399,reach=Math.sqrt((index+.5)/count);
+    const x=Math.cos(angle)*reach*width/2,z=Math.sin(angle)*reach*depth/2;
+    const radius=.15+random()*.16,y=.19+random()*.10;
+    batch.rod('foliage',[x,.12,z],[x,y,z],.016,'#718d65');
+    batch.add(leaf,'foliage',[x,y,z],[radius,radius,radius],[.02,random()*6,.03],index%3?'#83a178':'#9bad7c');
+    if(index===2 || index===Math.floor(count*.62)) {
+      const open=index===2,stemY=open?.43:.62;
+      batch.rod('foliage',[x,.12,z],[x,stemY,z],.018,'#688761');
+      for(let n=0;n<(open?9:6);n++) {
+        const scale=open?1:.43;
+        // Paired faces keep a thin petal visible from both sides without glass.
+        batch.add(petal,'foliage',[x,stemY,z],[scale,scale,scale],[0,n/(open?9:6)*Math.PI*2,open?-.15:.08],n%2?'#e1b9b0':'#f0d2c4');
+      }
+    }
   }
-  leaf.dispose();
+  leaf.dispose();petal.dispose();
 }
+
 function court(object: SceneObject, batch: Batch): void {
   if (object.geometry.kind !== 'court') return;
   const { width, depth } = object.geometry;
@@ -467,8 +490,9 @@ export interface GardenResources { group: THREE.Group; dispose: () => void }
 
 /** One immutable construction per mount; cleanup owns every GPU allocation. */
 export function createGarden(): GardenResources {
-  const templates: Templates = { cube: new THREE.BoxGeometry(1, 1, 1), cylinder: new THREE.CylinderGeometry(1, 1, 1, 6), foliage: foliageTemplate() };
+  const templates: Templates = { softPost: new RoundedBoxGeometry(1, 1, 1, 1, .13), cube: new THREE.BoxGeometry(1, 1, 1), cylinder: new THREE.CylinderGeometry(1, 1, 1, 6), foliage: foliageTemplate() };
   const materials = Object.fromEntries(Object.keys(COLORS).map(surface => [surface, new THREE.MeshStandardMaterial({ color: 'white', vertexColors: true, roughness: surface === 'water' ? 0.68 : 0.95, metalness: 0, side: surface === 'tile' || surface === 'foliage' ? THREE.DoubleSide : THREE.FrontSide })])) as Materials;
+  finishSurfaces(materials);
   const garden = new THREE.Group();
   garden.name = SCENE_NAME;
   const objects: readonly SceneObject[] = SCENE_OBJECTS;

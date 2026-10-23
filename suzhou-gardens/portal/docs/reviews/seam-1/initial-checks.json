@@ -1,0 +1,19 @@
+{
+  "runs": [
+    {
+      "exit_code": 1,
+      "passed_checkpoints": 5,
+      "failure": "Hidden main-frame counter changed from65 to67 after fixed 600ms intervals; water was already inactive and ticks stopped. Final driver waits for actual frame stability and then verifies a further1200ms idle."
+    },
+    {
+      "exit_code": 1,
+      "passed_checkpoints": 2,
+      "failure": "Strict zoom assertion used a baseline before music-loading layout had settled; separate actual probe proves522\u2192494\u2192522px and37.3002\u219235.3002\u219237.3002 with identical position/target. Final driver waits for empty loading message and stable ready pose/canvas."
+    }
+  ],
+  "production_camera_changed": false,
+  "assertions_removed": false,
+  "skips": 0,
+  "final_integration_groups_passed": 13,
+  "note": "Earlier failed logs retained in ignored runtime; this record and layout-probe preserve their outcome. Final production static bytes are separately pinned."
+}

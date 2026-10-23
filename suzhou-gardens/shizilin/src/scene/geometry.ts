@@ -1,15 +1,18 @@
 import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { finishSurfaces } from './surfaceFinish';
+import { pondShape } from './pondShape';
 import { MarchingCubes } from 'three/examples/jsm/objects/MarchingCubes.js';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { SCENE_NAME, SCENE_OBJECTS, SCENE_SEED, type SceneObject, type Vec3 } from '../data/garden.layout';
 
 type Surface = 'earth' | 'paving' | 'stone' | 'wall' | 'wood' | 'tile' | 'water' | 'leaf';
 const COLORS: Record<Surface, string> = {
-  earth: '#c8bda6', paving: '#d4cbb8', stone: '#8d9587', wall: '#eee8db',
-  wood: '#76614d', tile: '#485752', water: '#78988d', leaf: '#62765d',
+  earth: '#c8bda6', paving: '#d4cbb8', stone: '#818b85', wall: '#eee8db',
+  wood: '#76614d', tile: '#444f51', water: '#6d928a', leaf: '#62765d',
 };
 type Materials = Record<Surface, THREE.MeshStandardMaterial>;
-type Templates = { box: THREE.BoxGeometry; column: THREE.CylinderGeometry; leaves: THREE.BufferGeometry };
+type Templates = { softPost: THREE.BufferGeometry; box: THREE.BoxGeometry; column: THREE.CylinderGeometry; leaves: THREE.BufferGeometry };
 
 export function seededRandom(seed: number): () => number {
   let state = seed >>> 0;
@@ -38,6 +41,7 @@ class Batch {
   private readonly parts = new Map<Surface, THREE.BufferGeometry[]>();
   constructor(private readonly resources: Templates, private readonly materials: Materials) {}
   add(source: THREE.BufferGeometry, surface: Surface, position: Vec3 = [0, 0, 0], scale: Vec3 = [1, 1, 1], rotation: Vec3 = [0, 0, 0], tint?: string, owned = false): void {
+    if (source === this.resources.leaves) scale = [scale[0] * .94, scale[1] * .96, scale[2] * .94];
     const copy = source.index ? source.toNonIndexed() : source.clone();
     copy.applyMatrix4(new THREE.Matrix4().compose(new THREE.Vector3(...position), new THREE.Quaternion().setFromEuler(new THREE.Euler(...rotation)), new THREE.Vector3(...scale)));
     copy.deleteAttribute('uv');
@@ -57,7 +61,7 @@ class Batch {
     if (owned) source.dispose();
   }
   box(surface: Surface, size: Vec3, position: Vec3, tint?: string, rotation: Vec3 = [0, 0, 0]): void {
-    this.add(this.resources.box, surface, position, size, rotation, tint);
+    this.add((surface === 'wood' && size[1] > 1.4 && Math.min(size[0],size[2]) >= .09 && Math.max(size[0],size[2]) < .4) ? this.resources.softPost : this.resources.box, surface, position, size, rotation, tint);
   }
   rod(surface: Surface, from: Vec3, to: Vec3, radius: number, tint?: string): void {
     const a = new THREE.Vector3(...from), b = new THREE.Vector3(...to);
@@ -95,15 +99,6 @@ function roundedShape(width: number, depth: number, radius: number): THREE.Shape
   shape.quadraticCurveTo(x, z + depth, x, z + depth - radius);
   shape.lineTo(x, z + radius);
   shape.quadraticCurveTo(x, z, x + radius, z);
-  return shape;
-}
-function organicShape(points: readonly (readonly [number, number])[], scale = 1): THREE.Shape {
-  const curve = new THREE.CatmullRomCurve3(points.map(([x, z]) => new THREE.Vector3(x * scale, -z * scale, 0)), true, 'catmullrom', 0.12);
-  const samples = curve.getPoints(100);
-  const shape = new THREE.Shape();
-  shape.moveTo(samples[0].x, samples[0].y);
-  for (let i = 1; i < samples.length; i++) shape.lineTo(samples[i].x, samples[i].y);
-  shape.closePath();
   return shape;
 }
 function extrudeHorizontal(shape: THREE.Shape, thickness: number, bevel = 0): THREE.ExtrudeGeometry {
@@ -276,10 +271,16 @@ function architecture(object: SceneObject, templates: Templates, materials: Mate
     const x = -width / 2 + 0.13 + bay / bays * (width - 0.26), z = sign * (depth / 2 - 0.13);
     body.rod('wood', [x, 0.25, z], [x, p.height, z], 0.07, '#7a5f48');
     body.add(templates.column, 'paving', [x, 0.27, z], [0.12, 0.19, 0.12]);
+    body.add(templates.column, 'paving', [x, 0.185, z], [0.15, 0.045, 0.15], undefined, '#a49c87');
+    body.add(templates.column, 'paving', [x, 0.365, z], [0.10, 0.035, 0.10], undefined, '#b5aa90');
   }
   for (const sign of [-1, 1]) {
     body.box('wood', [width, 0.12, 0.1], [0, p.height - 0.08, sign * (depth / 2 - 0.1)]);
     if (p.kind === 'building') body.box('wood', [width - 0.2, 0.12, 0.12], [0, 0.78, sign * (depth / 2 - 0.12)]);
+  }
+  // Short exposed rafter ends and collars remain in the existing material batch.
+  for(let x=-width/2+.18;x<width/2;x+=.40)for(const side of [-1,1]){
+    body.box('wood',[.052,.065,.38],[x,p.height+.015,side*(depth/2-.045)],'#8a6c4c',[side*-.10,0,0]);
   }
   if (p.kind === 'building') {
     for (const side of [-1, 1]) {
@@ -289,6 +290,15 @@ function architecture(object: SceneObject, templates: Templates, materials: Mate
     if (!p.open) body.box('wall', [width - 0.3, p.height - 0.4, 0.16], [0, p.height / 2 + 0.14, -depth / 2]);
     roof.add(hipRoof(width + 0.68, depth + 0.68, 0.83), 'tile', [0, p.height, 0], undefined, undefined, undefined, true);
     roof.rod('tile', [-width * 0.12, p.height + 0.87, 0], [width * 0.12, p.height + 0.87, 0], 0.055, '#3e4b48');
+    const rw=width+.68,rd=depth+.68;
+    for(const face of [0,1])for(const side of [-1,1])for(const u of [-.75,-.375,0,.375,.75]){
+      const at=(t:number):Vec3=>{
+        const corner=Math.abs(u)**5;
+        const y=.83*(1-(1-t)**.68)+.16*(1-t)**5+.12*corner*(1-t)**7;
+        return face===0?[u*rw/2*(1-t*.94),p.height+y+.012,side*rd/2*(1-t*.98)]:[side*rw/2*(1-t*.94),p.height+y+.012,u*rd/2*(1-t*.98)];
+      };
+      for(let segment=0;segment<8;segment++)roof.rod('tile',at(segment/8),at((segment+1)/8),.012,'#63716b');
+    }
   } else {
     const rw = width + 0.46, rd = depth + 0.6, rise = 0.6;
     roof.add(gableRoof(rw, rd, rise), 'tile', [0, p.height, 0], undefined, undefined, undefined, true);
@@ -357,15 +367,18 @@ function wall(object: SceneObject, batch: Batch): void {
 }
 function pond(object: SceneObject, batch: Batch): void {
   const p = object.geometry; if (p.kind !== 'pond') return;
-  const points: readonly (readonly [number, number])[] = [[-0.48, -0.25], [-0.27, -0.46], [0.1, -0.47], [0.44, -0.35], [0.49, -0.04], [0.44, 0.35], [0.16, 0.47], [-0.16, 0.43], [-0.47, 0.2]];
-  const scaled = points.map(([x, z]) => [x * p.width, z * p.depth] as const);
-  const rim = organicShape(scaled, 1.04), inner = organicShape(scaled, 0.98);
+  const rim = pondShape(p.width,p.depth,1.04), inner = pondShape(p.width,p.depth,.98);
   const hole = new THREE.Path(inner.getPoints()); rim.holes.push(hole);
   batch.add(extrudeHorizontal(rim, 0.22, 0.025), 'paving', [0, 0.035, 0], undefined, undefined, '#bcb49f', true);
-  const water = new THREE.ShapeGeometry(organicShape(scaled), 32); water.rotateX(-Math.PI / 2);
+  const wet=pondShape(p.width,p.depth,1.015);wet.holes.push(new THREE.Path(pondShape(p.width,p.depth,.995).getPoints()));
+  batch.add(extrudeHorizontal(wet,.07),'paving',[0,.075,0],undefined,undefined,'#7e8b76',true);
+  const edge=pondShape(p.width,p.depth).getPoints();
+  for(let i=0;i<edge.length-1;i+=4){
+    const a=edge[i];
+    batch.rod('paving',[a.x*.995,.264,-a.y*.995],[a.x*1.04,.264,-a.y*1.04],.009,'#8e917c');
+  }
+  const water = new THREE.ShapeGeometry(pondShape(p.width,p.depth), 32); water.rotateX(-Math.PI / 2);
   batch.add(water, 'water', [0, 0.125, 0], undefined, undefined, undefined, true);
-  // A few quiet marks suggest an ink wash without reflective or animated water.
-  for (const [x, z, length] of [[-1.4, 1.5, 1.7], [1.0, -2.3, 1.2], [2.1, 0.1, 1.55]]) batch.box('water', [length, 0.008, 0.02], [x, 0.131, z], '#92aa99', [0, -0.09, 0]);
 }
 function foliageTemplate(): THREE.BufferGeometry {
   const geometry = new THREE.IcosahedronGeometry(1, 2), positions = geometry.getAttribute('position');
@@ -407,7 +420,8 @@ function bamboo(object: SceneObject, batch: Batch, templates: Templates): void {
 export interface GardenResources { group: THREE.Group; dispose: () => void }
 export function createGarden(): GardenResources {
   const materials = Object.fromEntries(Object.keys(COLORS).map(name => [name, new THREE.MeshStandardMaterial({ color: '#ffffff', vertexColors: true, roughness: name === 'water' ? 0.9 : 0.96, metalness: 0, side: THREE.FrontSide })])) as Materials;
-  const templates: Templates = { box: new THREE.BoxGeometry(1, 1, 1), column: new THREE.CylinderGeometry(1, 1, 1, 8, 1, false), leaves: foliageTemplate() };
+  finishSurfaces(materials);
+  const templates: Templates = { softPost: new RoundedBoxGeometry(1, 1, 1, 1, .13), box: new THREE.BoxGeometry(1, 1, 1), column: new THREE.CylinderGeometry(1, 1, 1, 8, 1, false), leaves: foliageTemplate() };
   const group = new THREE.Group(); group.name = SCENE_NAME;
   group.userData = { seed: SCENE_SEED, theme: '石境回转', artisticReconstruction: true };
   const objects: readonly SceneObject[] = [...SCENE_OBJECTS].sort((a, b) => Number(b.geometry.kind === 'court') - Number(a.geometry.kind === 'court'));

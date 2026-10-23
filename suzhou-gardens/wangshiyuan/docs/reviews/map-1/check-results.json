@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-04",
+  "garden": "wangshiyuan",
+  "browser": "151.0.7922.173",
+  "rendering": "Chromium + SwiftShader, DPR=1, reduced motion",
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "seconds": 5.94
+    },
+    {
+      "command": "npm run test",
+      "exit_code": 0,
+      "seconds": 5.39
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "seconds": 24.55
+    }
+  ],
+  "unit_tests": 15,
+  "navigation": {
+    "check": "Real phone garden round trip",
+    "garden": "wangshiyuan",
+    "calls": 74,
+    "triangles": 108630,
+    "pixels": {
+      "variance": 2078,
+      "darkPixels": 8651,
+      "width": 390,
+      "height": 420
+    },
+    "preset": "courtyard",
+    "directReload": 200,
+    "font200NoOverflow": true,
+    "explicitReturnSelection": "wangshiyuan"
+  },
+  "build": {
+    "garden": "wangshiyuan",
+    "build_exit_code": 0,
+    "command": "npm run build",
+    "inputs": [
+      {
+        "path": "src/App.tsx",
+        "sha256": "9dbde273f1a4727955d45c66bda15ee269436d6bb0bbff58125329101f1d41ce"
+      },
+      {
+        "path": "src/data/garden.content.ts",
+        "sha256": "62842b566e6c7c6907b7af01a7da7ec3f95d3924617115e6badaa852ba298b6b"
+      },
+      {
+        "path": "src/data/garden.layout.ts",
+        "sha256": "3e384bd9ed49ce4fb2f908189906a5930801017eaf4a27b1eac52d536c0fd333"
+      },
+      {
+        "path": "src/data/garden.views.ts",
+        "sha256": "00ee4a15c0d0bb91511626c06e55b5271be47b545e531dad7061d6735f1e6a3d"
+      },
+      {
+        "path": "src/main.tsx",
+        "sha256": "a920ec27028d3f1997c93d79da61fa77c0ff613085a6fb2a8ea2dea92cab28a9"
+      },
+      {
+        "path": "src/navigation/mapLink.ts",
+        "sha256": "1bd14f5765cf4997315f87db38544fad82dc6a6ff2d7a32c6c8ba81739ec001a"
+      },
+      {
+        "path": "src/scene/GardenCanvas.tsx",
+        "sha256": "e5036ad8459fbe45db3a0c7e0acd9e74c30027b28de67008d7d5fe0c1daea9e9"
+      },
+      {
+        "path": "src/scene/GardenScene.tsx",
+        "sha256": "1a5f89895ec034a1fd26608ac2d65c272891ff2fdcd17972a049cadf008ee30e"
+      },
+      {
+        "path": "src/scene/geometry.ts",
+        "sha256": "d022d7731e6a463187c0bbfe4525ed09f31bd35b6080c3e758fff0424be5338c"
+      },
+      {
+        "path": "src/styles.css",
+        "sha256": "3dc207a63ea72b5e8986873c508d3870e34b1ec886782b8f0e2ff7f4b421758e"
+      },
+      {
+        "path": "index.html",
+        "sha256": "9405d313b63e2266da2f0a9edc9d30f110fab2e854625d39d38e11f4765e03d8"
+      },
+      {
+        "path": "package.json",
+        "sha256": "45bbd04f4d082a97035ba9138270ec05114f0c3644f6c9908d39f0a3563e0322"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "77c374f63544ef0fd3b9c3117a3a97675817ed7b360a639d01b32f6aae335c2f"
+      },
+      {
+        "path": "tsconfig.json",
+        "sha256": "d2be1c98456ab5bc9df57162f40bef8ae7ccd8ef5bed50531fb0fd659eb4f0cb"
+      },
+      {
+        "path": "vite.config.ts",
+        "sha256": "5fd62cbc11a3b945df0b0f02de158ad05c97e63be3cc92ed4f1d2cc7e66a8d79"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "dist/assets/index-C7VeQoVw.css",
+        "sha256": "42146356763c281c051c1d951685109cfa9b53637f8dc6270c34e3e39d47c39e"
+      },
+      {
+        "path": "dist/assets/index-CNVPnmFM.js",
+        "sha256": "2033d3e1d66787024e7deda66ca329cee160d7f1f86afaff8e3e83617e39fef7"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "c7642f12f801d1e933732af48303dd91ec5554464e66bb7727e1919af57cd141"
+      }
+    ]
+  },
+  "screenshot_sha256": "6824a9c68e0df0412527d1617e32d0909138d054e6dc980ed523bf531ceb73e6",
+  "limits": "Local final static output. Physical phones, Safari, mainland networks and CloudBase live upload are not verified. Map geometry is an original schematic, not measured cartography."
+}

@@ -1,0 +1,27 @@
+:root { --wash:#e7ecdf; color:var(--ink); background:var(--paper); }
+body { background:var(--paper); }
+:root[data-period="noon"] { --paper:#f8f6ef; --wash:#e8eddf; }
+:root[data-period="dusk"] { --paper:#f1e6db; --ink:#473d3b; --muted:#75645e; --jade:#655b4b; --clay:#a24d38; --rule:#d8c8ba; --wash:#e6d4c3; }
+:root[data-period="night"] { --paper:#132130; --ink:#dce5df; --muted:#a8baba; --jade:#a9cebd; --clay:#dfb38a; --rule:#354955; --wash:#263f4b; }
+.garden-app { grid-template-rows:auto auto minmax(280px,1fr) auto auto auto; color:var(--ink); }
+.time-panel { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule); min-width:0; }
+.time-heading { display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; min-width:0; }
+.time-description { font-family:var(--serif); color:var(--muted); font-size:.875rem; line-height:1.6; }
+.time-buttons { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; flex-shrink:0; }
+.time-button { border:1px solid transparent; border-radius:2px; padding:8px 12px; min-width:64px; min-height:44px; background:transparent; color:var(--muted); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; }
+.time-button > span:first-child { font-family:var(--serif); font-size:1rem; white-space:nowrap; }
+.time-mood { font-size:.75rem; }
+.time-button[aria-pressed="true"] { border-color:var(--rule); background:var(--wash); color:var(--jade); }
+.edition-introduction,.view-description { color:var(--muted); }
+.view-button.is-active,.music-toggle[aria-pressed="true"] { background:var(--wash); }
+@media (hover:hover) { .time-button:hover,.view-button:hover,.map-return:hover,.music-toggle:hover { background:var(--wash); } }
+@media (max-width:680px) {
+  .garden-app { grid-template-rows:auto auto auto auto auto auto; }
+  .time-panel { gap:7px; padding:9px 0; flex-direction:column; align-items:stretch; }
+  .time-heading { gap:10px; }
+  .time-buttons { gap:4px; width:100%; }
+  .time-button { padding:7px 3px; min-width:0; gap:5px; flex-wrap:wrap; }
+  .garden-stage { height:clamp(240px,calc(100svh - 410px),420px); }
+}
+@media (max-height:520px) and (min-width:681px) { .garden-app { grid-template-rows:auto auto auto auto auto auto; } .time-panel { flex-wrap:wrap; } }
+@media (max-width:400px) { .time-mood { font-size:.75rem; } }

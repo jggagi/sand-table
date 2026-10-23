@@ -1,0 +1,15 @@
+{
+  "id": "canglangting-bamboo-water",
+  "title": "竹影沧浪",
+  "duration_seconds": 71.111,
+  "bpm": 54,
+  "channels": 2,
+  "sample_rate": 44100,
+  "codec": "MP3",
+  "bitrate": 80000,
+  "bytes": 711958,
+  "sha256": "4e8ce0b45505fc96bfaec42147a6c0acd344c06c20fc33f896b20b91a73be789",
+  "peak_dbfs_before_encoding": -5.68,
+  "rms_dbfs_before_encoding": -15.55,
+  "origin": "Original notes and additive synthesis; no third-party samples or music recordings"
+}

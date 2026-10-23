@@ -1,0 +1,22 @@
+{
+  "tool": "Blender 4.3.2",
+  "source": "This garden original procedural stone; no external model",
+  "operations": [
+    "Weld",
+    "Smooth x2",
+    "Shallow directed folds",
+    "Decimate 0.78",
+    "16-ray baked vertex ambient occlusion",
+    "GLB export Y-up"
+  ],
+  "meshes": [
+    {
+      "id": "stone-labyrinth",
+      "vertices": 14798,
+      "triangles": 29620,
+      "vertex_ao_samples": 16
+    }
+  ],
+  "bytes": 711660,
+  "sha256": "cc92ba3697c36a730080f77f912e657cd24fbd0ce4ad295ce6194ea6ece31b70"
+}
