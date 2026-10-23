@@ -5,7 +5,9 @@ import {createRequire} from 'node:module';
 import {chromium} from 'playwright';
 const {PNG}=createRequire(import.meta.url)('pngjs');
 const root=path.resolve(import.meta.dirname,'..'),origin=process.env.WATER_ORIGIN||'http://127.0.0.1:4186/';
-const folder=path.join(root,'docs/reviews/water-1');fs.mkdirSync(folder,{recursive:true});
+const review=process.env.WATER_REVIEW_DIR||'water-1';if(!/^[a-z0-9-]+$/.test(review))throw Error('Invalid review directory');
+const resultsFile=process.env.WATER_RESULTS_FILE||'browser-results.json';if(!/^[a-z0-9-]+\.json$/.test(resultsFile))throw Error('Invalid result filename');
+const folder=path.join(root,'docs/reviews',review);fs.mkdirSync(folder,{recursive:true});
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const errors=[],external=[],failures=[],records=[],limitations=[];let fault=false;
 async function setup({mobile=false,blockReflection=false,throwReflection=false}={}){
@@ -112,6 +114,6 @@ try{
  const fallbackPixels=await pixels(fallback.page);let dark=0;for(let i=0;i<fallbackPixels.data.length;i+=4)if(fallbackPixels.data[i]<150)dark++;
  assert(dark>fallbackPixels.width*fallbackPixels.height*.01);records.push({check:'Injected reflection draw exception restores renderer state and retains an actual nonempty main scene',passed:true});await fallback.context.close();fault=false;
  assert.deepEqual(errors.filter(e=>!e.fault),[]);assert.deepEqual(failures.filter(e=>!e.fault),[]);assert.deepEqual(external,[]);
- fs.writeFileSync(path.join(folder,'browser-results.json'),JSON.stringify({date:'2026-10-23',browser:browser.version(),passed:true,checks:records,errors,failures,externalRequests:external,limitations,limits:'Local final production output, Chromium/SwiftShader and actual CDP touch. Scheduling cap is not measured GPU FPS. No physical phone, Safari, thermal or mainland-network verification.'},null,2)+'\n');
+ fs.writeFileSync(path.join(folder,resultsFile),JSON.stringify({date:'2026-10-23',browser:browser.version(),passed:true,checks:records,errors,failures,externalRequests:external,limitations,limits:'Local final production output, Chromium/SwiftShader and actual CDP touch. Scheduling cap is not measured GPU FPS. No physical phone, Safari, thermal or mainland-network verification.'},null,2)+'\n');
  console.log(JSON.stringify({passed:true,checks:records.length}));
 }catch(error){console.error(JSON.stringify({errors,failures,external}));throw error;}finally{await browser.close();}

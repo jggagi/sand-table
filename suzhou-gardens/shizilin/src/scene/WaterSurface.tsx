@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Mesh, OrthographicCamera, type Group } from 'three';
 import { PondWater } from './pondWater';
+import type {TimeId} from '../data/garden.time';
 
-export default function WaterSurface({group}:{group:Group}){
+export default function WaterSurface({group,timeId}:{group:Group;timeId:TimeId}){
   const {gl,scene,camera,invalidate}=useThree(),water=useRef<PondWater|null>(null);
   useEffect(()=>{
     const mesh=group.getObjectByName('eastern-pond:water');
@@ -31,6 +32,6 @@ export default function WaterSurface({group}:{group:Group}){
       if(water.current===pond)water.current=null;pond.dispose();
     };
   },[group,gl,invalidate]);
-  useFrame(()=>{if(water.current&&camera instanceof OrthographicCamera)water.current.update(gl,scene,camera);},-.5);
+  useFrame(()=>{if(water.current&&camera instanceof OrthographicCamera)water.current.update(gl,scene,camera,timeId);},-.5);
   return null;
 }

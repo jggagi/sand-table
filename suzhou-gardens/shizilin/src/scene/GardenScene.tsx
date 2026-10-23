@@ -4,9 +4,10 @@ import { installCraftStone } from './craftStone';
 import { useEffect, useState } from 'react';
 import { createGarden } from './geometry';
 import WaterSurface from './WaterSurface';
+import type {TimeId} from '../data/garden.time';
 
 /** Geometry and materials stay fixed for the lifetime of this scene. */
-export default function GardenScene() {
+export default function GardenScene({timeId}:{timeId:TimeId}) {
   const asset = useGLTF(`${import.meta.env.BASE_URL}assets/craft-stone.glb`);
   const normal=useTexture(`${import.meta.env.BASE_URL}assets/stone-normal.png`);
   const [resources, setResources] = useState<ReturnType<typeof createGarden> | null>(null);
@@ -16,6 +17,6 @@ export default function GardenScene() {
     setResources(nextResources);
     return () => nextResources.dispose();
   }, [asset.scene,normal]);
-  useStaticShadows(resources !== null);
-  return resources ? <><primitive object={resources.group} dispose={null} /><WaterSurface group={resources.group} /></> : null;
+  useStaticShadows(resources !== null,timeId);
+  return resources ? <><primitive object={resources.group} dispose={null} /><WaterSurface group={resources.group} timeId={timeId} /></> : null;
 }

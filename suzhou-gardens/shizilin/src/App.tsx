@@ -1,10 +1,13 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import GardenCanvas from './scene/GardenCanvas';
 import { VIEW_PRESETS, type ViewId } from './data/garden.views';
 import { UI_CONTENT } from './data/garden.content';
 import { getMapHref } from './navigation/mapLink';
 import './styles.css';
 import MusicPanel from './audio/MusicPanel';
+import TimePanel from './TimePanel';
+import type {TimeId} from './data/garden.time';
+import './time.css';
 
 type RenderStatus = 'loading' | 'ready' | 'error';
 
@@ -26,6 +29,11 @@ function OrbitIcon() {
 }
 
 export default function App() {
+  const [timeId,setTimeId]=useState<TimeId>('dawn');
+  useEffect(()=>{
+    document.documentElement.dataset.period=timeId;
+    return ()=>{delete document.documentElement.dataset.period;};
+  },[timeId]);
   const [viewId, setViewId] = useState<ViewId>('overview');
   const [activeId, setActiveId] = useState<ViewId | null>('overview');
   const [requestId, setRequestId] = useState(0);
@@ -56,7 +64,7 @@ export default function App() {
   };
 
   return (
-    <main className="garden-app" data-render-status={renderStatus} data-current-view={activeId ?? 'free'}>
+    <main className="garden-app" data-period={timeId} data-render-status={renderStatus} data-current-view={activeId ?? 'free'}>
       <header className="masthead">
         <div className="identity">
           <div className="garden-seal" aria-hidden="true">{UI_CONTENT.seal[0]}<span>{UI_CONTENT.seal.slice(1)}</span></div>
@@ -71,8 +79,10 @@ export default function App() {
         </div></div>
       </header>
 
+      <TimePanel value={timeId} onChange={setTimeId} />
+
       <section className="garden-stage" data-testid="garden-stage" aria-label={UI_CONTENT.stageLabel} aria-describedby="interaction-hint">
-        <GardenCanvas key={rendererVersion} viewId={viewId} requestId={requestId} onViewChange={onViewChange} onStatus={onStatus} />
+        <GardenCanvas key={rendererVersion} timeId={timeId} viewId={viewId} requestId={requestId} onViewChange={onViewChange} onStatus={onStatus} />
         <div className={`render-status render-status--${renderStatus}`} role="status" aria-live="polite">
           <span className="status-dot" />
           {renderStatus === 'error' ? UI_CONTENT.errorStatus : renderStatus === 'ready' ? UI_CONTENT.ready : UI_CONTENT.loading}

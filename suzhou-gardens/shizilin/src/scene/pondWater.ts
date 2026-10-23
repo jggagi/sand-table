@@ -5,6 +5,7 @@ import {
 } from 'three';
 import { SCENE_OBJECTS } from '../data/garden.layout';
 import { pondShape, shoreDistance } from './pondShape';
+import {getGardenTime,type TimeId} from '../data/garden.time';
 
 const pond=SCENE_OBJECTS.find(o=>o.id==='eastern-pond')!;
 if(pond.geometry.kind!=='pond')throw new Error('池面配置错误');
@@ -14,7 +15,7 @@ const BIAS=new Matrix4().set(.5,0,0,.5,0,.5,0,.5,0,0,.5,.5,0,0,0,1);
 
 export interface WaterDiagnostics {
   captures: number; animationTicks: number; reflectionSize: number; active: boolean;
-  time: number; mode: 'planar'|'surface';
+  time: number; mode: 'planar'|'surface'; period:TimeId;
 }
 declare global {interface Window {__WATER__?: WaterDiagnostics}}
 
@@ -59,6 +60,7 @@ export class PondWater {
   private readonly lastProjection=new Matrix4();
   private readonly viewDirection=new Vector3();
   private readonly uniforms;
+  private period:TimeId|undefined;
   private dirty=true;
   private disposed=false;
 
@@ -67,7 +69,7 @@ export class PondWater {
     const size=coarse?256:512;
     this.target=new WebGLRenderTarget(size,size,{minFilter:LinearFilter,magFilter:LinearFilter,depthBuffer:true});
     this.target.texture.colorSpace=NoColorSpace;this.target.texture.generateMipmaps=false;
-    this.diagnostics={captures:0,animationTicks:0,reflectionSize:size,active:false,time:0,mode:'planar'};
+    this.diagnostics={captures:0,animationTicks:0,reflectionSize:size,active:false,time:0,mode:'planar',period:'dawn'};
     this.material=new MeshStandardMaterial({color:0xffffff,roughness:.27,metalness:0});
     this.material.name='Shizilin quiet pond';
     this.uniforms={
@@ -125,8 +127,13 @@ export class PondWater {
     this.uniforms.uWaterTime.value=time;this.diagnostics.time=time;
   }
 
-  update(renderer: WebGLRenderer,scene: Scene,camera: OrthographicCamera): void {
+  update(renderer: WebGLRenderer,scene: Scene,camera: OrthographicCamera,period:TimeId='dawn'): void {
     if(this.disposed)return;
+    if(this.period!==period){
+      const time=getGardenTime(period);
+      this.uniforms.uDeep.value.set(time.waterDeep);this.uniforms.uShallow.value.set(time.waterShallow);
+      this.period=period;this.diagnostics.period=period;this.dirty=true;
+    }
     camera.updateMatrixWorld();
     camera.getWorldDirection(this.viewDirection).negate();
     if(!this.dirty&&this.lastWorld.equals(camera.matrixWorld)&&this.lastProjection.equals(camera.projectionMatrix))return;

@@ -4,11 +4,14 @@ import { CameraControls, useGLTF, useTexture } from '@react-three/drei';
 import CameraControlsImpl from 'camera-controls';
 import { OrthographicCamera, Vector3, type WebGLRenderer } from 'three';
 import GardenScene from './GardenScene';
+import TimeLighting from './TimeLighting';
+import type {TimeId} from '../data/garden.time';
 import { SCENE_SEED, SCENE_NAME } from '../data/garden.layout';
 import { CAMERA_LIMITS, getFittedZoom, getViewPreset, type ViewId } from '../data/garden.views';
 
 type RenderStatus = 'loading' | 'ready' | 'error';
 interface GardenCanvasProps {
+  timeId:TimeId;
   viewId: ViewId;
   requestId: number;
   onViewChange: (id: ViewId | null) => void;
@@ -230,17 +233,12 @@ export default function GardenCanvas(props: GardenCanvasProps) {
           callback.current('error', '三维绘图连接已中断。请刷新页面重新加载场景。');
         }, { once: true });
       }}>
-      <ambientLight intensity={0.22} />
-      <hemisphereLight args={['#edf4ef', '#a6a48e', 0.72]} />
-      <directionalLight position={[-20, 25, 12]} intensity={3.05} color="#ffe9c9" castShadow
-        shadow-mapSize={[2048, 2048]} shadow-camera-left={-25} shadow-camera-right={25}
-        shadow-camera-top={25} shadow-camera-bottom={-25} shadow-camera-near={1} shadow-camera-far={90}
-        shadow-bias={-0.0003} shadow-normalBias={0.035} shadow-radius={5} shadow-blurSamples={6} />
+      <TimeLighting timeId={props.timeId} />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.92, 0]} receiveShadow>
         <planeGeometry args={[160, 160]} />
         <shadowMaterial transparent opacity={0.13} />
       </mesh>
-      <Suspense fallback={null}><GardenScene /></Suspense>
+      <Suspense fallback={null}><GardenScene timeId={props.timeId} /></Suspense>
       <CameraRig {...props} />
     </Canvas>
   </SceneBoundary>;

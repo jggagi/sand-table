@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-23",
+  "browser": "151.0.7922.173",
+  "passed": true,
+  "checks": [
+    {
+      "check": "Actual orthographic reflection captures refresh on camera change; existing shadow framebuffers stay cached",
+      "before": {
+        "screen": 253,
+        "offscreen": {
+          "2048x2048": 54,
+          "512x512": 58
+        },
+        "blocked": 0
+      },
+      "after": {
+        "screen": 2053,
+        "offscreen": {
+          "2048x2048": 54,
+          "512x512": 288
+        },
+        "blocked": 0
+      }
+    },
+    {
+      "check": "Reduced-motion pond and camera at rest stop drawing and reusing reflection",
+      "passed": true
+    },
+    {
+      "check": "Actual reflection pixels differ from a control with only reflection draws blocked",
+      "changedPixels": 3663,
+      "meanDifference": 0.16119008273996463
+    },
+    {
+      "check": "Real visible water animation advances main frames, obeys 24Hz scheduling cap and does not recapture reflection",
+      "start": {
+        "time": 77698.5,
+        "frames": 49,
+        "water": {
+          "captures": 6,
+          "animationTicks": 0,
+          "reflectionSize": 512,
+          "active": true,
+          "time": 0,
+          "mode": "planar",
+          "period": "dawn"
+        }
+      },
+      "end": {
+        "time": 79492.70000000298,
+        "frames": 51,
+        "water": {
+          "captures": 6,
+          "animationTicks": 34,
+          "reflectionSize": 512,
+          "active": true,
+          "time": 1.7556999999880794,
+          "mode": "planar",
+          "period": "dawn"
+        }
+      }
+    },
+    {
+      "check": "Actual IntersectionObserver pauses offscreen water and resumes on return",
+      "passed": true
+    },
+    {
+      "check": "Actual mobile touch orbit, pinch bounds and reset with 256px reflection",
+      "passed": true
+    },
+    {
+      "check": "Mobile water scheduling obeys 12Hz cap",
+      "mobileStart": {
+        "time": 34571,
+        "ticks": 0
+      },
+      "mobileEnd": {
+        "time": 35768.40000000596,
+        "ticks": 15
+      }
+    },
+    {
+      "check": "Actual existing music playback and pause",
+      "passed": true
+    },
+    {
+      "check": "Actual packaged map round trip restores Shizilin selection, pond and paused music",
+      "passed": true
+    },
+    {
+      "check": "320px/200% text and landscape resize retain layout",
+      "passed": true
+    },
+    {
+      "check": "Real asset failure and successful retry: craft-stone.glb",
+      "passed": true
+    },
+    {
+      "check": "Real asset failure and successful retry: stone-normal.png",
+      "passed": true
+    },
+    {
+      "check": "Injected reflection draw exception restores renderer state and retains an actual nonempty main scene",
+      "passed": true
+    }
+  ],
+  "errors": [
+    {
+      "message": "Failed to load resource: net::ERR_FAILED",
+      "fault": true
+    },
+    {
+      "message": "Error: Could not load ./assets/craft-stone.glb: Failed to fetch\n    at http://127.0.0.1:4206/shizilin/assets/index-DISuRcdd.js:3901:22622\n    at Object.c [as onError] (http://127.0.0.1:4206/shizilin/assets/index-DISuRcdd.js:3901:38515)\n    at http://127.0.0.1:4206/shizilin/assets/index-DISuRcdd.js:3867:169589",
+      "fault": true
+    },
+    {
+      "message": "Error: Could not load ./assets/craft-stone.glb: Failed to fetch\n    at http://127.0.0.1:4206/shizilin/assets/index-DISuRcdd.js:3901:22622\n    at Object.c [as onError] (http://127.0.0.1:4206/shizilin/assets/index-DISuRcdd.js:3901:38515)\n    at http://127.0.0.1:4206/shizilin/assets/index-DISuRcdd.js:3867:169589",
+      "fault": true
+    },
+    {
+      "message": "Failed to load resource: net::ERR_FAILED",
+      "fault": true
+    },
+    {
+      "message": "Error: Could not load ./assets/stone-normal.png: undefined\n    at http://127.0.0.1:4206/shizilin/assets/index-DISuRcdd.js:3901:22622\n    at HTMLImageElement.d (http://127.0.0.1:4206/shizilin/assets/index-DISuRcdd.js:3867:171546)",
+      "fault": true
+    },
+    {
+      "message": "Error: Could not load ./assets/stone-normal.png: undefined\n    at http://127.0.0.1:4206/shizilin/assets/index-DISuRcdd.js:3901:22622\n    at HTMLImageElement.d (http://127.0.0.1:4206/shizilin/assets/index-DISuRcdd.js:3867:171546)",
+      "fault": true
+    }
+  ],
+  "failures": [
+    {
+      "url": "http://127.0.0.1:4206/shizilin/assets/craft-stone.glb",
+      "error": "net::ERR_FAILED",
+      "fault": true
+    },
+    {
+      "url": "http://127.0.0.1:4206/shizilin/assets/stone-normal.png",
+      "error": "net::ERR_FAILED",
+      "fault": true
+    }
+  ],
+  "externalRequests": [],
+  "limitations": [
+    "This headless browser keeps document.hidden false; actual background-tab pause not verified."
+  ],
+  "limits": "Local final production output, Chromium/SwiftShader and actual CDP touch. Scheduling cap is not measured GPU FPS. No physical phone, Safari, thermal or mainland-network verification."
+}
