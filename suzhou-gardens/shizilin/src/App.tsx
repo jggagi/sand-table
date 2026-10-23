@@ -3,6 +3,7 @@ import GardenCanvas from './scene/GardenCanvas';
 import { VIEW_PRESETS, type ViewId } from './data/garden.views';
 import { UI_CONTENT } from './data/garden.content';
 import { getMapHref } from './navigation/mapLink';
+import {connectMapHost,isMapEmbedded,reportToMap,requestMapReturn} from './navigation/mapHost';
 import './styles.css';
 import MusicPanel from './audio/MusicPanel';
 import TimePanel from './TimePanel';
@@ -29,6 +30,7 @@ function OrbitIcon() {
 }
 
 export default function App() {
+  useEffect(connectMapHost,[]);
   const [timeId,setTimeId]=useState<TimeId>('dawn');
   useEffect(()=>{
     document.documentElement.dataset.period=timeId;
@@ -41,6 +43,8 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState<string>();
   const [hasRendered, setHasRendered] = useState(false);
   const [rendererVersion, setRendererVersion] = useState(0);
+
+  useEffect(()=>{reportToMap(renderStatus,timeId);},[renderStatus,timeId]);
 
   const currentView = VIEW_PRESETS.find((view) => view.id === activeId);
   const selectView = useCallback((id: ViewId) => {
@@ -73,7 +77,7 @@ export default function App() {
             <h1>{UI_CONTENT.title}</h1>
           </div>
         </div>
-        <div className="header-navigation"><a className="map-return" href={getMapHref(window.location.href)} data-testid="return-map"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 4.5 7 2l6 2.5L18 2v13.5L13 18l-6-2.5L2 18V4.5ZM7 2v13.5M13 4.5V18" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /></svg><span>返回地图</span></a><div className="edition">
+        <div className="header-navigation"><a className="map-return" href={getMapHref(window.location.href)} data-testid="return-map" target={isMapEmbedded()?'_top':undefined} onClick={event=>{if(event.button===0&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey&&requestMapReturn())event.preventDefault();}}><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 4.5 7 2l6 2.5L18 2v13.5L13 18l-6-2.5L2 18V4.5ZM7 2v13.5M13 4.5V18" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /></svg><span>返回地图</span></a><div className="edition">
           <p className="edition-location">{UI_CONTENT.location}<span />{UI_CONTENT.milestone}</p>
           <p className="edition-introduction">{UI_CONTENT.introduction}</p>
         </div></div>

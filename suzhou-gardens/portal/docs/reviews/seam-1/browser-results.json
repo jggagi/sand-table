@@ -1,0 +1,713 @@
+{
+  "date": "2026-10-23",
+  "browser": "151.0.7922.173",
+  "origin": "http://127.0.0.1:4216",
+  "passed": true,
+  "checks": [
+    {
+      "check": "Map starts with five real fallback links and no iframe or garden WebGL allocation",
+      "passed": true
+    },
+    {
+      "check": "Cold entry waits for actual WebGL readiness; forged parent ready message is ignored",
+      "actual": {
+        "garden": {
+          "ready": true,
+          "view": "overview",
+          "zoom": 18.650111607142858,
+          "minZoom": 12.122572544642859,
+          "maxZoom": 44.76026785714286,
+          "position": [
+            29.000000000000004,
+            31,
+            36
+          ],
+          "target": [
+            0,
+            1,
+            0
+          ],
+          "calls": 59,
+          "triangles": 109324,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "frames": 17,
+          "seed": 2026100417,
+          "objects": 59
+        },
+        "water": {
+          "captures": 1,
+          "animationTicks": 0,
+          "reflectionSize": 512,
+          "active": false,
+          "time": 0,
+          "mode": "planar",
+          "period": "dawn"
+        },
+        "gpu": {
+          "contexts": 2,
+          "buffers": 199,
+          "framebuffers": 3,
+          "audioCloses": 0
+        },
+        "audio": {
+          "paused": true,
+          "time": 0,
+          "message": ""
+        },
+        "viewport": {
+          "width": 1425,
+          "height": 1000,
+          "canvasWidth": 1311,
+          "canvasHeight": 522
+        },
+        "scrollY": 0
+      }
+    },
+    {
+      "check": "Three retained round trips preserve free pose, zoom, night, volume and canvas/RT identities without document/asset reload or audio graph closure",
+      "saved": {
+        "garden": {
+          "ready": true,
+          "view": null,
+          "zoom": 37.300223214285715,
+          "minZoom": 24.245145089285717,
+          "maxZoom": 89.52053571428571,
+          "position": [
+            -16.48247725788089,
+            16.70301857125246,
+            -8.787107691304586
+          ],
+          "target": [
+            -8.6,
+            1,
+            5.1
+          ],
+          "calls": 48,
+          "triangles": 98324,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "frames": 82,
+          "seed": 2026100417,
+          "objects": 59
+        },
+        "water": {
+          "captures": 19,
+          "animationTicks": 0,
+          "reflectionSize": 512,
+          "active": false,
+          "time": 0,
+          "mode": "planar",
+          "period": "night"
+        },
+        "gpu": {
+          "contexts": 2,
+          "buffers": 199,
+          "framebuffers": 3,
+          "audioCloses": 0
+        },
+        "audio": {
+          "paused": false,
+          "time": 8.129198,
+          "message": ""
+        },
+        "viewport": {
+          "width": 1425,
+          "height": 1000,
+          "canvasWidth": 1311,
+          "canvasHeight": 522
+        },
+        "scrollY": 0
+      }
+    },
+    {
+      "check": "Browser back/forward restores map or same retained garden through the parent history",
+      "passed": true
+    },
+    {
+      "check": "User can actually resume and pause music after re-entry; returning never starts music automatically",
+      "passed": true
+    },
+    {
+      "check": "Delayed native history traversal and immediate re-entry do not reopen a cancelled view or consume the new visit",
+      "passed": true
+    },
+    {
+      "check": "Actual mobile touch, normal zoom/fade transitions, scroll/focus restoration and explicit hidden-water suspension; forged self-sourced activity message rejected",
+      "transitionEvents": [
+        "filter",
+        "opacity",
+        "transform"
+      ],
+      "beforeReturn": {
+        "garden": {
+          "ready": true,
+          "view": null,
+          "zoom": 8.571428571428571,
+          "minZoom": 5.571428571428571,
+          "maxZoom": 20.57142857142857,
+          "position": [
+            -23.682324353766397,
+            43.81683957319512,
+            25.35479761635411
+          ],
+          "target": [
+            0,
+            1,
+            0
+          ],
+          "calls": 59,
+          "triangles": 109324,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "frames": 49,
+          "seed": 2026100417,
+          "objects": 59
+        },
+        "water": {
+          "captures": 29,
+          "animationTicks": 249,
+          "reflectionSize": 256,
+          "active": true,
+          "time": 20.998799999996994,
+          "mode": "planar",
+          "period": "dawn"
+        },
+        "gpu": {
+          "contexts": 2,
+          "buffers": 199,
+          "framebuffers": 3,
+          "audioCloses": 0
+        },
+        "audio": {
+          "paused": true,
+          "time": 0,
+          "message": ""
+        },
+        "viewport": {
+          "width": 390,
+          "height": 640,
+          "canvasWidth": 390,
+          "canvasHeight": 240
+        },
+        "scrollY": 0
+      },
+      "idle": {
+        "garden": {
+          "ready": true,
+          "view": null,
+          "zoom": 8.571428571428571,
+          "minZoom": 5.571428571428571,
+          "maxZoom": 20.57142857142857,
+          "position": [
+            -23.682324353766397,
+            43.81683957319512,
+            25.35479761635411
+          ],
+          "target": [
+            0,
+            1,
+            0
+          ],
+          "calls": 59,
+          "triangles": 109324,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "frames": 63,
+          "seed": 2026100417,
+          "objects": 59
+        },
+        "water": {
+          "captures": 33,
+          "animationTicks": 252,
+          "reflectionSize": 256,
+          "active": false,
+          "time": 21.247099999994013,
+          "mode": "planar",
+          "period": "dawn"
+        },
+        "gpu": {
+          "contexts": 2,
+          "buffers": 199,
+          "framebuffers": 3,
+          "audioCloses": 0
+        },
+        "audio": {
+          "paused": true,
+          "time": 0,
+          "message": ""
+        },
+        "viewport": {
+          "width": 390,
+          "height": 640,
+          "canvasWidth": 390,
+          "canvasHeight": 240
+        },
+        "scrollY": 0
+      },
+      "still": {
+        "garden": {
+          "ready": true,
+          "view": null,
+          "zoom": 8.571428571428571,
+          "minZoom": 5.571428571428571,
+          "maxZoom": 20.57142857142857,
+          "position": [
+            -23.682324353766397,
+            43.81683957319512,
+            25.35479761635411
+          ],
+          "target": [
+            0,
+            1,
+            0
+          ],
+          "calls": 59,
+          "triangles": 109324,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+          "frames": 63,
+          "seed": 2026100417,
+          "objects": 59
+        },
+        "water": {
+          "captures": 33,
+          "animationTicks": 252,
+          "reflectionSize": 256,
+          "active": false,
+          "time": 21.247099999994013,
+          "mode": "planar",
+          "period": "dawn"
+        },
+        "gpu": {
+          "contexts": 2,
+          "buffers": 199,
+          "framebuffers": 3,
+          "audioCloses": 0
+        },
+        "audio": {
+          "paused": true,
+          "time": 0,
+          "message": ""
+        },
+        "viewport": {
+          "width": 390,
+          "height": 640,
+          "canvasWidth": 390,
+          "canvasHeight": 240
+        },
+        "scrollY": 0
+      }
+    },
+    {
+      "check": "Retained mobile view and night screenshot; reduced-motion, 320px/200% text and 44px return control remain usable",
+      "passed": true
+    },
+    {
+      "check": "Cancel cold loading, finish in the background without reopening, then reuse the ready garden",
+      "passed": true
+    },
+    {
+      "check": "Actual GLB load failure surfaces retry/map/standalone fallback; retry successfully replaces the failed iframe",
+      "passed": true
+    },
+    {
+      "check": "Returning during an actual delayed MP3 load cannot restart audio; later user gesture resumes correctly",
+      "passed": true
+    },
+    {
+      "check": "Direct garden hash/refresh enters the local garden; return safely replaces an unowned history entry",
+      "passed": true
+    },
+    {
+      "check": "JavaScript-disabled map retains native five-garden anchors; no embedding or loading lock",
+      "passed": true
+    }
+  ],
+  "shots": [
+    "desktop-entering.jpg",
+    "desktop-overview-night.jpg",
+    "desktop-rockery-night.jpg",
+    "desktop-waterside-night.jpg",
+    "desktop-corridor-night.jpg",
+    "desktop-returned-map.jpg",
+    "mobile-garden-night.jpg",
+    "mobile-returned-map.jpg",
+    "desktop-load-error.jpg"
+  ],
+  "errors": [
+    {
+      "message": "Failed to load resource: net::ERR_FAILED",
+      "fault": true
+    },
+    {
+      "message": "Error: Could not load ./assets/craft-stone.glb: Failed to fetch\n    at http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js:3901:22622\n    at Object.c [as onError] (http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js:3901:38515)\n    at http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js:3867:169589",
+      "fault": true
+    },
+    {
+      "message": "Error: Could not load ./assets/craft-stone.glb: Failed to fetch\n    at http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js:3901:22622\n    at Object.c [as onError] (http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js:3901:38515)\n    at http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js:3867:169589",
+      "fault": true
+    }
+  ],
+  "failures": [
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/craft-stone.glb",
+      "error": "net::ERR_FAILED",
+      "fault": true
+    }
+  ],
+  "external": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4216/",
+      "kind": "document",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/styles.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/map.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/suzhou-handpaint.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/liuyuan.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/shizilin.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/index.html?map=1",
+      "kind": "document",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/index-B-0nIALj.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/stone-normal.png",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/audio/shizilin-stone-echoes.mp3",
+      "kind": "media",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/",
+      "kind": "document",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/styles.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/map.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/suzhou-handpaint.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/liuyuan.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/shizilin.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/index.html?map=1",
+      "kind": "document",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/index-B-0nIALj.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/craft-stone.glb",
+      "kind": "fetch",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/stone-normal.png",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/",
+      "kind": "document",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/styles.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/map.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/suzhou-handpaint.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/liuyuan.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/shizilin.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/index.html?map=1",
+      "kind": "document",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/index-B-0nIALj.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/stone-normal.png",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/",
+      "kind": "document",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/styles.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/map.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/suzhou-handpaint.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/liuyuan.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/shizilin.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/index.html?map=1",
+      "kind": "document",
+      "fault": true
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js",
+      "kind": "script",
+      "fault": true
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/index-B-0nIALj.css",
+      "kind": "stylesheet",
+      "fault": true
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/index.html?map=1",
+      "kind": "document",
+      "fault": true
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/craft-stone.glb",
+      "kind": "fetch",
+      "fault": true
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/stone-normal.png",
+      "kind": "image",
+      "fault": true
+    },
+    {
+      "url": "http://127.0.0.1:4216/",
+      "kind": "document",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/styles.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/map.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/suzhou-handpaint.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/liuyuan.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/shizilin.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/index.html?map=1",
+      "kind": "document",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/index-Dt5IxL5j.js",
+      "kind": "script",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/index-B-0nIALj.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/craft-stone.glb",
+      "kind": "fetch",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/shizilin/assets/stone-normal.png",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/",
+      "kind": "document",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/styles.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/journey.css",
+      "kind": "stylesheet",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/suzhou-handpaint.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/liuyuan.jpg",
+      "kind": "image",
+      "fault": false
+    },
+    {
+      "url": "http://127.0.0.1:4216/assets/shizilin.jpg",
+      "kind": "image",
+      "fault": false
+    }
+  ],
+  "limits": "Actual local final static production output on Chromium/SwiftShader with CDP touch. No physical phone, Safari, GPU FPS/heat or mainland network verification. Native Sites deployment success is separate from platform iframe-header behavior."
+}

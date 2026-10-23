@@ -5,10 +5,10 @@
  <meta name="theme-color" content="#f6f4ed"><meta name="description" content="从苏州古城游览图，走进留园、拙政园、狮子林、网师园与沧浪亭的艺术微缩园景。">
  <title>苏州园林游览图 · 掌上园林</title>
  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='3' fill='%238e4937'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-size='26' fill='%23ffffff'%3E园%3C/text%3E%3C/svg%3E">
- <link rel="stylesheet" href="styles.css"><script src="map.js" defer></script>
+ <link rel="stylesheet" href="styles.css"><script src="map.js" defer></script><link rel="stylesheet" href="journey.css"><script src="journey.js" defer></script>
 </head>
 <body>
- <div class="page">
+ <div class="page" id="map-page">
   <header class="masthead"><div class="identity"><span class="seal" aria-hidden="true">游<span>园</span></span><p>掌上园林<span class="brand-location">苏州</span></p></div><p class="edition">SUZHOU · FIVE GARDENS</p></header>
   <main class="map-layout">
    <div class="map-heading"><p class="eyebrow">一城山水 · 五处园林</p><h1>苏州园林<br class="desktop-break">游览图</h1><p class="instruction">点选园名，即可入园。</p><p class="return-note" id="return-note" role="status" aria-live="polite"></p></div>
@@ -41,5 +41,16 @@
   </main>
   <footer><p id="map-notice">游览示意图 · 点位与街巷经过概括，不用于实地导航。</p><p>艺术化微缩 · 非等比例复原</p></footer>
  </div>
+ <section id="garden-host" class="garden-host" aria-label="狮子林园景" aria-hidden="true" inert></section>
+ <section id="journey-veil" class="journey-veil" role="dialog" aria-modal="true" aria-labelledby="journey-title" aria-hidden="true" inert>
+  <div class="journey-card">
+   <p class="journey-kicker">苏州 · 狮子林</p>
+   <div class="journey-picture" aria-hidden="true"><img src="assets/shizilin.jpg" alt="" width="1440" height="524"></div>
+   <h2 id="journey-title">穿过月洞，走入石境</h2>
+   <p id="journey-message" role="status" aria-live="polite">正在展开园景…</p>
+   <div class="journey-actions"><button id="journey-retry" type="button" hidden>重新入园</button><button id="journey-back" type="button">返回地图</button></div>
+   <a id="journey-fallback" hidden href="shizilin/index.html">单独打开狮子林</a>
+  </div>
+ </section>
 </body>
 </html>

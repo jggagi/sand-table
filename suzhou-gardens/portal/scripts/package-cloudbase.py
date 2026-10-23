@@ -3,6 +3,7 @@
 from hashlib import sha256
 from pathlib import Path
 import json
+import argparse
 import os
 import shutil
 import subprocess
@@ -22,6 +23,11 @@ GARDENS = {
 
 
 def main():
+    global COLLECTION, REPO
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--gardens-root',type=Path,default=COLLECTION)
+    args=parser.parse_args()
+    COLLECTION=args.gardens_root.resolve();REPO=COLLECTION.parent
     # Builds remain owned by each garden. This script never installs or alters them.
     for key in GARDENS:
         dist = COLLECTION / key / "dist"
@@ -39,7 +45,15 @@ def main():
             if html.count(original) != 1:
                 raise SystemExit(f"Expected one unchanged portal link for {key}.")
             html = html.replace(original, f'href="./{key}/"')
-            shutil.copytree(COLLECTION / key / "dist", stage / key)
+            existing=stage/key
+            if existing.exists():
+                if key!='shizilin':raise SystemExit(f"Unexpected embedded build: {key}")
+                def fingerprints(folder):
+                    return {p.relative_to(folder).as_posix():sha256(p.read_bytes()).hexdigest() for p in folder.rglob('*') if p.is_file()}
+                if fingerprints(existing)!=fingerprints(COLLECTION/key/'dist'):
+                    raise SystemExit('Embedded Shizilin differs from the current independent build; restage it.')
+            else:
+                shutil.copytree(COLLECTION / key / "dist", existing)
         if "chatgpt.site" in html:
             raise SystemExit("Upload portal still points to a ChatGPT Site.")
         index.write_text(html, encoding="utf-8")

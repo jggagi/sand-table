@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-23",
+  "browser": "151.0.7922.173",
+  "passed": true,
+  "checks": [
+    {
+      "check": "All five package links stay on this origin and all five independent entry documents return HTTP200",
+      "links": [
+        {
+          "id": "liuyuan",
+          "url": "http://127.0.0.1:4226/liuyuan/"
+        },
+        {
+          "id": "zhuozhengyuan",
+          "url": "http://127.0.0.1:4226/zhuozhengyuan/"
+        },
+        {
+          "id": "shizilin",
+          "url": "http://127.0.0.1:4226/shizilin/"
+        },
+        {
+          "id": "wangshiyuan",
+          "url": "http://127.0.0.1:4226/wangshiyuan/"
+        },
+        {
+          "id": "canglangting",
+          "url": "http://127.0.0.1:4226/canglangting/"
+        }
+      ]
+    },
+    {
+      "check": "Final packaged same-origin entry/return/re-entry retains the actual ready garden, camera and dusk state",
+      "before": {
+        "position": [
+          -1.0000000000000004,
+          10.000000000000002,
+          28
+        ],
+        "target": [
+          -4.2,
+          1.7,
+          -1
+        ],
+        "zoom": 30.717830882352942,
+        "water": {
+          "captures": 3,
+          "animationTicks": 0,
+          "reflectionSize": 512,
+          "active": false,
+          "time": 0,
+          "mode": "planar",
+          "period": "dusk"
+        }
+      },
+      "after": {
+        "position": [
+          -1.0000000000000004,
+          10.000000000000002,
+          28
+        ],
+        "target": [
+          -4.2,
+          1.7,
+          -1
+        ],
+        "zoom": 30.717830882352942,
+        "period": "dusk"
+      }
+    }
+  ],
+  "errors": [],
+  "failures": [],
+  "external": [],
+  "limits": "Final local complete CloudBase upload output, not an actual Tencent Cloud upload; other four gardens entry documents checked but WebGL was not rerun."
+}

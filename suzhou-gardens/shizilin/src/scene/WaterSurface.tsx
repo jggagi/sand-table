@@ -3,6 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { Mesh, OrthographicCamera, type Group } from 'three';
 import { PondWater } from './pondWater';
 import type {TimeId} from '../data/garden.time';
+import {isHostActive,subscribeHostActivity} from '../navigation/mapHost';
 
 export default function WaterSurface({group,timeId}:{group:Group;timeId:TimeId}){
   const {gl,scene,camera,invalidate}=useThree(),water=useRef<PondWater|null>(null);
@@ -16,7 +17,7 @@ export default function WaterSurface({group,timeId}:{group:Group;timeId:TimeId})
     const stop=()=>{if(timer!==undefined){clearInterval(timer);timer=undefined;}pond.diagnostics.active=false;};
     const sync=()=>{
       stop();last=performance.now();
-      if(motion.matches||document.hidden||!inView)return;
+      if(motion.matches||document.hidden||!inView||!isHostActive())return;
       pond.diagnostics.active=true;
       timer=setInterval(()=>{
         const now=performance.now();time+=Math.min(.2,(now-last)/1000);last=now;
@@ -25,9 +26,10 @@ export default function WaterSurface({group,timeId}:{group:Group;timeId:TimeId})
     };
     const observer=new IntersectionObserver(entries=>{inView=entries[0]?.isIntersecting??false;sync();},{threshold:.02});
     observer.observe(gl.domElement);motion.addEventListener('change',sync);document.addEventListener('visibilitychange',sync);
+    const unsubscribe=subscribeHostActivity(sync);
     sync();invalidate(2);
     return()=>{
-      stop();observer.disconnect();motion.removeEventListener('change',sync);document.removeEventListener('visibilitychange',sync);
+      unsubscribe();stop();observer.disconnect();motion.removeEventListener('change',sync);document.removeEventListener('visibilitychange',sync);
       if(window.__WATER__===pond.diagnostics)delete window.__WATER__;
       if(water.current===pond)water.current=null;pond.dispose();
     };

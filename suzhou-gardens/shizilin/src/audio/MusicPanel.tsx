@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { MUSIC } from './score';
+import {isHostActive,subscribeHostActivity} from '../navigation/mapHost';
 import './music.css';
 
 type Phase = 'idle' | 'loading' | 'playing' | 'paused' | 'error';
@@ -32,8 +33,9 @@ export default function MusicPanel() {
     const hidden = () => { if (document.hidden) pause(); };
     document.addEventListener('visibilitychange', hidden);
     window.addEventListener('pagehide', pause);
+    const unsubscribe=subscribeHostActivity(active=>{if(!active)pause();});
     return () => {
-      document.removeEventListener('visibilitychange', hidden);
+      unsubscribe();document.removeEventListener('visibilitychange', hidden);
       window.removeEventListener('pagehide', pause);
       intent.current = false;
       request.current++;
@@ -44,6 +46,7 @@ export default function MusicPanel() {
   }, []);
 
   const toggle = () => {
+    if(!isHostActive())return;
     const element = audio.current!;
     const current = ++request.current;
     if (intent.current) {
@@ -73,7 +76,7 @@ export default function MusicPanel() {
       const resume = context.current?.resume();
       void Promise.all([playback, resume]).then(() => {
         if (request.current !== current || !intent.current) return;
-        if (document.hidden) { intent.current = false; element.pause(); setPhase('paused'); }
+        if (document.hidden||!isHostActive()) { intent.current = false; element.pause(); setPhase('paused'); }
         else setPhase('playing');
       }).catch(() => {
         if (request.current !== current) return;
@@ -99,7 +102,7 @@ export default function MusicPanel() {
 
   return <section className="music-panel" aria-label="园林背景音乐">
     <audio ref={audio} src={`${import.meta.env.BASE_URL}audio/${MUSIC.id}.mp3`} preload="none" loop
-      onPlaying={() => { if (intent.current && !document.hidden) setPhase('playing'); else audio.current?.pause(); }}
+      onPlaying={() => { if (intent.current && !document.hidden&&isHostActive()) setPhase('playing'); else audio.current?.pause(); }}
       onPause={() => {
         if (audio.current?.paused && intent.current) { intent.current = false; request.current++; }
         setPhase(previous => previous === 'playing' ? 'paused' : previous);

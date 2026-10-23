@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-23",
+  "unit_tests_passed": 27,
+  "garden_build_input_count": 32,
+  "garden_build_output_count": 6,
+  "integration_groups_passed": 13,
+  "standalone_groups_passed": 3,
+  "packaged_output_groups_passed": 2,
+  "normal_integration_script_errors": 0,
+  "normal_integration_request_failures": 0,
+  "external_requests": 0,
+  "static_files": {
+    "files": {
+      "assets/canglangting.jpg": "4f657e45b3df80e390bfa076e69019dd1ea8f026b0c16f69692b9479d0b39819",
+      "assets/liuyuan.jpg": "cbfe5e153d47f9b1b29b77f8279bb08b9ba532c1114d35685d943e34d994459d",
+      "assets/shizilin.jpg": "ae4d4fe1c85d12f72d4c661dd10974a8dd0224f337f0b00696386f8b30629216",
+      "assets/suzhou-handpaint.jpg": "c23cf283a32d9cc3bce3c4b2d65a856a04a49399f31d0e6b66be9e6b4d795675",
+      "assets/wangshiyuan.jpg": "4030116076ed7bf44f99b30e07c284ef0bae56f9a047f81439dbe91987b158ac",
+      "assets/zhuozhengyuan.jpg": "5d16b907920f8ac36fb605bdd4a5c817197f9ee28ed303387ab1ec577865647c",
+      "index.html": "e68a1c5611b56ff7867aefc35529d85bdb46087a2dabc54a1babdd92ae98d989",
+      "journey.css": "a7e079c0ea9d1affe2131e86b2c8e4a2d2431b1e2b7a4dc00030b72edca53815",
+      "journey.js": "67fe991cb34a44d28419a986259e806fce61b95804653d7204a8b9994c078349",
+      "map.js": "7bde1f731f3205d389ceb39f78180544b2c4f02b570a8eeeddd4b4b3e5959676",
+      "shizilin/assets/craft-stone.glb": "497bfaf8defda9486d4891c18d18dcc7d42044056a0ac31c461981c732901b8e",
+      "shizilin/assets/index-B-0nIALj.css": "7e95a90b191f33197005df689955a8345c7f82051e5c44e236f44f0f19c7b471",
+      "shizilin/assets/index-Dt5IxL5j.js": "27e6f1038786ec7371c561785eccb4f3f820988ab1cc537802b77e7a725b326b",
+      "shizilin/assets/stone-normal.png": "af803161b83236065c2fd2235bf2f765caa00e37e0d09fe83fbce5cb1e9ad493",
+      "shizilin/audio/shizilin-stone-echoes.mp3": "f14a0cdeab8cc564ecc95731b67b6f664bf351730db739c05e19db6c9afd0fe4",
+      "shizilin/index.html": "ce9859c0bcfd0e2261b99195f896fba868b1021ecbdf8b76a0858a5fcd1225cc",
+      "styles.css": "d0dbca9eae983ad1f4cbbf8e7b78d7012f7e7170570f821cd4c58282c067925b"
+    },
+    "count": 17,
+    "note": "Final locally browser-checked portal static files, including the unchanged independent Shizilin build."
+  },
+  "historical_e2e_rerun": false,
+  "initial_runs": {
+    "runs": [
+      {
+        "exit_code": 1,
+        "passed_checkpoints": 5,
+        "failure": "Hidden main-frame counter changed from65 to67 after fixed 600ms intervals; water was already inactive and ticks stopped. Final driver waits for actual frame stability and then verifies a further1200ms idle."
+      },
+      {
+        "exit_code": 1,
+        "passed_checkpoints": 2,
+        "failure": "Strict zoom assertion used a baseline before music-loading layout had settled; separate actual probe proves522\u2192494\u2192522px and37.3002\u219235.3002\u219237.3002 with identical position/target. Final driver waits for empty loading message and stable ready pose/canvas."
+      }
+    ],
+    "production_camera_changed": false,
+    "assertions_removed": false,
+    "skips": 0,
+    "final_integration_groups_passed": 13,
+    "note": "Earlier failed logs retained in ignored runtime; this record and layout-probe preserve their outcome. Final production static bytes are separately pinned."
+  },
+  "limitations": [
+    "Local Chromium151/SwiftShader plus CDP touch; no physical phone/Safari/FPS/heat/mainland-network measurements",
+    "Native deployment receipt verifies publication; live platform iframe headers not separately tested",
+    "State retained only in this page visit; reload initializes default state"
+  ]
+}

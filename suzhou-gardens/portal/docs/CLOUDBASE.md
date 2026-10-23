@@ -70,3 +70,11 @@ python3 -m http.server 4190 --bind 127.0.0.1 --directory suzhou-gardens/portal/.
 完整包继续为32个文件，约7.76MB，包含可手动切换晨、午、暮、夜的狮子林及原有另外四园。请覆盖上传完整ZIP内容，尤其新的狮子林JS/CSS与入口assets/shizilin.jpg；不要只替换缩略图。默认入园为晨光，界面上方可选时辰。
 
 本地实际时辰专项与入口检查、最终文件SHA256见 [本轮记录](reviews/time-1/package-results.json)及狮子林time-1报告。提交后重新打包会核对32个文件均与已验收内容一致。原腾讯云地址继续使用，尚未代为上传；默认域名提示页与时辰功能无关。
+
+## 地图与狮子林无缝样板 · 2026-10-23
+
+入口新增同站点狮子林入园与返图；首次就绪后保留园景，往返恢复本次访问的视角、缩放与时辰，音乐需主动继续。其他四园仍按既有子路径打开。
+
+先在狮子林执行npm run build，再从仓库根运行stage-shizilin.py与package-cloudbase.py（命令见入口README）。新包增加journey.js/journey.css；原样收录的狮子林仍只占/shizilin/一份，打包器会拒绝过期副本。请覆盖上传完整ZIP，尤其两份入口新文件及/shizilin/中的新JS。最终文件数量、字节和SHA256见 [本轮包记录](reviews/seam-1/package-results.json)。
+
+本地检查与腾讯云实际上传分开记录，本轮没有代为更新用户账户。国内真机、网络与默认域名策略仍需实际验证。

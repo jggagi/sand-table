@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+if(!path.isAbsolute(process.argv[2]||''))throw Error('Pass the absolute installed Playwright index.mjs path.');
+const {chromium}=await import(process.argv[2]);
+const origin=process.env.JOURNEY_ORIGIN||'http://127.0.0.1:4216',out=path.resolve(import.meta.dirname,'../docs/reviews/seam-1');
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});const records=[],errors=[];
+async function ready(f,id){await f.waitForFunction(id=>window.__GARDEN__?.ready&&window.__GARDEN__.view===id&&document.querySelector('main')?.dataset.renderStatus==='ready'&&window.__WATER__?.period==='night',id,{timeout:120000});let previous='',stable=0;for(let i=0;i<100;i++){const v=await f.evaluate(()=>({ready:window.__GARDEN__.ready,status:document.querySelector('main').dataset.renderStatus,pose:{position:window.__GARDEN__.position,target:window.__GARDEN__.target,zoom:window.__GARDEN__.zoom},canvas:[document.querySelector('canvas').clientWidth,document.querySelector('canvas').clientHeight]})),signature=JSON.stringify(v);stable=v.ready&&v.status==='ready'&&signature===previous?stable+1:0;previous=signature;if(stable>=3)return;await f.page().waitForTimeout(150);}throw Error('Screenshot layout did not settle');}
+try{
+ for(const mobile of [false,true]){
+  const c=await browser.newContext({viewport:mobile?{width:390,height:844}:{width:1440,height:1000},hasTouch:mobile,isMobile:mobile,deviceScaleFactor:1,reducedMotion:'reduce'}),p=await c.newPage();p.setDefaultTimeout(120000);p.on('pageerror',e=>errors.push(e.message));assert.equal((await p.goto(origin+'/')).status(),200);await p.locator('#garden-shizilin').click();await p.waitForFunction(()=>document.body.dataset.journey==='garden');const f=p.frames().find(x=>x.url().includes('/shizilin/index.html?map=1'));await f.getByTestId('time-night').click();
+  for(const id of mobile?['waterside']:['overview','rockery','waterside','corridor']){await f.getByTestId('view-'+id).click();await ready(f,id);const name=mobile?'mobile-garden-night.jpg':'desktop-'+id+'-night.jpg';await p.screenshot({path:path.join(out,name),type:'jpeg',quality:86});records.push({file:name,viewport:mobile?[390,844]:[1440,1000],actual:await f.evaluate(()=>({garden:window.__GARDEN__,water:window.__WATER__,status:document.querySelector('main').dataset.renderStatus}))});}
+  await f.getByTestId('return-map').click();await p.waitForFunction(()=>document.body.dataset.journey==='map');await p.screenshot({path:path.join(out,mobile?'mobile-returned-map.jpg':'desktop-returned-map.jpg'),type:'jpeg',quality:86});await c.close();
+ }
+ assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'capture-results.json'),JSON.stringify({date:new Date().toISOString().slice(0,10),browser:browser.version(),dpr:1,reducedMotion:true,records,errors,note:'Final raw page screenshots wait for both actual WebGL diagnostics and rendered UI readiness, with stable canvas size and pose. No generated or edited screenshots.'},null,2)+'\n');console.log(JSON.stringify({passed:true,gardenScreenshots:records.length,mapScreenshots:2}));
+}finally{await browser.close();}

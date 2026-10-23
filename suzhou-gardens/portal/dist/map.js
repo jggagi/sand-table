@@ -37,5 +37,6 @@
   document.querySelector('.map-markers').addEventListener('pointerleave', () => show(byId.has(visited) ? visited : 'liuyuan'));
   addEventListener('pageshow', restore);
   addEventListener('hashchange', restore);
+  addEventListener('suzhou-map-restore',restore);
   restore();
 })();
