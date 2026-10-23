@@ -21,4 +21,5 @@ const limits={liuyuan:200000,wangshiyuan:150000,zhuozhengyuan:150000,shizilin:17
 const box=new Box3().setFromObject(resources.group);
 const result={garden:key,meshes,triangles,vertices,triangleBudget:limits[key],materials:materials.size,bounds:{min:box.min.toArray(),max:box.max.toArray()},surfaces:[...materials].map(m=>({name:m.userData.craftSurface,roughness:m.roughness,metalness:m.metalness})),finite:true};
 resources.dispose();resources.dispose();
-const folder=path.join(root,'docs/reviews/craft-1');fs.mkdirSync(folder,{recursive:true});fs.writeFileSync(path.join(folder,'geometry-results.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+const review=process.env.GARDEN_REVIEW_DIR||'craft-1';if(!/^[a-z0-9-]+$/.test(review))throw Error('Invalid review directory');
+const folder=path.join(root,'docs/reviews',review);fs.mkdirSync(folder,{recursive:true});fs.writeFileSync(path.join(folder,'geometry-results.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

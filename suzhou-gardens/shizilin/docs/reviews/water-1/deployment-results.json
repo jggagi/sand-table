@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-23",
+  "source_commit": "bebbd93918d0cd57f86b433d0aa91f6dfe023051",
+  "project_id": "appgprj_6ac1b57c451c8191871d25d5183e795f",
+  "version_id": "appgprj_6ac1b57c451c8191871d25d5183e795f~appgver_5c1b4bf893bc8191bce8467400a5a8e2",
+  "deployment_id": "appgdep_6adb1d40d7f081919b37404a109116d2",
+  "status": "succeeded",
+  "url": "https://shizilin-miniature.jggagi.chatgpt.site",
+  "updated_at": "2026-10-23T08:39:43.720129+00:00",
+  "audience": "Preserved previously verified owner-only custom audience",
+  "archive": "/workspace/gardens-refinement/suzhou-gardens/shizilin/.sites-runtime/water-site.tar.gz",
+  "verification": "Native successful deployment receipt; no production browser scraping. Local final output browser checks documented separately.",
+  "cloudbase_uploaded": false
+}

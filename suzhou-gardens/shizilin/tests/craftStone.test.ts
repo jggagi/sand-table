@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { Box3, Material, Mesh, Raycaster, Vector3 } from 'three';
+import { Box3, Material, Mesh, Raycaster, Texture, Vector3 } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { createGarden } from '../src/scene/geometry';
 import { installCraftStone } from '../src/scene/craftStone';
@@ -39,5 +39,18 @@ describe('实际Blender GLB的孔洞、坐标与资源所有权',()=>{
   geometries.forEach(g=>g.addEventListener('dispose',()=>released++));materials.forEach(m=>m.addEventListener('dispose',()=>released++));
   first.dispose();expect(released).toBe(geometries.size+materials.size);first.dispose();expect(released).toBe(geometries.size+materials.size);expect(cacheReleased).toBe(0);
   expect(new Box3().setFromObject(second.group).max.y).toBeGreaterThan(4);second.dispose();expect(cacheReleased).toBe(0);
+ });
+ it('法线纹理按挂载克隆，释放不会损坏加载缓存',()=>{
+  const cached=new Texture();let cacheReleased=0,ownedReleased=0;
+  cached.addEventListener('dispose',()=>cacheReleased++);
+  const resources=installCraftStone(createGarden(),asset.scene,cached);
+  const maps=new Set<Texture>();resources.group.getObjectByName('stone-labyrinth')!.traverse(o=>{
+    if(o instanceof Mesh)for(const m of Array.isArray(o.material)?o.material:[o.material]){
+      const map=(m as import('three').MeshStandardMaterial).normalMap;
+      expect(map).not.toBe(cached);expect(map).toBeTruthy();maps.add(map!);
+    }
+  });
+  maps.forEach(m=>m.addEventListener('dispose',()=>ownedReleased++));
+  resources.dispose();resources.dispose();expect(ownedReleased).toBe(maps.size);expect(cacheReleased).toBe(0);cached.dispose();
  });
 });

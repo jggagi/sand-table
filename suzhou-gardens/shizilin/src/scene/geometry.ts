@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { finishSurfaces } from './surfaceFinish';
+import { pondShape } from './pondShape';
 import { MarchingCubes } from 'three/examples/jsm/objects/MarchingCubes.js';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { SCENE_NAME, SCENE_OBJECTS, SCENE_SEED, type SceneObject, type Vec3 } from '../data/garden.layout';
@@ -98,15 +99,6 @@ function roundedShape(width: number, depth: number, radius: number): THREE.Shape
   shape.quadraticCurveTo(x, z + depth, x, z + depth - radius);
   shape.lineTo(x, z + radius);
   shape.quadraticCurveTo(x, z, x + radius, z);
-  return shape;
-}
-function organicShape(points: readonly (readonly [number, number])[], scale = 1): THREE.Shape {
-  const curve = new THREE.CatmullRomCurve3(points.map(([x, z]) => new THREE.Vector3(x * scale, -z * scale, 0)), true, 'catmullrom', 0.12);
-  const samples = curve.getPoints(100);
-  const shape = new THREE.Shape();
-  shape.moveTo(samples[0].x, samples[0].y);
-  for (let i = 1; i < samples.length; i++) shape.lineTo(samples[i].x, samples[i].y);
-  shape.closePath();
   return shape;
 }
 function extrudeHorizontal(shape: THREE.Shape, thickness: number, bevel = 0): THREE.ExtrudeGeometry {
@@ -279,10 +271,16 @@ function architecture(object: SceneObject, templates: Templates, materials: Mate
     const x = -width / 2 + 0.13 + bay / bays * (width - 0.26), z = sign * (depth / 2 - 0.13);
     body.rod('wood', [x, 0.25, z], [x, p.height, z], 0.07, '#7a5f48');
     body.add(templates.column, 'paving', [x, 0.27, z], [0.12, 0.19, 0.12]);
+    body.add(templates.column, 'paving', [x, 0.185, z], [0.15, 0.045, 0.15], undefined, '#a49c87');
+    body.add(templates.column, 'paving', [x, 0.365, z], [0.10, 0.035, 0.10], undefined, '#b5aa90');
   }
   for (const sign of [-1, 1]) {
     body.box('wood', [width, 0.12, 0.1], [0, p.height - 0.08, sign * (depth / 2 - 0.1)]);
     if (p.kind === 'building') body.box('wood', [width - 0.2, 0.12, 0.12], [0, 0.78, sign * (depth / 2 - 0.12)]);
+  }
+  // Short exposed rafter ends and collars remain in the existing material batch.
+  for(let x=-width/2+.18;x<width/2;x+=.40)for(const side of [-1,1]){
+    body.box('wood',[.052,.065,.38],[x,p.height+.015,side*(depth/2-.045)],'#8a6c4c',[side*-.10,0,0]);
   }
   if (p.kind === 'building') {
     for (const side of [-1, 1]) {
@@ -292,6 +290,15 @@ function architecture(object: SceneObject, templates: Templates, materials: Mate
     if (!p.open) body.box('wall', [width - 0.3, p.height - 0.4, 0.16], [0, p.height / 2 + 0.14, -depth / 2]);
     roof.add(hipRoof(width + 0.68, depth + 0.68, 0.83), 'tile', [0, p.height, 0], undefined, undefined, undefined, true);
     roof.rod('tile', [-width * 0.12, p.height + 0.87, 0], [width * 0.12, p.height + 0.87, 0], 0.055, '#3e4b48');
+    const rw=width+.68,rd=depth+.68;
+    for(const face of [0,1])for(const side of [-1,1])for(const u of [-.75,-.375,0,.375,.75]){
+      const at=(t:number):Vec3=>{
+        const corner=Math.abs(u)**5;
+        const y=.83*(1-(1-t)**.68)+.16*(1-t)**5+.12*corner*(1-t)**7;
+        return face===0?[u*rw/2*(1-t*.94),p.height+y+.012,side*rd/2*(1-t*.98)]:[side*rw/2*(1-t*.94),p.height+y+.012,u*rd/2*(1-t*.98)];
+      };
+      for(let segment=0;segment<8;segment++)roof.rod('tile',at(segment/8),at((segment+1)/8),.012,'#63716b');
+    }
   } else {
     const rw = width + 0.46, rd = depth + 0.6, rise = 0.6;
     roof.add(gableRoof(rw, rd, rise), 'tile', [0, p.height, 0], undefined, undefined, undefined, true);
@@ -360,15 +367,18 @@ function wall(object: SceneObject, batch: Batch): void {
 }
 function pond(object: SceneObject, batch: Batch): void {
   const p = object.geometry; if (p.kind !== 'pond') return;
-  const points: readonly (readonly [number, number])[] = [[-0.48, -0.25], [-0.27, -0.46], [0.1, -0.47], [0.44, -0.35], [0.49, -0.04], [0.44, 0.35], [0.16, 0.47], [-0.16, 0.43], [-0.47, 0.2]];
-  const scaled = points.map(([x, z]) => [x * p.width, z * p.depth] as const);
-  const rim = organicShape(scaled, 1.04), inner = organicShape(scaled, 0.98);
+  const rim = pondShape(p.width,p.depth,1.04), inner = pondShape(p.width,p.depth,.98);
   const hole = new THREE.Path(inner.getPoints()); rim.holes.push(hole);
   batch.add(extrudeHorizontal(rim, 0.22, 0.025), 'paving', [0, 0.035, 0], undefined, undefined, '#bcb49f', true);
-  const water = new THREE.ShapeGeometry(organicShape(scaled), 32); water.rotateX(-Math.PI / 2);
+  const wet=pondShape(p.width,p.depth,1.015);wet.holes.push(new THREE.Path(pondShape(p.width,p.depth,.995).getPoints()));
+  batch.add(extrudeHorizontal(wet,.07),'paving',[0,.075,0],undefined,undefined,'#7e8b76',true);
+  const edge=pondShape(p.width,p.depth).getPoints();
+  for(let i=0;i<edge.length-1;i+=4){
+    const a=edge[i];
+    batch.rod('paving',[a.x*.995,.264,-a.y*.995],[a.x*1.04,.264,-a.y*1.04],.009,'#8e917c');
+  }
+  const water = new THREE.ShapeGeometry(pondShape(p.width,p.depth), 32); water.rotateX(-Math.PI / 2);
   batch.add(water, 'water', [0, 0.125, 0], undefined, undefined, undefined, true);
-  // A few quiet marks suggest an ink wash without reflective or animated water.
-  for (const [x, z, length] of [[-1.4, 1.5, 1.7], [1.0, -2.3, 1.2], [2.1, 0.1, 1.55]]) batch.box('water', [length, 0.008, 0.02], [x, 0.131, z], '#92aa99', [0, -0.09, 0]);
 }
 function foliageTemplate(): THREE.BufferGeometry {
   const geometry = new THREE.IcosahedronGeometry(1, 2), positions = geometry.getAttribute('position');

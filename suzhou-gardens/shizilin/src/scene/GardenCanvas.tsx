@@ -1,6 +1,6 @@
 import { Component, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { CameraControls, useGLTF } from '@react-three/drei';
+import { CameraControls, useGLTF, useTexture } from '@react-three/drei';
 import CameraControlsImpl from 'camera-controls';
 import { OrthographicCamera, Vector3, type WebGLRenderer } from 'three';
 import GardenScene from './GardenScene';
@@ -177,7 +177,8 @@ function CameraRig(props: GardenCanvasProps) {
       gl.domElement.dataset.renderReady = 'false';
       invalidate();
     }
-  });
+  // Read the preceding main frame before the pond's auxiliary reflection pass.
+  }, -.75);
 
   return <CameraControls ref={controls} makeDefault
     minPolarAngle={CAMERA_LIMITS.minPolarAngle} maxPolarAngle={CAMERA_LIMITS.maxPolarAngle}
@@ -190,7 +191,11 @@ function CameraRig(props: GardenCanvasProps) {
 class SceneBoundary extends Component<{ children: ReactNode; onError: (message: string) => void }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
-  componentDidCatch(error: Error) { useGLTF.clear(`${import.meta.env.BASE_URL}assets/craft-stone.glb`); this.props.onError(`场景初始化失败：${error.message}`); }
+  componentDidCatch(error: Error) {
+    useGLTF.clear(`${import.meta.env.BASE_URL}assets/craft-stone.glb`);
+    useTexture.clear(`${import.meta.env.BASE_URL}assets/stone-normal.png`);
+    this.props.onError(`场景初始化失败：${error.message}`);
+  }
   render() { return this.state.failed ? null : this.props.children; }
 }
 
@@ -225,12 +230,12 @@ export default function GardenCanvas(props: GardenCanvasProps) {
           callback.current('error', '三维绘图连接已中断。请刷新页面重新加载场景。');
         }, { once: true });
       }}>
-      <ambientLight intensity={0.42} />
-      <hemisphereLight args={['#fff6e6', '#a0b2b0', 1.1]} />
-      <directionalLight position={[-14, 32, 18]} intensity={2.35} color="#fff3e0" castShadow
+      <ambientLight intensity={0.22} />
+      <hemisphereLight args={['#edf4ef', '#a6a48e', 0.72]} />
+      <directionalLight position={[-20, 25, 12]} intensity={3.05} color="#ffe9c9" castShadow
         shadow-mapSize={[2048, 2048]} shadow-camera-left={-25} shadow-camera-right={25}
         shadow-camera-top={25} shadow-camera-bottom={-25} shadow-camera-near={1} shadow-camera-far={90}
-        shadow-bias={-0.0003} shadow-normalBias={0.035} shadow-radius={6} shadow-blurSamples={6} />
+        shadow-bias={-0.0003} shadow-normalBias={0.035} shadow-radius={5} shadow-blurSamples={6} />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.92, 0]} receiveShadow>
         <planeGeometry args={[160, 160]} />
         <shadowMaterial transparent opacity={0.13} />

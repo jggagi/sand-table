@@ -1,0 +1,24 @@
+{
+  "tool": "Blender 4.3.2",
+  "input": {
+    "bytes": 711660,
+    "sha256": "cc92ba3697c36a730080f77f912e657cd24fbd0ce4ad295ce6194ea6ece31b70"
+  },
+  "source": "Previous original Shizilin craft-1 stone; no external asset",
+  "operations": [
+    "Shallow directional folds",
+    "Smart UV unwrap",
+    "24-ray vertex ambient occlusion",
+    "Cycles tangent-space normal bake, 1024 square, 8px margin",
+    "Y-up GLB with UV, separate local normal PNG"
+  ],
+  "triangles": 29620,
+  "glb": {
+    "bytes": 1174760,
+    "sha256": "497bfaf8defda9486d4891c18d18dcc7d42044056a0ac31c461981c732901b8e"
+  },
+  "normal": {
+    "bytes": 535476,
+    "sha256": "af803161b83236065c2fd2235bf2f765caa00e37e0d09fe83fbce5cb1e9ad493"
+  }
+}

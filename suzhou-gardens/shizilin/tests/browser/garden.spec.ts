@@ -29,7 +29,7 @@ async function waitForScene(page: Page, view?: ViewId | null) {
   await expect.poll(async () => {
     const state = await diagnostics(page);
     return Boolean(state?.ready && state.calls > 0 && state.triangles > 0 && (view === undefined || state.view === view));
-  }).toBe(true);
+  }, {timeout:60_000}).toBe(true);
   await expect(page.locator('[data-render-status="ready"]')).toBeVisible();
   return (await diagnostics(page))!;
 }
@@ -85,6 +85,8 @@ async function dragCanvas(page: Page) {
 
 test('真实渲染四个机位，并交付固定视口的五张压缩截图', async ({ page, browser }) => {
   test.setTimeout(180_000);
+  // Capture fixed frames; live camera/water animation has separate checks.
+  await page.emulateMedia({reducedMotion:'reduce'});
   const errors: string[] = [];
   const externalRequests: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -98,7 +100,7 @@ test('真实渲染四个机位，并交付固定视口的五张压缩截图', as
   expect(initial.frames).toBeGreaterThan(4);
   expect(initial.renderer.length).toBeGreaterThan(0);
 
-  const screenshotDirectory = resolve('docs/reviews/polish-1');
+  const screenshotDirectory = resolve(process.env.GARDEN_REVIEW_DIR ?? 'docs/reviews/polish-1');
   await mkdir(screenshotDirectory, { recursive: true });
   const hashes = [];
   for (const view of VIEW_PRESETS) {
@@ -109,7 +111,7 @@ test('真实渲染四个机位，并交付固定视口的五张压缩截图', as
   }
   expect(new Set(hashes).size).toBe(4);
 
-  const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
+  const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, reducedMotion:'reduce' });
   const mobile = await mobileContext.newPage();
   mobile.on('pageerror', error => errors.push(error.message));
   await mobile.goto('/');
@@ -249,7 +251,9 @@ test('WebGL 不可用时显示可读错误和刷新指引', async ({ page }) => 
 });
 
 test('转场期间 resize 保持预设机位和适配缩放，自由观察保留手动方向', async ({ page }) => {
-  test.setTimeout(120_000);
+  // SwiftShader can take >30s wall time to render 200ms of controlled time.
+  // Preserve the virtual intervals and all pose/zoom assertions below.
+  test.setTimeout(300_000);
   const now = new Date();
   await page.clock.install({ time: now });
   await page.clock.pauseAt(new Date(now.getTime() + 1000));
@@ -257,7 +261,7 @@ test('转场期间 resize 保持预设机位和适配缩放，自由观察保留
   await expect.poll(async () => {
     await page.clock.runFor(200);
     return (await diagnostics(page))?.ready ?? false;
-  }, { timeout: 30_000 }).toBe(true);
+  }, { timeout: 90_000 }).toBe(true);
   await waitForScene(page, 'overview');
   const destination = VIEW_PRESETS[3];
   await page.getByTestId(`view-${destination.id}`).click();
@@ -280,7 +284,7 @@ test('转场期间 resize 保持预设机位和适配缩放，自由观察保留
   await expect.poll(async () => {
     await page.clock.runFor(200);
     return (await diagnostics(page))?.ready ?? false;
-  }, { timeout: 30_000 }).toBe(true);
+  }, { timeout: 90_000 }).toBe(true);
   const afterResize = await waitForScene(page, destination.id);
   afterResize.position.forEach((value, axis) => expect(value).toBeCloseTo(destination.position[axis], 2));
   afterResize.target.forEach((value, axis) => expect(value).toBeCloseTo(destination.target[axis], 2));
@@ -290,13 +294,13 @@ test('转场期间 resize 保持预设机位和适配缩放，自由观察保留
   await expect.poll(async () => {
     await page.clock.runFor(200);
     return (await diagnostics(page))?.ready ?? false;
-  }, { timeout: 30_000 }).toBe(true);
+  }, { timeout: 90_000 }).toBe(true);
   const manual = await waitForScene(page, null);
   await page.evaluate(() => { document.querySelector<HTMLElement>('.garden-stage')!.style.height = ''; });
   await expect.poll(async () => {
     await page.clock.runFor(200);
     return (await diagnostics(page))?.ready ?? false;
-  }, { timeout: 30_000 }).toBe(true);
+  }, { timeout: 90_000 }).toBe(true);
   const restored = await waitForScene(page, null);
   restored.position.forEach((value, axis) => expect(value).toBeCloseTo(manual.position[axis], 2));
   restored.target.forEach((value, axis) => expect(value).toBeCloseTo(manual.target[axis], 2));

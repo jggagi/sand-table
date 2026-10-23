@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-23",
+  "browser": "151.0.7922.173",
+  "passed": true,
+  "checks": [
+    {
+      "check": "Five unchanged package links, keyboard focus and actual updated preview images",
+      "passed": true
+    },
+    {
+      "check": "Desktop map, uncropped illustration and accessible markers",
+      "passed": true
+    },
+    {
+      "check": "390px phone layout, images and 44px targets",
+      "passed": true
+    },
+    {
+      "check": "320px and 200% text: no horizontal overflow or overlapping markers",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "failures": [],
+  "external": [],
+  "limits": "Final local upload output; no production fetching, mainland network or physical mobile verification. This round verifies the updated Shizilin preview; the actual Shizilin map round trip is recorded in its water-1 browser results. Other gardens were not reimplemented or revalidated this round."
+}
